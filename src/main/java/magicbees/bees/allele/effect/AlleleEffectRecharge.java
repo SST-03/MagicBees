@@ -100,7 +100,7 @@ public class AlleleEffectRecharge extends AlleleEffect implements IAlleleBeeAcce
 
             if (total == 0) continue;
 
-            short amount = (short) Math.min(total + world.rand.nextInt(total), (int) did);
+            int amount = Math.min(total + world.rand.nextInt(total), (int) did);
             if (amount <= 0) amount = 1;
 
             for (Map.Entry<Aspect, Integer> aspect : toAdd.entrySet()) {
