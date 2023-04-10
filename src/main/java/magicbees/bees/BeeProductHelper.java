@@ -232,8 +232,8 @@ public class BeeProductHelper {
         }
 
         SILICON.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        if (OreDictionary.getOres("itemSilicon").size() > 0) {
-            SILICON.addSpecialty(OreDictionary.getOres("itemSilicon").get(0), 0.16f);
+        if (OreDictionary.getOres("dustSilicon").size() > 0) {
+            SILICON.addSpecialty(OreDictionary.getOres("dustSilicon").get(0), 0.30f);
         } else {
             SILICON.setInactive();
         }
