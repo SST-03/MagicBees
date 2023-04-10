@@ -87,7 +87,7 @@ public class NodeHelper {
                 for (Aspect aspect : nearestNode.getAspects().getAspects()) {
                     int diff = baseAspects.getAmount(aspect) - currentAspects.getAmount(aspect);
                     if (1 < diff) {
-                        nearestNode.addToContainer(aspect, world.rand.nextInt(diff - 1) + 1);
+                        nearestNode.addToContainer(aspect, world.rand.nextInt(diff) + 1);
                         nodeChanged = true;
                     } else if (diff == 1) {
                         nearestNode.addToContainer(aspect, 1);
