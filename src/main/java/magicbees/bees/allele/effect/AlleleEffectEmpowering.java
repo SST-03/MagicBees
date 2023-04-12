@@ -100,8 +100,7 @@ public class AlleleEffectEmpowering extends AlleleEffect implements IAlleleBeeAc
                 do {
                     aspectToAdd = getWeightedRandomAspect(world.rand);
                     ++rollAttempts;
-                } while (aspectsBase.getAmount(aspectToAdd) > (Config.thaumcraftNodeMaxSize - 1)
-                        && rollAttempts < 20);
+                } while (aspectsBase.getAmount(aspectToAdd) > (Config.thaumcraftNodeMaxSize - 1) && rollAttempts < 20);
 
                 if (20 <= rollAttempts) {
                     continue;
