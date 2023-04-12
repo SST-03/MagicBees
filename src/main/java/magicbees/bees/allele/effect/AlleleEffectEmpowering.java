@@ -107,7 +107,7 @@ public class AlleleEffectEmpowering extends AlleleEffect implements IAlleleBeeAc
                     continue;
                 }
 
-amount=Math.min(Config.thaumcraftNodeMaxSize-aspectsBase.getAmount(aspectToAdd),amount);
+                amount = (short) Math.min(Config.thaumcraftNodeMaxSize - aspectsBase.getAmount(aspectToAdd), amount);
 
                 aspectsBase.add(aspectToAdd, amount);
                 node.getAspects().add(aspectToAdd, amount);
