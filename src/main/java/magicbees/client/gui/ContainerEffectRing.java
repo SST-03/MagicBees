@@ -1,9 +1,9 @@
 package magicbees.client.gui;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magicbees.main.utils.LogHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

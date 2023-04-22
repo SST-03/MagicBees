@@ -1,113 +1,155 @@
 package magicbees.itemInventories;
 
-
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
 
-import java.util.Random;
 
-public class InventoryBeeRing extends AbstractItemInventories {
+public class InventoryBeeRing implements IInventory {
 
-    private static final String KEY_ITEMS = "Items"; // legacy
-    private static final String KEY_SLOTS = "Slots";
-    private static final String KEY_UID = "UID";
-    private static final Random rand = new Random();
+    public EntityPlayer player;
+    public ItemStack parent;
 
-    public int currentBeeHealth;
-    private final ItemStack parent;
-    private final EntityPlayer player;
+    public ItemStack[] contents;
 
-    public InventoryBeeRing(ItemStack parent, EntityPlayer player)
+    public InventoryBeeRing(ItemStack stack, EntityPlayer player)
     {
-        this.parent = parent;
+        parent = stack;
         this.player = player;
-        readFromNBT(parent.getTagCompound());
+        readFromNBT(stack.getTagCompound());
+    }
+
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        NBTTagList nbttaglist = compound.getTagList("Items", 10);
+        this.contents = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.contents.length)
+            {
+                this.contents[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+    }
+
+    public void writeToNBT(NBTTagCompound compound)
+    {
+
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.contents.length; ++i)
+        {
+            if (this.contents[i] != null)
+            {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte)i);
+                this.contents[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        compound.setTag("Items", nbttaglist);
 
     }
 
-    public boolean isParentItemInventory(ItemStack itemStack) {
-        ItemStack parent = getParent();
-        return isSameItemInventory(parent, itemStack);
+    @Override
+    public int getSizeInventory() {
+        return 1;
     }
 
-    protected ItemStack getParent() {
-        ItemStack equipped = player.getCurrentEquippedItem();
-        if (isSameItemInventory(equipped, parent)) {
-            return equipped;
-        }
-        return parent;
+    @Override
+    public ItemStack getStackInSlot(int slot) {
+        return contents[slot];
     }
 
-    private static boolean isSameItemInventory(ItemStack base, ItemStack comparison) {
-        if (base == null || comparison == null) {
-            return false;
-        }
+    @Override
+    public ItemStack decrStackSize(int slot, int count) {
+        if (this.contents != null)
+        {
+            ItemStack itemstack;
 
-        if (base.getItem() != comparison.getItem()) {
-            return false;
-        }
+            if (this.contents[slot].stackSize <= count)
+            {
+                itemstack = this.contents[slot];
+                this.contents = null;
+                return itemstack;
+            }
+            else
+            {
+                itemstack = this.contents[slot].splitStack(count);
 
-        if (!base.hasTagCompound() || !comparison.hasTagCompound()) {
-            return false;
-        }
-
-        String baseUID = base.getTagCompound().getString(KEY_UID);
-        String comparisonUID = comparison.getTagCompound().getString(KEY_UID);
-        return baseUID != null && comparisonUID != null && baseUID.equals(comparisonUID);
-    }
-
-    public void readFromNBT(NBTTagCompound nbt) {
-
-        if (nbt == null) {
-            return;
-        }
-
-        if (nbt.hasKey(KEY_SLOTS)) {
-            NBTTagCompound nbtSlots = nbt.getCompoundTag(KEY_SLOTS);
-            for (int i = 0; i < inventoryContent.length; i++) {
-                String slotKey = getSlotNBTKey(i);
-                if (nbtSlots.hasKey(slotKey)) {
-                    NBTTagCompound itemNbt = nbtSlots.getCompoundTag(slotKey);
-                    ItemStack itemStack = ItemStack.loadItemStackFromNBT(itemNbt);
-                    inventoryContent[i] = itemStack;
-                } else {
-                    inventoryContent[i] = null;
+                if (this.contents[slot].stackSize == 0)
+                {
+                    this.contents = null;
                 }
+
+                return itemstack;
             }
+        }
+        else
+        {
+            return null;
         }
     }
 
-    private void writeToParentNBT() {
-        ItemStack parent = getParent();
-        if (parent == null) {
-            return;
-        }
-
-        NBTTagCompound nbt = parent.getTagCompound();
-        NBTTagCompound slotsNbt = new NBTTagCompound();
-        for (int i = 0; i < getSizeInventory(); i++) {
-            ItemStack itemStack = getStackInSlot(i);
-            if (itemStack != null) {
-                String slotKey = getSlotNBTKey(i);
-                NBTTagCompound itemNbt = new NBTTagCompound();
-                itemStack.writeToNBT(itemNbt);
-                slotsNbt.setTag(slotKey, itemNbt);
-            }
-        }
-
-        nbt.setTag(KEY_SLOTS, slotsNbt);
-        nbt.removeTag(KEY_ITEMS);
+    @Override
+    public ItemStack getStackInSlotOnClosing(int index) {
+        return null;
     }
 
-    private static String getSlotNBTKey(int i) {
-        return Integer.toString(i, Character.MAX_RADIX);
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack) {
+        this.contents[slot] = stack;
+
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
+    }
+
+    @Override
+    public String getInventoryName() {
+        return "beeRingInventory";
+    }
+
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 64;
     }
 
     @Override
     public void markDirty() {
-        writeToParentNBT();
+        writeToNBT(parent.getTagCompound());
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        return false;
+    }
+
+    @Override
+    public void openInventory() {
+
+    }
+
+    @Override
+    public void closeInventory() {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        return false;
     }
 }
