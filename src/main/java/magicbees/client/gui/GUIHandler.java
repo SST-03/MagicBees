@@ -1,6 +1,7 @@
 package magicbees.client.gui;
 
 import magicbees.item.ItemBeeRing;
+import magicbees.itemInventories.InventoryBeeRing;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 
@@ -23,7 +24,7 @@ public class GUIHandler implements IGuiHandler {
             TileEntityMagicApiary tileEntityThaumicApiary = (TileEntityMagicApiary) world.getTileEntity(x, y, z);
             value = new ContainerMagicApiary(player.inventory, tileEntityThaumicApiary);
         } else if (ID == UIScreens.EFFECT_RING.ordinal()) {
-            value = new ContainerEffectRing(ItemBeeRing.getInventory(player, player.getHeldItem()),player);
+            value = new ContainerEffectRing((InventoryBeeRing) ItemBeeRing.getInventory(player, player.getHeldItem()),player);
         }
 
         return value;

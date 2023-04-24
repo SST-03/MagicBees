@@ -1,18 +1,17 @@
 package magicbees.client.gui;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import magicbees.main.utils.LogHelper;
+import magicbees.itemInventories.InventoryBeeRing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerEffectRing extends Container {
 
-    IInventory IBR;
+    InventoryBeeRing IBR;
 
-    public ContainerEffectRing(IInventory IBR, EntityPlayer player) {
+    public ContainerEffectRing(InventoryBeeRing IBR, EntityPlayer player) {
         this.IBR = IBR;
         this.addSlotToContainer(
             new SlotCustomItems(this.IBR, 0, 80, 22, GameRegistry.findItemStack("Forestry", "beeDroneGE", 1)));

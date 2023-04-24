@@ -1,6 +1,7 @@
 package magicbees.client.gui;
 
 import magicbees.item.ItemBeeRing;
+import magicbees.itemInventories.InventoryBeeRing;
 import magicbees.main.CommonProxy;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +22,7 @@ public class GUIEffectRing extends GuiContainer {
     private static final int HEIGHT = 156;
 
     public GUIEffectRing(ItemStack itemStack, EntityPlayer player) {
-        super(new ContainerEffectRing(ItemBeeRing.getInventory(player, itemStack), player));
+        super(new ContainerEffectRing((InventoryBeeRing) ItemBeeRing.getInventory(player, itemStack), player));
         this.xSize = WIDTH;
         this.ySize = HEIGHT;
     }
