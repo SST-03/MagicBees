@@ -1,32 +1,44 @@
 package magicbees.itemInventories;
 
-import baubles.common.lib.PlayerHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.Random;
-
+import baubles.common.container.InventoryBaubles;
+import baubles.common.lib.PlayerHandler;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IBee;
+import forestry.api.genetics.IEffectData;
 
 public class InventoryBeeRing implements IInventory {
 
     public EntityPlayer player;
     public ItemStack parent;
     public ItemStack[] contents;
+    public int itemLocatedSlot;
+    public boolean baubleFlag;
+    public IEffectData[] effectData = new IEffectData[2];
 
     public int currentBeeHealth;
+    public int currentBeeColour;
     public int throttle;
 
     private final static String KEY_SLOTS = "Slots";
-    private static final String KEY_UID = "UID";
-    private static final Random rand = new Random();
+    private final static String KEY_HEALTH = "Health";
+    private final static String KEY_THROTTLE = "Throttle";
 
-    public InventoryBeeRing(ItemStack stack, EntityPlayer player)
-    {
-        parent = stack;
+    private final static String KEY_EFFECT_1 = "Effect1";
+    private final static String KEY_EFFECT_2 = "Effect2";
+    private final static String KEY_COLOUR = "Colour";
+
+    public InventoryBeeRing(ItemStack stack, EntityPlayer player, int slot, boolean baubleFlag) {
+        this.parent = stack;
         this.player = player;
         this.contents = new ItemStack[2];
+        this.itemLocatedSlot = slot;
+        this.baubleFlag = baubleFlag;
 
         readFromNBT(stack.getTagCompound());
     }
@@ -36,6 +48,7 @@ public class InventoryBeeRing implements IInventory {
             return;
         }
 
+        // Initializing slot contents
         if (compound.hasKey(KEY_SLOTS)) {
             NBTTagCompound nbtSlots = compound.getCompoundTag(KEY_SLOTS);
             for (int i = 0; i < contents.length; i++) {
@@ -49,17 +62,22 @@ public class InventoryBeeRing implements IInventory {
                 }
             }
         }
-        if (compound.getInteger("throttle") != 0) {
-            throttle = compound.getInteger("throttle");
+
+        // Initializing Throttle for logic and Health, Colour for GUI effects
+        if (compound.getInteger(KEY_THROTTLE) != 0) {
+            throttle = compound.getInteger(KEY_THROTTLE);
         }
 
-        if (compound.getInteger("currentBeeHealth") != 0)
-        {
-            currentBeeHealth = compound.getInteger("throttle");
+        if (compound.getInteger(KEY_HEALTH) != 0) {
+            currentBeeHealth = compound.getInteger(KEY_HEALTH);
         }
 
+        if (compound.getInteger(KEY_COLOUR) != 0) {
+            currentBeeColour = compound.getInteger(KEY_COLOUR);
+        }
     }
 
+    // Helper method for NBT Keys
     private static String getSlotNBTKey(int i) {
         return Integer.toString(i, Character.MAX_RADIX);
     }
@@ -110,9 +128,7 @@ public class InventoryBeeRing implements IInventory {
 
         contents[slot] = stack;
 
-        // I have literally no idea, but for some reason when this is 'this.parent' it doesn't work...
-
-        ItemStack parent = player.getCurrentEquippedItem();
+        ItemStack parent = this.parent;
 
         NBTTagCompound nbt = parent.getTagCompound();
         if (nbt == null) {
@@ -121,7 +137,7 @@ public class InventoryBeeRing implements IInventory {
         }
 
         NBTTagCompound slotNbt;
-        if (!nbt.hasKey("KEY_SLOTS")) {
+        if (!nbt.hasKey(KEY_SLOTS)) {
             slotNbt = new NBTTagCompound();
             nbt.setTag(KEY_SLOTS, slotNbt);
         } else {
@@ -137,6 +153,142 @@ public class InventoryBeeRing implements IInventory {
             stack.writeToNBT(itemNbt);
 
             slotNbt.setTag(slotKey, itemNbt);
+        }
+
+        setInventorySlot(parent);
+    }
+
+    private void setInventorySlot(ItemStack parent) {
+        if (baubleFlag) {
+            InventoryBaubles baubles = PlayerHandler.getPlayerBaubles(this.player);
+            baubles.setInventorySlotContents(itemLocatedSlot, parent);
+        } else {
+            player.inventory.setInventorySlotContents(itemLocatedSlot, parent);
+        }
+
+    }
+
+    public void setCurrentBeeHealth(int health) {
+        this.currentBeeHealth = health;
+        this.parent.getTagCompound().setInteger(KEY_HEALTH, this.currentBeeHealth);
+        setInventorySlot(parent);
+    }
+
+    public void setCurrentBeeColour(int colour) {
+        this.currentBeeColour = colour;
+        this.parent.getTagCompound().setInteger(KEY_COLOUR, this.currentBeeColour);
+    }
+
+    public void setThrottle(int throttle) {
+        this.throttle = throttle;
+        this.parent.getTagCompound().setInteger(KEY_THROTTLE, this.throttle);
+        setInventorySlot(parent);
+    }
+
+    public void writeEffectNBT() {
+        NBTTagCompound compound = parent.getTagCompound();
+
+        if (compound == null) {
+            compound = new NBTTagCompound();
+            parent.setTagCompound(compound);
+        }
+
+        NBTTagCompound slotNbt1;
+        if (!compound.hasKey(KEY_EFFECT_1)) {
+            slotNbt1 = new NBTTagCompound();
+            compound.setTag(KEY_EFFECT_1, slotNbt1);
+        } else {
+            slotNbt1 = compound.getCompoundTag(KEY_EFFECT_1);
+        }
+
+        NBTTagCompound slotNbt2;
+        if (!compound.hasKey(KEY_EFFECT_2)) {
+            slotNbt2 = new NBTTagCompound();
+            compound.setTag(KEY_EFFECT_2, slotNbt2);
+        } else {
+            slotNbt2 = compound.getCompoundTag(KEY_EFFECT_2);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            String slotKey = getSlotNBTKey(i);
+            try {
+                slotNbt1.setInteger(slotKey + "i", effectData[0].getInteger(i));
+                slotNbt1.setBoolean(slotKey + "b", effectData[0].getBoolean(i));
+                slotNbt1.setFloat(slotKey + "f", effectData[0].getFloat(i));
+            } catch (Exception ignored) {}
+        }
+
+        for (int i = 0; i < 5; i++) {
+            String slotKey = getSlotNBTKey(i);
+            try {
+                slotNbt2.setInteger(slotKey + "i", effectData[1].getInteger(i));
+                slotNbt2.setBoolean(slotKey + "b", effectData[1].getBoolean(i));
+                slotNbt2.setFloat(slotKey + "f", effectData[1].getFloat(i));
+            } catch (Exception ignored) {}
+        }
+
+        setInventorySlot(parent);
+    }
+
+    public void setEffectAndInitialize(IBee queen) {
+        effectData[0] = queen.getGenome().getEffect().validateStorage(effectData[0]);
+        effectData[1] = ((IAlleleBeeEffect) queen.getGenome().getInactiveAllele(EnumBeeChromosome.EFFECT))
+                .validateStorage(effectData[1]);
+
+        NBTTagCompound compound = parent.getTagCompound();
+
+        if (compound.hasKey(KEY_EFFECT_1)) {
+            NBTTagCompound nbtSlots1 = compound.getCompoundTag(KEY_EFFECT_1);
+
+            for (int i = 0; i < 5; i++) {
+                String slotKey = getSlotNBTKey(i);
+
+                if (nbtSlots1.hasKey(slotKey + "i")) {
+                    int effectNBTInt = nbtSlots1.getInteger(slotKey + "i");
+                    try {
+                        effectData[0].setInteger(i, effectNBTInt);
+                    } catch (Exception ignored) {}
+                }
+                if (nbtSlots1.hasKey(slotKey + "b")) {
+                    boolean effectNBTBool = nbtSlots1.getBoolean(slotKey + "b");
+                    try {
+                        effectData[0].setBoolean(i, effectNBTBool);
+                    } catch (Exception ignored) {}
+                }
+                if (nbtSlots1.hasKey(slotKey + "f")) {
+                    float effectNBTFloat = nbtSlots1.getFloat(slotKey + "f");
+                    try {
+                        effectData[0].setFloat(i, effectNBTFloat);
+                    } catch (Exception ignored) {}
+                }
+            }
+        }
+
+        if (compound.hasKey(KEY_EFFECT_2)) {
+            NBTTagCompound nbtSlots2 = compound.getCompoundTag(KEY_EFFECT_2);
+
+            for (int i = 0; i < 5; i++) {
+                String slotKey = getSlotNBTKey(i);
+
+                if (nbtSlots2.hasKey(slotKey + "i")) {
+                    int effectNBTInt = nbtSlots2.getInteger(slotKey + "i");
+                    try {
+                        effectData[1].setInteger(i, effectNBTInt);
+                    } catch (Exception ignored) {}
+                }
+                if (nbtSlots2.hasKey(slotKey + "b")) {
+                    boolean effectNBTBool = nbtSlots2.getBoolean(slotKey + "b");
+                    try {
+                        effectData[1].setBoolean(i, effectNBTBool);
+                    } catch (Exception ignored) {}
+                }
+                if (nbtSlots2.hasKey(slotKey + "f")) {
+                    float effectNBTFloat = nbtSlots2.getFloat(slotKey + "f");
+                    try {
+                        effectData[1].setFloat(i, effectNBTFloat);
+                    } catch (Exception ignored) {}
+                }
+            }
         }
     }
 
@@ -156,8 +308,7 @@ public class InventoryBeeRing implements IInventory {
     }
 
     @Override
-    public void markDirty() {
-    }
+    public void markDirty() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
