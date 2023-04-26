@@ -159,13 +159,17 @@ public class InventoryBeeRing implements IInventory {
     }
 
     private void setInventorySlot(ItemStack parent) {
+
+        if (this.player.getHealth() == 0) {
+            return;
+        }
+
         if (baubleFlag) {
             InventoryBaubles baubles = PlayerHandler.getPlayerBaubles(this.player);
             baubles.setInventorySlotContents(itemLocatedSlot, parent);
         } else {
             player.inventory.setInventorySlotContents(itemLocatedSlot, parent);
         }
-
     }
 
     public void setCurrentBeeHealth(int health) {

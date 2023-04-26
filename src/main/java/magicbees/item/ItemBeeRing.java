@@ -146,17 +146,13 @@ public class ItemBeeRing extends Item implements IBauble {
         RingHousing housingLogic = new RingHousing(player, IBR);
 
         IBR.setEffectAndInitialize(queen);
-
         IBR.effectData = queen.doEffect(IBR.effectData, housingLogic);
-        if (player.isDead) {
-            return;
-        }
-
         IBR.writeEffectNBT();
 
         // Crashes irregularly for some reason I can't figure out, but this is just the bee effects around you, so it's
         // not a huge deal. It would be nice to have though
         // I will get around to it later. (Crash has something to do with entityFX when the player is moving)
+
         // if (player.getEntityWorld().getWorldTime() % 5 == 0) {
         // IBR.effectData = queen.doFX(IBR.effectData, housingLogic);
         // }
