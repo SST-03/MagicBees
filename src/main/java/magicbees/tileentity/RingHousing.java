@@ -23,6 +23,7 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.core.IErrorLogic;
 import forestry.api.core.IErrorState;
 
+// Class that simulates a BeeHouse using both player data and info from InventoryBeeRing
 public class RingHousing implements IBeeHousing {
 
     EntityPlayer player;

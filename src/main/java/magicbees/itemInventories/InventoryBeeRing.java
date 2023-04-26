@@ -120,6 +120,8 @@ public class InventoryBeeRing implements IInventory {
         return toReturn;
     }
 
+    // sets the internal inventory of this class to the provided item stack and writes that to the NBT of the parent
+    // (the ring)
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
         if (stack != null && stack.stackSize == 0) {
@@ -158,6 +160,7 @@ public class InventoryBeeRing implements IInventory {
         setInventorySlot(parent);
     }
 
+    // private method to manually set the inventory of a player
     private void setInventorySlot(ItemStack parent) {
 
         if (this.player.getHealth() == 0) {
@@ -172,23 +175,8 @@ public class InventoryBeeRing implements IInventory {
         }
     }
 
-    public void setCurrentBeeHealth(int health) {
-        this.currentBeeHealth = health;
-        this.parent.getTagCompound().setInteger(KEY_HEALTH, this.currentBeeHealth);
-        setInventorySlot(parent);
-    }
-
-    public void setCurrentBeeColour(int colour) {
-        this.currentBeeColour = colour;
-        this.parent.getTagCompound().setInteger(KEY_COLOUR, this.currentBeeColour);
-    }
-
-    public void setThrottle(int throttle) {
-        this.throttle = throttle;
-        this.parent.getTagCompound().setInteger(KEY_THROTTLE, this.throttle);
-        setInventorySlot(parent);
-    }
-
+    // Writes the effectData field to NBT in a readable way (This and the next method could probably be condensed, but
+    // I feel that this is the most readable form I could come up with.
     public void writeEffectNBT() {
         NBTTagCompound compound = parent.getTagCompound();
 
@@ -234,6 +222,7 @@ public class InventoryBeeRing implements IInventory {
         setInventorySlot(parent);
     }
 
+    // Creates the correct implementation of IEffectData and pulls the data saved in the NBT into the effectData field
     public void setEffectAndInitialize(IBee queen) {
         effectData[0] = queen.getGenome().getEffect().validateStorage(effectData[0]);
         effectData[1] = ((IAlleleBeeEffect) queen.getGenome().getInactiveAllele(EnumBeeChromosome.EFFECT))
@@ -294,6 +283,24 @@ public class InventoryBeeRing implements IInventory {
                 }
             }
         }
+    }
+
+    // Setters for logic and GUI display info
+    public void setThrottle(int throttle) {
+        this.throttle = throttle;
+        this.parent.getTagCompound().setInteger(KEY_THROTTLE, this.throttle);
+        setInventorySlot(parent);
+    }
+
+    public void setCurrentBeeHealth(int health) {
+        this.currentBeeHealth = health;
+        this.parent.getTagCompound().setInteger(KEY_HEALTH, this.currentBeeHealth);
+        setInventorySlot(parent);
+    }
+
+    public void setCurrentBeeColour(int colour) {
+        this.currentBeeColour = colour;
+        this.parent.getTagCompound().setInteger(KEY_COLOUR, this.currentBeeColour);
     }
 
     @Override
