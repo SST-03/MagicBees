@@ -96,7 +96,7 @@ public class ItemBeeRing extends Item implements IBauble {
                     }
                 }
 
-                // Logic to run the ring (this logic could be moved out of the item class, but it seems fine here
+                // Logic to run the ring (this logic could be moved out of the item class, but it seems fine here)
                 if (slot != -1) {
                     if (hasQueen(itemStack, (EntityPlayer) entityLivingBase, slot)) {
                         tickQueen(itemStack, (EntityPlayer) entityLivingBase, slot);
