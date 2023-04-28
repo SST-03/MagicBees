@@ -149,8 +149,8 @@ public class Config {
     public static ItemMagicHiveFrame hiveFrameNecrotic;
     public static ItemMagicHiveFrame hiveFrameTemporal;
     public static ItemMagicHiveFrame hiveFrameOblivion;
-    public static ItemBloodFrame hiveFrameBlood;
-    public static ItemFrenziedFrame hiveFrameFrenzy;
+    public static Item hiveFrameBlood;
+    public static Item hiveFrameFrenzy;
 
     // ----- Backpacks ------------------------------------------
     public static Item thaumaturgeBackpackT1;
