@@ -36,6 +36,7 @@ import magicbees.item.types.WaxType;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
+import magicbees.main.utils.compat.BloodHelper;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
@@ -94,7 +95,7 @@ public class Config {
     public static int thaumcraftNodeMaxSize;
 
     public static boolean arsMagicaActive;
-    public static boolean bloodMagicActive;
+    public static boolean bloodMagicActive = true;
     public static boolean equivalentExchangeActive;
     public static boolean extraBeesActive;
     public static boolean redstoneArsenalActive;
@@ -251,8 +252,8 @@ public class Config {
         p = configuration.get(CATEGORY_MODULES, "ArsMagica", true);
         arsMagicaActive = p.getBoolean();
 
-        p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
-        bloodMagicActive = p.getBoolean();
+        p = configuration.get(CATEGORY_MODULES, "bloodmagic", true);
+      //  bloodMagicActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "EquivalentExchange", true);
         equivalentExchangeActive = p.getBoolean();
@@ -486,13 +487,13 @@ public class Config {
 
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
-            if (bloodMagicActive) {
+            try {
                 hiveFrameBlood = new ItemBloodFrame();
                 GameRegistry.registerItem(hiveFrameBlood, hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
 
                 hiveFrameFrenzy = new ItemFrenziedFrame();
                 GameRegistry.registerItem(hiveFrameFrenzy, hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
-            }
+            } catch (Exception ignored) {}
 
         }
     }
