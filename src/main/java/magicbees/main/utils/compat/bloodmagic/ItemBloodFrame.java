@@ -1,20 +1,20 @@
 package magicbees.main.utils.compat.bloodmagic;
 
-import WayofTime.alchemicalWizardry.AlchemicalWizardry;
-import WayofTime.alchemicalWizardry.common.items.EnergyItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.*;
+import java.util.List;
+
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-import java.util.List;
+import WayofTime.alchemicalWizardry.common.items.EnergyItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.*;
 
 public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
@@ -104,14 +104,14 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 
-          if (EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer)) {
-              owner = par3EntityPlayer;
-              if (par1ItemStack.getItemDamage() > 0) {
-                  if (EnergyItems.syphonBatteries(par1ItemStack, par3EntityPlayer, getEnergyUsed())) {
-                      par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
-                  }
-              }
-          }
+        if (EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer)) {
+            owner = par3EntityPlayer;
+            if (par1ItemStack.getItemDamage() > 0) {
+                if (EnergyItems.syphonBatteries(par1ItemStack, par3EntityPlayer, getEnergyUsed())) {
+                    par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
+                }
+            }
+        }
 
         return par1ItemStack;
     }
@@ -123,7 +123,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
             if (owner != null) {
                 EnergyItems.drainPlayerNetwork(owner, getEnergyUsed() * wear);
             }
-           // EnergyItems.syphonWhileInContainer(frame, getEnergyUsed() * wear);
+            // EnergyItems.syphonWhileInContainer(frame, getEnergyUsed() * wear);
         } else {
             frame.setItemDamage(frame.getItemDamage() + wear);
             if (frame.getItemDamage() >= frame.getMaxDamage()) {

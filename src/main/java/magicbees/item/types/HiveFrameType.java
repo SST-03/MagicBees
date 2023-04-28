@@ -14,7 +14,6 @@ public enum HiveFrameType implements IBeeModifier {
     TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f, 0.8f),
     OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f, 1f);
 
-
     private final String frameName;
     public final int maxDamage;
 
