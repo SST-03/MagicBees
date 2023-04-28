@@ -57,6 +57,7 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -94,7 +95,7 @@ public class Config {
     public static int thaumcraftNodeMaxSize;
 
     public static boolean arsMagicaActive;
-    public static boolean bloodMagicActive = true;
+    public static boolean bloodMagicActive;
     public static boolean equivalentExchangeActive;
     public static boolean extraBeesActive;
     public static boolean redstoneArsenalActive;
@@ -251,8 +252,8 @@ public class Config {
         p = configuration.get(CATEGORY_MODULES, "ArsMagica", true);
         arsMagicaActive = p.getBoolean();
 
-        p = configuration.get(CATEGORY_MODULES, "bloodmagic", true);
-        // bloodMagicActive = p.getBoolean();
+        p = configuration.get(CATEGORY_MODULES, "AWWayofTime", true);
+        bloodMagicActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "EquivalentExchange", true);
         equivalentExchangeActive = p.getBoolean();
@@ -486,13 +487,14 @@ public class Config {
 
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
-            try {
+
+            if (Loader.isModLoaded("AWWayofTime")) {
                 hiveFrameBlood = new ItemBloodFrame();
                 GameRegistry.registerItem(hiveFrameBlood, hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
 
                 hiveFrameFrenzy = new ItemFrenziedFrame();
                 GameRegistry.registerItem(hiveFrameFrenzy, hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
-            } catch (Exception ignored) {}
+            }
 
         }
     }

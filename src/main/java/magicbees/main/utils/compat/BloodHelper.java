@@ -1,7 +1,5 @@
 package magicbees.main.utils.compat;
 
-import magicbees.main.Config;
-
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -16,14 +14,14 @@ public class BloodHelper implements IModHelper {
     public static IIcon subtileIcons[];
 
     private static boolean isBloodMagicActive = false;
-    public static final String Name = "bloodmagic";
+    public static final String Name = "AWWayofTime";
 
     public static boolean isActive() {
         return isBloodMagicActive;
     }
 
     public void preInit() {
-        if (Loader.isModLoaded(Name) && Config.bloodMagicActive) {
+        if (Loader.isModLoaded(Name)) {
             isBloodMagicActive = true;
         }
     }
