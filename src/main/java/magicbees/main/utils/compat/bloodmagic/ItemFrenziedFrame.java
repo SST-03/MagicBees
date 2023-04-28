@@ -64,7 +64,7 @@ public class ItemFrenziedFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public boolean isSelfLighted() {
-            return false;
+            return true;
         }
 
         @Override
