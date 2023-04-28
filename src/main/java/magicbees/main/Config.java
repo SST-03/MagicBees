@@ -211,6 +211,8 @@ public class Config {
         magicCapsule = new ItemCapsule(CapsuleType.MAGIC, capsuleStackSizeMax);
         voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
 
+        bloodMagicActive = Loader.isModLoaded("AWWayofTime");
+
         setupThaumcraftItems();
         setupBotaniaItems();
 
@@ -488,7 +490,7 @@ public class Config {
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
-            if (Loader.isModLoaded("AWWayofTime")) {
+            if (bloodMagicActive) {
                 hiveFrameBlood = new ItemBloodFrame();
                 GameRegistry.registerItem(hiveFrameBlood, hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
 
