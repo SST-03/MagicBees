@@ -26,10 +26,10 @@ import forestry.api.core.IErrorState;
 // Class that simulates a BeeHouse using both player data and info from InventoryBeeRing
 public class RingHousing implements IBeeHousing {
 
-    EntityPlayer player;
-    BiomeGenBase biome;
-    IBeeHousingInventory inventory;
-    IBeekeepingLogic beekeepingLogic;
+    private final EntityPlayer player;
+    private final BiomeGenBase biome;
+    private final IBeeHousingInventory inventory;
+    private final IBeekeepingLogic beekeepingLogic;
 
     private static final IErrorLogic errorLogic = new RingHousing.RingErrorLogic();
     private static final Iterable<IBeeListener> beeListeners = ImmutableSet.of(new DefaultBeeListener());

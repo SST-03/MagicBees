@@ -98,56 +98,55 @@ public class ItemBeeRing extends Item implements IBauble {
 
                 // Logic to run the ring (this logic could be moved out of the item class, but it seems fine here)
                 if (slot != -1) {
-                    if (hasQueen(itemStack, (EntityPlayer) entityLivingBase, slot)) {
-                        tickQueen(itemStack, (EntityPlayer) entityLivingBase, slot);
-                    } else if (hasDrone(itemStack, (EntityPlayer) entityLivingBase, slot)) {
-                        createQueenFromDrone(itemStack, (EntityPlayer) entityLivingBase, slot);
+                    InventoryBeeRing inventoryRing = getInventory((EntityPlayer) entityLivingBase, itemStack, slot, true);
+                    if (hasQueen(itemStack, (EntityPlayer) entityLivingBase, slot, inventoryRing)) {
+                        tickQueen(itemStack, (EntityPlayer) entityLivingBase, slot, inventoryRing);
+                    } else if (hasDrone(itemStack, (EntityPlayer) entityLivingBase, slot, inventoryRing)) {
+                        createQueenFromDrone(itemStack, (EntityPlayer) entityLivingBase, slot, inventoryRing);
                     }
                 }
             }
         }
     }
 
-    private void createQueenFromDrone(ItemStack itemStack, EntityPlayer player, int slot) {
+    private void createQueenFromDrone(ItemStack itemStack, EntityPlayer player, int slot, InventoryBeeRing ringInventory) {
 
-        InventoryBeeRing IBR = getInventory(player, itemStack, slot, true);
-        ItemStack droneStack = IBR.getStackInSlot(0);
+        ItemStack droneStack = ringInventory.getStackInSlot(0);
         if (magicbees.bees.BeeManager.beeRoot.isDrone(droneStack)) {
             IBee bee = magicbees.bees.BeeManager.beeRoot.getMember(droneStack);
             if (droneStack.stackSize == 1) {
-                IBR.setInventorySlotContents(0, null);
+                ringInventory.setInventorySlotContents(0, null);
             } else {
                 droneStack.stackSize = droneStack.stackSize - 1;
-                IBR.setInventorySlotContents(0, droneStack);
+                ringInventory.setInventorySlotContents(0, droneStack);
             }
             ItemStack temp = droneStack.copy();
             temp.stackSize = 1;
-            IBR.setInventorySlotContents(1, temp);
+            ringInventory.setInventorySlotContents(1, temp);
 
             int current = bee.getHealth();
             int max = bee.getMaxHealth();
-            IBR.setCurrentBeeHealth((current * 100) / max);
-            IBR.setCurrentBeeColour(bee.getGenome().getPrimary().getIconColour(0));
+            ringInventory.setCurrentBeeHealth((current * 100) / max);
+            ringInventory.setCurrentBeeColour(bee.getGenome().getPrimary().getIconColour(0));
         }
     }
 
-    private boolean hasDrone(ItemStack itemStack, EntityPlayer player, int slot) {
+    private boolean hasDrone(ItemStack itemStack, EntityPlayer player, int slot, InventoryBeeRing ringInventory) {
         return getInventory(player, itemStack, slot, true).getStackInSlot(DRONE_SLOT) != null;
     }
 
-    private void tickQueen(ItemStack itemStack, EntityPlayer player, int slot) {
+    private void tickQueen(ItemStack itemStack, EntityPlayer player, int slot, InventoryBeeRing ringInventory) {
 
-        InventoryBeeRing IBR = getInventory(player, itemStack, slot, true);
 
-        IBee queen = magicbees.bees.BeeManager.beeRoot.getMember(IBR.getStackInSlot(QUEEN_SLOT));
-        IBR.setCurrentBeeHealth((queen.getHealth() * 100) / queen.getMaxHealth());
-        IBR.setCurrentBeeColour(queen.getGenome().getPrimary().getIconColour(0));
+        IBee queen = magicbees.bees.BeeManager.beeRoot.getMember(ringInventory.getStackInSlot(QUEEN_SLOT));
+        ringInventory.setCurrentBeeHealth((queen.getHealth() * 100) / queen.getMaxHealth());
+        ringInventory.setCurrentBeeColour(queen.getGenome().getPrimary().getIconColour(0));
 
-        RingHousing housingLogic = new RingHousing(player, IBR);
+        RingHousing housingLogic = new RingHousing(player, ringInventory);
 
-        IBR.setEffectAndInitialize(queen);
-        IBR.effectData = queen.doEffect(IBR.effectData, housingLogic);
-        IBR.writeEffectNBT();
+        ringInventory.setEffectAndInitialize(queen);
+        ringInventory.effectData = queen.doEffect(ringInventory.effectData, housingLogic);
+        ringInventory.writeEffectNBT();
 
         // Crashes irregularly for some reason I can't figure out, but this is just the bee effects around you, so it's
         // not a huge deal. It would be nice to have though
@@ -158,24 +157,24 @@ public class ItemBeeRing extends Item implements IBauble {
         // }
 
         // run the queen
-        if (IBR.throttle > 550) {
-            IBR.setThrottle(0);
+        if (ringInventory.throttle > 550) {
+            ringInventory.setThrottle(0);
             queen.age(player.getEntityWorld(), 0.26f);
 
             if (queen.getHealth() == 0) {
-                IBR.setInventorySlotContents(1, null);
-                IBR.setCurrentBeeHealth(0);
-                IBR.setCurrentBeeColour(0x0ffffff);
+                ringInventory.setInventorySlotContents(1, null);
+                ringInventory.setCurrentBeeHealth(0);
+                ringInventory.setCurrentBeeColour(0x0ffffff);
             } else {
-                queen.writeToNBT(IBR.contents[QUEEN_SLOT].stackTagCompound);
+                queen.writeToNBT(ringInventory.contents[QUEEN_SLOT].stackTagCompound);
             }
         } else {
-            IBR.setThrottle(IBR.throttle + 1);
+            ringInventory.setThrottle(ringInventory.throttle + 1);
         }
     }
 
-    private boolean hasQueen(ItemStack itemStack, EntityPlayer player, int slot) {
-        return getInventory(player, itemStack, slot, true).getStackInSlot(QUEEN_SLOT) != null;
+    private boolean hasQueen(ItemStack itemStack, EntityPlayer player, int slot, InventoryBeeRing ringInventory) {
+        return ringInventory.getStackInSlot(QUEEN_SLOT) != null;
     }
 
     @Override

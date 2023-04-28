@@ -4,31 +4,19 @@ import magicbees.item.ItemBeeRing;
 import magicbees.itemInventories.InventoryBeeRing;
 import magicbees.main.CommonProxy;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-public class GUIEffectRing extends GuiContainer {
+public class GUIEffectRing extends effectGui {
 
     public static final String BACKGROUND_FILE = "ringScreen.png";
     public static final ResourceLocation BACKGROUND_LOCATION = new ResourceLocation(
             CommonProxy.DOMAIN,
             CommonProxy.GUI_TEXTURE + BACKGROUND_FILE);
 
-    private static final int WIDTH = 176;
-    private static final int HEIGHT = 156;
-
-    private static final int BAR_DEST_X = 117;
-    private static final int BAR_DEST_Y = 10;
-
-    private static final int BAR_SRC_X = 176;
-    private static final int BAR_SRC_Y = 0;
-
-    private static final int BAR_WIDTH = 10;
-    private static final int BAR_HEIGHT = 40;
 
     public GUIEffectRing(ItemStack itemStack, EntityPlayer player) {
         super(
@@ -39,10 +27,7 @@ public class GUIEffectRing extends GuiContainer {
         this.ySize = HEIGHT;
     }
 
-    @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        fontRendererObj.drawString("Inventory", 9, 63, 0);
-    }
+
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
@@ -52,7 +37,7 @@ public class GUIEffectRing extends GuiContainer {
 
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, xSize, ySize);
 
-        InventoryBeeRing IBR = ((ContainerEffectRing) this.inventorySlots).IBR;
+        InventoryBeeRing IBR = (InventoryBeeRing) ((ContainerEffectRing) this.inventorySlots).inventory;
         float r = ((IBR.currentBeeColour >> 16) & 255) / 255f;
         float g = ((IBR.currentBeeColour >> 8) & 255) / 255f;
         float b = (IBR.currentBeeColour & 255) / 255f;
