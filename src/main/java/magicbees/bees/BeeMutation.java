@@ -1,5 +1,13 @@
 package magicbees.bees;
 
+import net.minecraft.init.Blocks;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.oredict.OreDictionary;
+
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBeeMutationCustom;
+import forestry.api.apiculture.IBeeMutationFactory;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.MoonPhase;
 import magicbees.main.utils.compat.AppliedEnergisticsHelper;
@@ -11,15 +19,6 @@ import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.RedstoneArsenalHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.main.utils.compat.ThermalModsHelper;
-
-import net.minecraft.init.Blocks;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeMutationCustom;
-import forestry.api.apiculture.IBeeMutationFactory;
 
 public class BeeMutation {
 

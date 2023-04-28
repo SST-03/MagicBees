@@ -2,10 +2,6 @@ package magicbees.item;
 
 import java.util.List;
 
-import magicbees.item.types.CombType;
-import magicbees.main.Config;
-import magicbees.main.utils.compat.ForestryHelper;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -16,6 +12,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import magicbees.item.types.CombType;
+import magicbees.main.Config;
+import magicbees.main.utils.compat.ForestryHelper;
 
 public class ItemComb extends Item {
 

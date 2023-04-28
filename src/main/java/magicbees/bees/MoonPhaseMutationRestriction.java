@@ -1,14 +1,13 @@
 package magicbees.bees;
 
-import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.MoonPhase;
-
 import net.minecraft.world.World;
 
 import forestry.api.core.IClimateProvider;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IMutationCondition;
+import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.MoonPhase;
 
 public class MoonPhaseMutationRestriction implements IMutationCondition {
 

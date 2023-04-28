@@ -1,5 +1,17 @@
 package magicbees.bees;
 
+import net.minecraft.potion.Potion;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleEffect;
+import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.IAlleleRegistry;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IFlowerProvider;
 import magicbees.api.MagicBeesAPI;
 import magicbees.bees.allele.effect.AlleleEffectCrumbling;
 import magicbees.bees.allele.effect.AlleleEffectCure;
@@ -27,20 +39,7 @@ import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.main.utils.compat.ThermalModsHelper;
-
-import net.minecraft.potion.Potion;
-
 import thaumcraft.api.nodes.NodeType;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleEffect;
-import forestry.api.genetics.IAlleleFlowers;
-import forestry.api.genetics.IAlleleRegistry;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IFlowerProvider;
 
 public class Allele implements IAllele {
 

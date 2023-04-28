@@ -1,9 +1,5 @@
 package magicbees.block;
 
-import magicbees.main.CommonProxy;
-import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityManaAuraProvider;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -14,6 +10,9 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.TabMagicBees;
+import magicbees.tileentity.TileEntityManaAuraProvider;
 
 public class BlockManaAuraProvider extends Block implements ITileEntityProvider {
 

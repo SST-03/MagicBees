@@ -6,8 +6,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import magicbees.main.utils.LogHelper;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import cpw.mods.fml.common.registry.GameData;
 import io.netty.buffer.Unpooled;
+import magicbees.main.utils.LogHelper;
 
 public class EventBase {
 

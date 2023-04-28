@@ -1,8 +1,5 @@
 package magicbees.bees.allele.effect;
 
-import magicbees.bees.AlleleEffect;
-import magicbees.bees.BeeManager;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -13,6 +10,8 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.AlleleEffect;
+import magicbees.bees.BeeManager;
 
 public class AlleleEffectSpawnMobWeighted extends AlleleEffect {
 

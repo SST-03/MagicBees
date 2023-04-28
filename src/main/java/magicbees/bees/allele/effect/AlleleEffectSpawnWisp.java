@@ -2,8 +2,6 @@ package magicbees.bees.allele.effect;
 
 import java.lang.reflect.Field;
 
-import magicbees.main.utils.compat.ThaumcraftHelper;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +12,7 @@ import net.minecraft.world.World;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import magicbees.main.utils.compat.ThaumcraftHelper;
 
 public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob {
 

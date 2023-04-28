@@ -2,17 +2,6 @@ package magicbees.main.utils.compat;
 
 import java.util.ArrayList;
 
-import magicbees.api.MagicBeesAPI;
-import magicbees.item.types.PollenType;
-import magicbees.item.types.PropolisType;
-import magicbees.item.types.ResourceType;
-import magicbees.item.types.WaxType;
-import magicbees.main.CommonProxy;
-import magicbees.main.Config;
-import magicbees.main.utils.BlockInterface;
-import magicbees.main.utils.ItemInterface;
-import magicbees.main.utils.LocalizationManager;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,6 +12,18 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import magicbees.api.MagicBeesAPI;
+import magicbees.item.types.PollenType;
+import magicbees.item.types.PropolisType;
+import magicbees.item.types.ResourceType;
+import magicbees.item.types.WaxType;
+import magicbees.main.CommonProxy;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
+import magicbees.main.utils.LocalizationManager;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -32,8 +33,6 @@ import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThaumcraftHelper implements IModHelper {
 

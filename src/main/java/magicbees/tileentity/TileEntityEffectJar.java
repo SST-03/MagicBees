@@ -1,7 +1,5 @@
 package magicbees.tileentity;
 
-import magicbees.main.CommonProxy;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,6 +12,7 @@ import com.mojang.authlib.GameProfile;
 
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IEffectData;
+import magicbees.main.CommonProxy;
 
 public class TileEntityEffectJar extends TileEntity implements IInventory {
 

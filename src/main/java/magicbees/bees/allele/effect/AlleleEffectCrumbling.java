@@ -2,9 +2,6 @@ package magicbees.bees.allele.effect;
 
 import java.util.HashMap;
 
-import magicbees.bees.AlleleEffect;
-import magicbees.bees.BeeManager;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -16,6 +13,8 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.AlleleEffect;
+import magicbees.bees.BeeManager;
 
 public class AlleleEffectCrumbling extends AlleleEffect {
 

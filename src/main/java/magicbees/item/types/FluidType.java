@@ -1,8 +1,8 @@
 package magicbees.item.types;
 
-import magicbees.main.utils.LocalizationManager;
-
 import net.minecraft.util.IIcon;
+
+import magicbees.main.utils.LocalizationManager;
 
 public enum FluidType {
     // Incidentally, Item meta is the liquid ID.

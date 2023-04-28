@@ -2,11 +2,6 @@ package magicbees.bees.allele.effect;
 
 import java.util.List;
 
-import magicbees.bees.AlleleEffect;
-import magicbees.bees.BeeManager;
-import magicbees.main.utils.BlockUtil;
-import magicbees.main.utils.compat.thaumcraft.NodeHelper;
-
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -15,6 +10,10 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.AlleleEffect;
+import magicbees.bees.BeeManager;
+import magicbees.main.utils.BlockUtil;
+import magicbees.main.utils.compat.thaumcraft.NodeHelper;
 
 public class AlleleEffectNodeRepair extends AlleleEffect {
 

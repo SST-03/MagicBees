@@ -1,19 +1,18 @@
 package magicbees.main.utils.compat.botania;
 
+import net.minecraft.item.ItemStack;
+
+import forestry.api.apiculture.EnumBeeType;
 import magicbees.bees.BeeSpecies;
 import magicbees.main.Config;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.BotaniaHelper.ManaResource;
 import magicbees.main.utils.compat.BotaniaHelper.Rune;
-
-import net.minecraft.item.ItemStack;
-
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.recipe.RecipeElvenTrade;
 import vazkii.botania.api.recipe.RecipeManaInfusion;
 import vazkii.botania.api.recipe.RecipePetals;
-import forestry.api.apiculture.EnumBeeType;
 
 /**
  * Subordinate helper to the Botania Helper that has references to Botania API stuff that will cause

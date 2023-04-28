@@ -1,11 +1,10 @@
 package magicbees.main.utils.compat;
 
-import magicbees.main.Config;
-import magicbees.main.utils.BlockInterface;
-
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.Loader;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
 
 public class ExtraBeesHelper implements IModHelper {
 

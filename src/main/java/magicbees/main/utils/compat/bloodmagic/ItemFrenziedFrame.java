@@ -2,9 +2,6 @@ package magicbees.main.utils.compat.bloodmagic;
 
 import java.util.List;
 
-import magicbees.main.CommonProxy;
-import magicbees.main.utils.TabMagicBees;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,6 +12,8 @@ import WayofTime.alchemicalWizardry.common.items.EnergyItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.*;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.TabMagicBees;
 
 public class ItemFrenziedFrame extends EnergyItems implements IHiveFrame {
 

@@ -2,8 +2,6 @@ package magicbees.bees.allele.effect;
 
 import java.util.List;
 
-import magicbees.bees.AlleleEffect;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -13,6 +11,7 @@ import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.AlleleEffect;
 
 public class AlleleEffectPotion extends AlleleEffect {
 

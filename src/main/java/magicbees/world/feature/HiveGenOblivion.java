@@ -1,12 +1,11 @@
 package magicbees.world.feature;
 
-import magicbees.main.utils.BlockUtil;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 import forestry.api.apiculture.hives.IHiveGen;
+import magicbees.main.utils.BlockUtil;
 
 public class HiveGenOblivion implements IHiveGen {
 

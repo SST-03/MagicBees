@@ -1,13 +1,12 @@
 package magicbees.bees.allele.flowerProvider;
 
-import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.compat.ThaumcraftHelper;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
+import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.compat.ThaumcraftHelper;
 
 public class FlowerProviderAuraNode extends FlowerProvider {
 

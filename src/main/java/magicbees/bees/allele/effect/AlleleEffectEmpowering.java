@@ -7,24 +7,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import magicbees.bees.AlleleEffect;
-import magicbees.bees.BeeManager;
-import magicbees.main.Config;
-import magicbees.main.utils.BlockUtil;
-import magicbees.main.utils.compat.thaumcraft.NodeHelper;
-
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.nodes.INode;
 import forestry.api.apiculture.IAlleleBeeAcceleratableEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.AlleleEffect;
+import magicbees.bees.BeeManager;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockUtil;
+import magicbees.main.utils.compat.thaumcraft.NodeHelper;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.nodes.INode;
 
 public class AlleleEffectEmpowering extends AlleleEffect implements IAlleleBeeAcceleratableEffect {
 

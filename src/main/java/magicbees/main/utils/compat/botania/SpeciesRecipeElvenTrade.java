@@ -3,15 +3,14 @@ package magicbees.main.utils.compat.botania;
 import java.util.LinkedList;
 import java.util.List;
 
-import magicbees.bees.BeeManager;
-import magicbees.bees.BeeSpecies;
-
 import net.minecraft.item.ItemStack;
 
-import vazkii.botania.api.recipe.RecipeElvenTrade;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
+import magicbees.bees.BeeManager;
+import magicbees.bees.BeeSpecies;
+import vazkii.botania.api.recipe.RecipeElvenTrade;
 
 public class SpeciesRecipeElvenTrade extends RecipeElvenTrade {
 

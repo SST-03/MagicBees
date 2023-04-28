@@ -2,9 +2,6 @@ package magicbees.item;
 
 import java.util.List;
 
-import magicbees.item.types.NuggetType;
-import magicbees.main.CommonProxy;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -13,6 +10,8 @@ import net.minecraft.util.IIcon;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.item.types.NuggetType;
+import magicbees.main.CommonProxy;
 
 public class ItemNugget extends Item {
 

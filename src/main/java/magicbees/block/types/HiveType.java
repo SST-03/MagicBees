@@ -3,14 +3,6 @@ package magicbees.block.types;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import magicbees.bees.BeeGenomeManager;
-import magicbees.bees.BeeSpecies;
-import magicbees.bees.HiveDrop;
-import magicbees.item.types.CombType;
-import magicbees.main.CommonProxy;
-import magicbees.main.Config;
-import magicbees.main.utils.compat.ForestryHelper;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -20,6 +12,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.IHiveDrop;
+import magicbees.bees.BeeGenomeManager;
+import magicbees.bees.BeeSpecies;
+import magicbees.bees.HiveDrop;
+import magicbees.item.types.CombType;
+import magicbees.main.CommonProxy;
+import magicbees.main.Config;
+import magicbees.main.utils.compat.ForestryHelper;
 
 public enum HiveType {
 

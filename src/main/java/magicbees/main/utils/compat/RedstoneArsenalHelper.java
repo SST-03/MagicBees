@@ -1,11 +1,10 @@
 package magicbees.main.utils.compat;
 
-import magicbees.main.Config;
-import magicbees.main.utils.ItemInterface;
-
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Loader;
+import magicbees.main.Config;
+import magicbees.main.utils.ItemInterface;
 
 public class RedstoneArsenalHelper implements IModHelper {
 

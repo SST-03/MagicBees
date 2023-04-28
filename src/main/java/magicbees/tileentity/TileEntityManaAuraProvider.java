@@ -3,19 +3,18 @@ package magicbees.tileentity;
 import java.util.HashMap;
 import java.util.Map;
 
-import magicbees.api.bees.AuraChargeType;
-import magicbees.api.bees.IMagicApiaryAuraProvider;
-import magicbees.bees.AuraCharge;
-import magicbees.main.CommonProxy;
-import magicbees.main.utils.compat.BotaniaHelper;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-import vazkii.botania.api.mana.IManaReceiver;
 import cpw.mods.fml.common.Optional;
+import magicbees.api.bees.AuraChargeType;
+import magicbees.api.bees.IMagicApiaryAuraProvider;
+import magicbees.bees.AuraCharge;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.compat.BotaniaHelper;
+import vazkii.botania.api.mana.IManaReceiver;
 
 @Optional.InterfaceList({
         @Optional.Interface(iface = "vazkii.botania.api.mana.IManaReceiver", modid = BotaniaHelper.Name) })

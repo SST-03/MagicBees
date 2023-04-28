@@ -1,7 +1,5 @@
 package magicbees.client.model;
 
-import magicbees.main.CommonProxy;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
@@ -10,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.main.CommonProxy;
 
 @SideOnly(Side.CLIENT)
 public class ModelEffectJar {

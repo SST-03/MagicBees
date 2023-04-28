@@ -5,15 +5,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import magicbees.block.types.HiveType;
-import magicbees.main.Config;
-import magicbees.main.utils.BlockUtil;
-import magicbees.main.utils.LogHelper;
-import magicbees.world.feature.FeatureOreVein;
-import magicbees.world.feature.HiveGenNether;
-import magicbees.world.feature.HiveGenOblivion;
-import magicbees.world.feature.HiveGenUnderground;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -25,6 +16,14 @@ import forestry.api.apiculture.hives.IHiveDescription;
 import forestry.api.apiculture.hives.IHiveGen;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
+import magicbees.block.types.HiveType;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockUtil;
+import magicbees.main.utils.LogHelper;
+import magicbees.world.feature.FeatureOreVein;
+import magicbees.world.feature.HiveGenNether;
+import magicbees.world.feature.HiveGenOblivion;
+import magicbees.world.feature.HiveGenUnderground;
 
 public enum HiveDescription implements IHiveDescription {
 

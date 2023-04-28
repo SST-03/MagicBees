@@ -1,8 +1,8 @@
 package magicbees.item.types;
 
-import magicbees.main.utils.LocalizationManager;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
+import magicbees.main.utils.LocalizationManager;
 
 public enum HiveFrameType implements IBeeModifier {
 

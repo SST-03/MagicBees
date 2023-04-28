@@ -2,8 +2,6 @@ package magicbees.bees.allele.effect;
 
 import java.util.Locale;
 
-import magicbees.api.bees.ITransmutationEffectLogic;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -13,6 +11,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magicbees.api.bees.ITransmutationEffectLogic;
 
 public class TransmutationEffectRailcraft implements ITransmutationEffectLogic {
 

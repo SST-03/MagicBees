@@ -3,14 +3,13 @@ package magicbees.tileentity;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+
 import magicbees.api.bees.AuraChargeType;
 import magicbees.api.bees.IMagicApiaryAuraProvider;
 import magicbees.bees.AuraCharge;
 import magicbees.main.CommonProxy;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.visnet.VisNetHandler;
 

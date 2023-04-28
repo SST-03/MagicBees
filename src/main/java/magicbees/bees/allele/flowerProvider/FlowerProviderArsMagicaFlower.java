@@ -1,8 +1,5 @@
 package magicbees.bees.allele.flowerProvider;
 
-import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.compat.ArsMagicaHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -13,6 +10,8 @@ import forestry.api.genetics.IFlowerGrowthRule;
 import forestry.api.genetics.IFlowerRegistry;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
+import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.compat.ArsMagicaHelper;
 
 public class FlowerProviderArsMagicaFlower extends FlowerProvider implements IFlowerGrowthRule {
 

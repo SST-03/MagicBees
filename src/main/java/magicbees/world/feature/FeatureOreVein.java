@@ -2,11 +2,11 @@ package magicbees.world.feature;
 
 import java.util.Random;
 
-import magicbees.main.utils.BlockUtil;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import magicbees.main.utils.BlockUtil;
 
 public class FeatureOreVein {
 

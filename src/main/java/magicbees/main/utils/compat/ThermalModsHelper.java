@@ -1,8 +1,5 @@
 package magicbees.main.utils.compat;
 
-import magicbees.item.types.DropType;
-import magicbees.main.Config;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -11,6 +8,8 @@ import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
+import magicbees.item.types.DropType;
+import magicbees.main.Config;
 
 public class ThermalModsHelper implements IModHelper {
 

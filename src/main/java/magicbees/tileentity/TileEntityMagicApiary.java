@@ -6,15 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import magicbees.api.bees.IMagicApiaryAuraProvider;
-import magicbees.bees.AuraCharge;
-import magicbees.bees.BeeManager;
-import magicbees.main.CommonProxy;
-import magicbees.main.utils.ChunkCoords;
-import magicbees.main.utils.ItemStackUtils;
-import magicbees.main.utils.net.EventAuraChargeUpdate;
-import magicbees.main.utils.net.NetworkEventHandler;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -50,6 +41,14 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.ForestryAPI;
 import forestry.api.core.IErrorLogic;
+import magicbees.api.bees.IMagicApiaryAuraProvider;
+import magicbees.bees.AuraCharge;
+import magicbees.bees.BeeManager;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.ChunkCoords;
+import magicbees.main.utils.ItemStackUtils;
+import magicbees.main.utils.net.EventAuraChargeUpdate;
+import magicbees.main.utils.net.NetworkEventHandler;
 
 public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing, ITileEntityAuraCharged {
 

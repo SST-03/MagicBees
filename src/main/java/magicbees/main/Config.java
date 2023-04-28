@@ -3,6 +3,24 @@ package magicbees.main;
 import java.io.File;
 import java.lang.reflect.Field;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+import net.minecraftforge.oredict.OreDictionary;
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.storage.BackpackManager;
+import forestry.api.storage.EnumBackpackType;
 import magicbees.block.BlockEffectJar;
 import magicbees.block.BlockEnchantedEarth;
 import magicbees.block.BlockHive;
@@ -45,25 +63,6 @@ import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
 import magicbees.tileentity.TileEntityVisAuraProvider;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-import net.minecraftforge.oredict.OreDictionary;
-
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.storage.BackpackManager;
-import forestry.api.storage.EnumBackpackType;
 
 /**
  * A class to hold some data related to mod state & functions.

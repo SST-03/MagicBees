@@ -1,12 +1,5 @@
 package magicbees.main.utils.compat;
 
-import magicbees.bees.BeeManager;
-import magicbees.item.types.PollenType;
-import magicbees.main.Config;
-import magicbees.main.utils.BlockInterface;
-import magicbees.main.utils.ItemInterface;
-import magicbees.main.utils.compat.botania.BotaniaAPIDistanceHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -19,11 +12,17 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-import vazkii.botania.api.mana.ManaItemHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.bees.BeeManager;
+import magicbees.item.types.PollenType;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
+import magicbees.main.utils.compat.botania.BotaniaAPIDistanceHelper;
+import vazkii.botania.api.mana.ManaItemHandler;
 
 public class BotaniaHelper implements IModHelper {
 

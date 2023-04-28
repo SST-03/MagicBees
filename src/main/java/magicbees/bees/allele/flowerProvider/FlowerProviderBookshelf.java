@@ -2,8 +2,6 @@ package magicbees.bees.allele.flowerProvider;
 
 import java.util.EnumSet;
 
-import magicbees.main.utils.LocalizationManager;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -12,6 +10,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
+import magicbees.main.utils.LocalizationManager;
 
 public class FlowerProviderBookshelf extends FlowerProvider {
 

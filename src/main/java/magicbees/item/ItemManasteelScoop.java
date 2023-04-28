@@ -1,8 +1,5 @@
 package magicbees.item;
 
-import magicbees.main.CommonProxy;
-import magicbees.main.utils.compat.BotaniaHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -12,11 +9,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import vazkii.botania.api.mana.IManaUsingItem;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.IToolScoop;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.compat.BotaniaHelper;
+import vazkii.botania.api.mana.IManaUsingItem;
 
 @Optional.InterfaceList({ @Optional.Interface(
         iface = "vazkii.botania.api.mana.IManaUsingItem",

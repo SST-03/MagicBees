@@ -1,10 +1,10 @@
 package magicbees.main.utils;
 
-import magicbees.item.types.ResourceType;
-import magicbees.main.Config;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
+import magicbees.item.types.ResourceType;
+import magicbees.main.Config;
 
 public class TabMagicBees extends CreativeTabs {
 
