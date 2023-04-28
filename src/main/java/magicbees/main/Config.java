@@ -38,6 +38,8 @@ import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
+import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
@@ -146,6 +148,8 @@ public class Config {
     public static ItemMagicHiveFrame hiveFrameNecrotic;
     public static ItemMagicHiveFrame hiveFrameTemporal;
     public static ItemMagicHiveFrame hiveFrameOblivion;
+    public static ItemBloodFrame hiveFrameBlood;
+    public static ItemFrenziedFrame hiveFrameFrenzy;
 
     // ----- Backpacks ------------------------------------------
     public static Item thaumaturgeBackpackT1;
@@ -482,6 +486,14 @@ public class Config {
 
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
+            if (bloodMagicActive) {
+                hiveFrameBlood = new ItemBloodFrame();
+                GameRegistry.registerItem(hiveFrameBlood, hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
+
+                hiveFrameFrenzy = new ItemFrenziedFrame();
+                GameRegistry.registerItem(hiveFrameFrenzy, hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
+            }
+
         }
     }
 

@@ -144,6 +144,8 @@ item.frameMetabolic.name=Metabolic Frame
 item.frameNecrotic.name=Necrotic Frame
 item.frameTemporal.name=Temporal Frame
 item.frameOblivion.name=Oblivion Frame
+item.bloodFrame.name=Sanguis Artus
+item.frenziedFrame.name=Maddening Frame of Frenzy
 
 #Capsules
 capsule.magic=%s Magic Capsule

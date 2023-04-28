@@ -12,7 +12,8 @@ public enum HiveFrameType implements IBeeModifier {
     METABOLIC("Metabolic", 130, 1f, 1.8f, 1f, 1.2f, 1f),
     NECROTIC("Necrotic", 280, 1f, 1f, 0.3f, 0.75f, 1.2f),
     TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f, 0.8f),
-    OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f, 1f),;
+    OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f, 1f);
+
 
     private final String frameName;
     public final int maxDamage;
