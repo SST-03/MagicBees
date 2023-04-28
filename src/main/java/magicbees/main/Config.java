@@ -490,7 +490,7 @@ public class Config {
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
-            if (bloodMagicActive) {
+            if (Loader.isModLoaded("AWWayofTime")) {
                 hiveFrameBlood = new ItemBloodFrame();
                 GameRegistry.registerItem(hiveFrameBlood, hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
 
