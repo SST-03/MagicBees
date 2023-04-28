@@ -1,9 +1,11 @@
 package magicbees.main.utils.compat;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
+import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -45,6 +47,28 @@ public class BloodHelper implements IModHelper {
         Config.hiveFrameFrenzy = new ItemFrenziedFrame();
         GameRegistry
                 .registerItem(Config.hiveFrameFrenzy, Config.hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
+
+        getRecipes();
+    }
+
+    public static void getRecipes() {
+        AltarRecipeRegistry.registerAltarRecipe(
+                new ItemStack(Config.hiveFrameBlood),
+                new ItemStack(Config.hiveFrameMagic),
+                3,
+                30000,
+                20,
+                20,
+                false);
+
+        AltarRecipeRegistry.registerAltarRecipe(
+                new ItemStack(Config.hiveFrameFrenzy),
+                new ItemStack(Config.hiveFrameNecrotic),
+                3,
+                30000,
+                20,
+                20,
+                false);
     }
 
     public static void doBloodMagicModuleConfigs(Configuration configuration) {
