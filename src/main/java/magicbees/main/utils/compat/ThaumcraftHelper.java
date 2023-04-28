@@ -33,6 +33,8 @@ import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
+import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
+import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 
 public class ThaumcraftHelper implements IModHelper {
 

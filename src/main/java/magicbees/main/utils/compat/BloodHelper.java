@@ -1,5 +1,10 @@
 package magicbees.main.utils.compat;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import magicbees.main.CommonProxy;
+import magicbees.main.Config;
+import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
+import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -32,7 +37,12 @@ public class BloodHelper implements IModHelper {
 
     public static void getBlocks() {}
 
-    public static void getItems() {}
+    public static void getItems() {
+        Config.hiveFrameBlood = new ItemBloodFrame();
+        GameRegistry.registerItem(Config.hiveFrameBlood, Config.hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
+
+        Config.hiveFrameFrenzy = new ItemFrenziedFrame();
+        GameRegistry.registerItem(Config.hiveFrameFrenzy, Config.hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);}
 
     public static void doBloodMagicModuleConfigs(Configuration configuration) {
         Property p;

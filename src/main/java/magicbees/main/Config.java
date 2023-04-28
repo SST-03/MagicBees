@@ -3,6 +3,7 @@ package magicbees.main;
 import java.io.File;
 import java.lang.reflect.Field;
 
+import magicbees.main.utils.compat.BloodHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -56,8 +57,6 @@ import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
-import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
-import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
@@ -490,11 +489,7 @@ public class Config {
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
             if (Loader.isModLoaded("AWWayofTime")) {
-                hiveFrameBlood = new ItemBloodFrame();
-                GameRegistry.registerItem(hiveFrameBlood, hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
-
-                hiveFrameFrenzy = new ItemFrenziedFrame();
-                GameRegistry.registerItem(hiveFrameFrenzy, hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
+                BloodHelper.getItems();
             }
 
         }
