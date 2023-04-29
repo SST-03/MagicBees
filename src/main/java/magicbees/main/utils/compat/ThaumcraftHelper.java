@@ -445,6 +445,7 @@ public class ThaumcraftHelper implements IModHelper {
 
         if (BloodHelper.isActive()) {
             BloodHelper.thaumRecipes();
+            BloodHelper.getRecipes();
         }
     }
 
