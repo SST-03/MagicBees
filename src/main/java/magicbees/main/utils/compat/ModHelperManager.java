@@ -39,6 +39,7 @@ public class ModHelperManager {
         helpers.add(new RedstoneArsenalHelper());
         helpers.add(new BotaniaHelper());
         helpers.add(new AppliedEnergisticsHelper());
-        helpers.add(new BloodHelper());
+        // helpers.add(new BloodHelper());
+        // Kuba, if you want this to be added to the helper list, you're going to have to be the one to fix it.
     }
 }

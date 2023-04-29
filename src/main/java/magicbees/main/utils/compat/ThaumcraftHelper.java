@@ -443,7 +443,7 @@ public class ThaumcraftHelper implements IModHelper {
                 new Object[] { "  T", " s ", "s  ", 's', Items.stick, 'T',
                         new ItemStack(miscResource, 1, MiscResource.VOID_INGOT.ordinal()) });
 
-        if (BloodHelper.isActive()) {
+        if (Config.bloodMagicActive) {
             BloodHelper.thaumRecipes();
         }
     }
@@ -690,7 +690,7 @@ public class ThaumcraftHelper implements IModHelper {
                                 new ResearchPage((IArcaneRecipe) visAuraProvider))
                         .setParentsHidden("VISPOWER").registerResearchItem();
 
-        if (BloodHelper.isActive()) {
+        if (Config.bloodMagicActive) {
             bloodFrame1 = new ResearchPage("bloodFrame.1");
             bloodFrame2 = new ResearchPage((IArcaneRecipe) bloodFrame);
 

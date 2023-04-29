@@ -3,6 +3,7 @@ package magicbees.main;
 import java.io.File;
 import java.lang.reflect.Field;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -251,7 +252,7 @@ public class Config {
         arsMagicaActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
-        bloodMagicActive = p.getBoolean();
+        bloodMagicActive = (Loader.isModLoaded("AWWayofTime"));
 
         p = configuration.get(CATEGORY_MODULES, "EquivalentExchange", true);
         equivalentExchangeActive = p.getBoolean();
@@ -486,7 +487,7 @@ public class Config {
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
-            if (BloodHelper.isActive()) {
+            if (bloodMagicActive) {
                 BloodHelper.getItems();
             }
 
