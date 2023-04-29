@@ -63,6 +63,8 @@ public class BloodHelper implements IModHelper {
         Config.hiveFrameFrenzy = new ItemFrenziedFrame();
         GameRegistry
                 .registerItem(Config.hiveFrameFrenzy, Config.hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
+
+        getRecipes();
     }
 
     public static void getRecipes() {
