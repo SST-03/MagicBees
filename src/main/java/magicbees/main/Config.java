@@ -14,7 +14,6 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -57,9 +56,6 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BloodHelper;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
-import magicbees.main.utils.compat.bloodmagic.ItemBloodBaseFrame;
-import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
-import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
@@ -150,9 +146,6 @@ public class Config {
     public static ItemMagicHiveFrame hiveFrameNecrotic;
     public static ItemMagicHiveFrame hiveFrameTemporal;
     public static ItemMagicHiveFrame hiveFrameOblivion;
-    public static Item hiveFrameBlood;
-    public static Item hiveFrameFrenzy;
-    public static Item hiveFrameBloodBase;
 
     // ----- Backpacks ------------------------------------------
     public static Item thaumaturgeBackpackT1;
@@ -255,7 +248,7 @@ public class Config {
         arsMagicaActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
-        bloodMagicActive = (Loader.isModLoaded("AWWayofTime"));
+        bloodMagicActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "EquivalentExchange", true);
         equivalentExchangeActive = p.getBoolean();
@@ -491,24 +484,7 @@ public class Config {
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
             if (BloodHelper.isActive()) {
-                Config.hiveFrameBloodBase = new ItemBloodBaseFrame();
-                GameRegistry.registerItem(
-                        Config.hiveFrameBloodBase,
-                        Config.hiveFrameBloodBase.getUnlocalizedName(),
-                        CommonProxy.DOMAIN);
-
-                Config.hiveFrameBlood = new ItemBloodFrame();
-                GameRegistry.registerItem(
-                        Config.hiveFrameBlood,
-                        Config.hiveFrameBlood.getUnlocalizedName(),
-                        CommonProxy.DOMAIN);
-
-                Config.hiveFrameFrenzy = new ItemFrenziedFrame();
-                GameRegistry.registerItem(
-                        Config.hiveFrameFrenzy,
-                        Config.hiveFrameFrenzy.getUnlocalizedName(),
-                        CommonProxy.DOMAIN);
-
+                BloodHelper.getItems();
             }
 
         }
