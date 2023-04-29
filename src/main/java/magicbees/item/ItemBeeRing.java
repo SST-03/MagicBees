@@ -77,7 +77,7 @@ public class ItemBeeRing extends Item implements IBauble {
 
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase entityLivingBase) {
-        if (entityLivingBase.worldObj.getWorldTime()% 20 == 0) {
+        if (entityLivingBase.worldObj.getWorldTime() % 20 == 0) {
             if (!(entityLivingBase instanceof EntityPlayer)) {
                 return;
             }
@@ -130,8 +130,7 @@ public class ItemBeeRing extends Item implements IBauble {
         try {
             effects[index][0].setInteger(0, effects[index][0].getInteger(index) + 20);
             effects[index][1].setInteger(0, effects[index][1].getInteger(index) + 20);
-        }
-        catch (Exception ignored) {}
+        } catch (Exception ignored) {}
 
         if (player.worldObj.isRemote && player.worldObj.getWorldTime() % 5 == 0) {
             effects[index] = queen.doFX(effects[index], housingLogic);
