@@ -34,7 +34,7 @@ public class BloodHelper implements IModHelper {
     }
 
     public void preInit() {
-        if (Loader.isModLoaded(Name) && Config.bloodMagicActive) {
+        if (Loader.isModLoaded(Name)) {
             isBloodMagicActive = true;
         }
     }
