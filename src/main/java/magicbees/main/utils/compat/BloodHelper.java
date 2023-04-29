@@ -8,14 +8,9 @@ import net.minecraftforge.common.config.Property;
 import WayofTime.alchemicalWizardry.ModItems;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.utils.compat.bloodmagic.ItemBloodBaseFrame;
-import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
-import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -34,7 +29,7 @@ public class BloodHelper implements IModHelper {
     }
 
     public void preInit() {
-        if (Loader.isModLoaded(Name) && Config.thaumcraftActive) {
+        if (Loader.isModLoaded(Name) && Config.bloodMagicActive) {
             isBloodMagicActive = true;
         }
     }
@@ -43,29 +38,17 @@ public class BloodHelper implements IModHelper {
         isBloodMagicActive = true;
     }
 
-    public void init() {}
+    public void init() {
+        getItems();
+    }
 
-    public void postInit() {}
+    public void postInit() {
+        getRecipes();
+    }
 
     public static void getBlocks() {}
 
-    public static void getItems() {
-        Config.hiveFrameBloodBase = new ItemBloodBaseFrame();
-        GameRegistry.registerItem(
-                Config.hiveFrameBloodBase,
-                Config.hiveFrameBloodBase.getUnlocalizedName(),
-                CommonProxy.DOMAIN);
-
-        Config.hiveFrameBlood = new ItemBloodFrame();
-        GameRegistry
-                .registerItem(Config.hiveFrameBlood, Config.hiveFrameBlood.getUnlocalizedName(), CommonProxy.DOMAIN);
-
-        Config.hiveFrameFrenzy = new ItemFrenziedFrame();
-        GameRegistry
-                .registerItem(Config.hiveFrameFrenzy, Config.hiveFrameFrenzy.getUnlocalizedName(), CommonProxy.DOMAIN);
-
-        getRecipes();
-    }
+    public static void getItems() {}
 
     public static void getRecipes() {
         AltarRecipeRegistry.registerAltarRecipe(
