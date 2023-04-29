@@ -147,7 +147,7 @@ public class Config {
     public static ItemMagicHiveFrame hiveFrameNecrotic;
     public static ItemMagicHiveFrame hiveFrameTemporal;
     public static ItemMagicHiveFrame hiveFrameOblivion;
-    // public static Item hiveFrameBloodBase;
+    public static Item hiveFrameBloodBase;
     public static Item hiveFrameBlood;
     public static Item hiveFrameFrenzy;
 
