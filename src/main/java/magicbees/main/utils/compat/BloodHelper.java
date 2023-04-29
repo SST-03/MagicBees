@@ -7,8 +7,6 @@ import WayofTime.alchemicalWizardry.ModItems;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
 import magicbees.main.utils.compat.bloodmagic.ItemBloodBaseFrame;
@@ -28,8 +26,6 @@ public class BloodHelper implements IModHelper {
     public static Item hiveFrameBlood;
     public static Item hiveFrameFrenzy;
     public static Item hiveFrameBloodBase;
-
-    @SideOnly(Side.CLIENT)
 
     private static boolean isBloodMagicActive = false;
     public static final String Name = "AWWayofTime";
