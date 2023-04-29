@@ -14,7 +14,6 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -147,9 +146,9 @@ public class Config {
     public static ItemMagicHiveFrame hiveFrameNecrotic;
     public static ItemMagicHiveFrame hiveFrameTemporal;
     public static ItemMagicHiveFrame hiveFrameOblivion;
+    public static Item hiveFrameBloodBase;
     public static Item hiveFrameBlood;
     public static Item hiveFrameFrenzy;
-    public static Item hiveFrameBloodBase;
 
     // ----- Backpacks ------------------------------------------
     public static Item thaumaturgeBackpackT1;
@@ -252,8 +251,7 @@ public class Config {
         arsMagicaActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
-        // bloodMagicActive = p.getBoolean();
-        bloodMagicActive = Loader.isModLoaded("AWWayofTime");
+        bloodMagicActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "EquivalentExchange", true);
         equivalentExchangeActive = p.getBoolean();
@@ -488,7 +486,7 @@ public class Config {
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
-            if (bloodMagicActive) {
+            if (BloodHelper.isActive()) {
                 BloodHelper.getItems();
             }
         }
