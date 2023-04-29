@@ -3,7 +3,6 @@ package magicbees.main;
 import java.io.File;
 import java.lang.reflect.Field;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -210,8 +209,6 @@ public class Config {
         magicCapsule = new ItemCapsule(CapsuleType.MAGIC, capsuleStackSizeMax);
         voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
 
-        bloodMagicActive = Loader.isModLoaded("AWWayofTime");
-
         setupThaumcraftItems();
         setupBotaniaItems();
 
@@ -254,7 +251,7 @@ public class Config {
         arsMagicaActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
-       // bloodMagicActive = p.getBoolean();
+        bloodMagicActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "EquivalentExchange", true);
         equivalentExchangeActive = p.getBoolean();
