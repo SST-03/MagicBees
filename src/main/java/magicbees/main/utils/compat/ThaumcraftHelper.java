@@ -444,7 +444,7 @@ public class ThaumcraftHelper implements IModHelper {
                         new ItemStack(miscResource, 1, MiscResource.VOID_INGOT.ordinal()) });
 
         if (BloodHelper.isActive()) {
-            BloodHelper.thaumRecipes();
+            // BloodHelper.thaumRecipes();
         }
     }
 
@@ -691,40 +691,19 @@ public class ThaumcraftHelper implements IModHelper {
                         .setParentsHidden("VISPOWER").registerResearchItem();
 
         if (BloodHelper.isActive()) {
-            bloodFrame1 = new ResearchPage("bloodFrame.1");
-            bloodFrame2 = new ResearchPage((IArcaneRecipe) bloodFrame);
-
-            bloodFramePage = new ResearchItem(
-                    "MB_BloodFrame",
-                    category,
-                    new AspectList().add(Aspect.LIFE, 1).add(Aspect.ORDER, 1).add(Aspect.HEAL, 1)
-                            .add(Aspect.EXCHANGE, 1).add(Aspect.GREED, 1),
-                    -4,
-                    3,
-                    1,
-                    new ItemStack(Config.hiveFrameBlood));
-
-            frenzyFrame1 = new ResearchPage("frenziedFrame.1");
-            frenzyFrame2 = new ResearchPage((IArcaneRecipe) frenziedFrame);
-
-            frenzyFramePage = new ResearchItem(
-                    "MB_FrenziedFrame",
-                    category,
-                    new AspectList().add(Aspect.LIFE, 1).add(Aspect.ORDER, 1).add(Aspect.HEAL, 1)
-                            .add(Aspect.EXCHANGE, 1).add(Aspect.GREED, 1),
-                    -5,
-                    3,
-                    1,
-                    new ItemStack(Config.hiveFrameFrenzy));
-
-            bloodFramePage.setPages(bloodFrame1, bloodFrame2);
-            bloodFramePage.setParents("MB_FrameMagic");
-
-            frenzyFramePage.setPages(frenzyFrame1, frenzyFrame2);
-            frenzyFramePage.setParents("MB_FrameMagic");
-
-            ResearchCategories.addResearch(bloodFramePage);
-            ResearchCategories.addResearch(frenzyFramePage);
+            /*
+             * bloodFrame1 = new ResearchPage("bloodFrame.1"); bloodFrame2 = new ResearchPage((IArcaneRecipe)
+             * bloodFrame); bloodFramePage = new ResearchItem( "MB_BloodFrame", category, new
+             * AspectList().add(Aspect.LIFE, 1).add(Aspect.ORDER, 1).add(Aspect.HEAL, 1) .add(Aspect.EXCHANGE,
+             * 1).add(Aspect.GREED, 1), -4, 3, 1, new ItemStack(Config.hiveFrameBlood)); frenzyFrame1 = new
+             * ResearchPage("frenziedFrame.1"); frenzyFrame2 = new ResearchPage((IArcaneRecipe) frenziedFrame);
+             * frenzyFramePage = new ResearchItem( "MB_FrenziedFrame", category, new AspectList().add(Aspect.LIFE,
+             * 1).add(Aspect.ORDER, 1).add(Aspect.HEAL, 1) .add(Aspect.EXCHANGE, 1).add(Aspect.GREED, 1), -5, 3, 1, new
+             * ItemStack(Config.hiveFrameFrenzy)); bloodFramePage.setPages(bloodFrame1, bloodFrame2);
+             * bloodFramePage.setParents("MB_FrameMagic"); frenzyFramePage.setPages(frenzyFrame1, frenzyFrame2);
+             * frenzyFramePage.setParents("MB_FrameMagic"); ResearchCategories.addResearch(bloodFramePage);
+             * ResearchCategories.addResearch(frenzyFramePage);
+             */
         }
     }
 
