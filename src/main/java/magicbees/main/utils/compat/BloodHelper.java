@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import WayofTime.alchemicalWizardry.ModItems;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
@@ -35,7 +36,7 @@ public class BloodHelper implements IModHelper {
     }
 
     public void preInit() {
-        if (Loader.isModLoaded(Name) && Config.bloodMagicActive) {
+        if (Loader.isModLoaded(Name)) {
             isBloodMagicActive = true;
         }
     }
@@ -58,6 +59,7 @@ public class BloodHelper implements IModHelper {
 
     public static void getBlocks() {}
 
+    @Optional.Method(modid = Name)
     public static void getItems() {
         hiveFrameBloodBase = new ItemBloodBaseFrame();
         GameRegistry.registerItem(hiveFrameBloodBase, hiveFrameBloodBase.getUnlocalizedName(), CommonProxy.DOMAIN);
