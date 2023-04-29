@@ -488,7 +488,7 @@ public class Config {
 
             if (BloodHelper.isActive()) {
                 BloodHelper.getItems();
-                // BloodHelper.getRecipes();
+                BloodHelper.getRecipes();
             }
 
         }
