@@ -15,18 +15,18 @@ import forestry.api.apiculture.*;
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
 
-public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
+public class ItemBloodBaseFrame extends EnergyItems implements IHiveFrame {
 
     private final IBeeModifier beeModifier = new BloodFrameBeeModifier();
     private EntityPlayer owner = null;
 
-    public ItemBloodFrame() {
+    public ItemBloodBaseFrame() {
         super();
         this.maxStackSize = 1;
         this.setMaxDamage(1);
         setEnergyUsed(1000);
         setCreativeTab(TabMagicBees.tabMagicBees);
-        this.setUnlocalizedName("bloodFrame");
+        this.setUnlocalizedName("bloodSoakedFrame");
     }
 
     private static class BloodFrameBeeModifier implements IBeeModifier {
@@ -38,12 +38,12 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-            return 0.0001f;
+            return 1;
         }
 
         @Override
         public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-            return 0;
+            return 2;
         }
 
         @Override
@@ -53,7 +53,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
-            return 1;
+            return (float) 0.8;
         }
 
         @Override
@@ -84,7 +84,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add(StatCollector.translateToLocal("tooltip.bloodframe.desc"));
+        par3List.add(StatCollector.translateToLocal("You feel gross touching this"));
 
         if (!(par1ItemStack.getTagCompound() == null)) {
             par3List.add(
@@ -97,7 +97,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
-        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":bloodFrame");
+        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":bloodSoakedFrame");
     }
 
     @Override
