@@ -202,14 +202,6 @@ public class ThaumcraftHelper implements IModHelper {
     public static Item nuggetPork;
     public static Item zombieBrain;
 
-    public static ResearchItem bloodFramePage;
-    public static ResearchPage bloodFrame1;
-    public static ResearchPage bloodFrame2;
-
-    public static ResearchItem frenzyFramePage;
-    public static ResearchPage frenzyFrame1;
-    public static ResearchPage frenzyFrame2;
-
     public static Class<? extends TileEntity> nodeClass;
 
     public static final String Name = "Thaumcraft";
@@ -271,9 +263,6 @@ public class ThaumcraftHelper implements IModHelper {
     private static Object essenceTime;
     private static Object essenceOblivion;
     private static Object visAuraProvider;
-
-    public static Object bloodFrame;
-    public static Object frenziedFrame;
 
     private static Object voidScoop;
     private static Object voidGrafter;
@@ -442,10 +431,6 @@ public class ThaumcraftHelper implements IModHelper {
                 new AspectList().add(Aspect.ORDER, 5),
                 new Object[] { "  T", " s ", "s  ", 's', Items.stick, 'T',
                         new ItemStack(miscResource, 1, MiscResource.VOID_INGOT.ordinal()) });
-
-        if (BloodHelper.isActive()) {
-            BloodHelper.thaumRecipes();
-        }
     }
 
     private static void setupResearch() {
@@ -534,6 +519,7 @@ public class ThaumcraftHelper implements IModHelper {
                         .setPages(getResearchPage("MB_GrafterVoid.1"), new ResearchPage((IArcaneRecipe) voidGrafter))
                         .setParents("MB_Grafter").setParentsHidden("VOIDMETAL").setSecondary().setConcealed()
                         .registerResearchItem();
+        //
 
         new ResearchItem(
                 "MB_FrameMagic",
@@ -689,43 +675,6 @@ public class ThaumcraftHelper implements IModHelper {
                                 getResearchPage("MB_VisAuraProvider.1"),
                                 new ResearchPage((IArcaneRecipe) visAuraProvider))
                         .setParentsHidden("VISPOWER").registerResearchItem();
-
-        if (BloodHelper.isActive()) {
-            bloodFrame1 = new ResearchPage("bloodFrame.1");
-            bloodFrame2 = new ResearchPage((IArcaneRecipe) bloodFrame);
-
-            bloodFramePage = new ResearchItem(
-                    "MB_BloodFrame",
-                    category,
-                    new AspectList().add(Aspect.LIFE, 1).add(Aspect.ORDER, 1).add(Aspect.HEAL, 1)
-                            .add(Aspect.EXCHANGE, 1).add(Aspect.GREED, 1),
-                    -4,
-                    3,
-                    1,
-                    new ItemStack(Config.hiveFrameBlood));
-
-            frenzyFrame1 = new ResearchPage("frenziedFrame.1");
-            frenzyFrame2 = new ResearchPage((IArcaneRecipe) frenziedFrame);
-
-            frenzyFramePage = new ResearchItem(
-                    "MB_FrenziedFrame",
-                    category,
-                    new AspectList().add(Aspect.LIFE, 1).add(Aspect.ORDER, 1).add(Aspect.HEAL, 1)
-                            .add(Aspect.EXCHANGE, 1).add(Aspect.GREED, 1),
-                    -5,
-                    3,
-                    1,
-                    new ItemStack(Config.hiveFrameFrenzy));
-
-            bloodFramePage.setPages(bloodFrame1, bloodFrame2);
-            bloodFramePage.setParents("MB_FrameMagic");
-
-            frenzyFramePage.setPages(frenzyFrame1, frenzyFrame2);
-            frenzyFramePage.setParents("MB_FrameMagic");
-
-            ResearchCategories.addResearch(bloodFramePage);
-            ResearchCategories.addResearch(frenzyFramePage);
-        }
     }
 
     private static ResearchPage getResearchPage(String ident) {
@@ -921,6 +870,5 @@ public class ThaumcraftHelper implements IModHelper {
                 item,
                 new int[] { item.getItemDamage() },
                 new AspectList().add(Aspect.VOID, 6).add((Aspect) aspectTime, 8));
-
     }
 }
