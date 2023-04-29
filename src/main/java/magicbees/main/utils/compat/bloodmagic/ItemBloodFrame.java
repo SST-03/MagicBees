@@ -117,10 +117,12 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
     @Override
     public ItemStack frameUsed(IBeeHousing housing, ItemStack frame, IBee queen, int wear) {
+        // TODO Auto-generated method stub
         if (EnergyItems.canSyphonInContainer(frame, getEnergyUsed() * wear)) {
             if (owner != null) {
                 EnergyItems.drainPlayerNetwork(owner, getEnergyUsed() * wear);
             }
+            // EnergyItems.syphonWhileInContainer(frame, getEnergyUsed() * wear);
         } else {
             frame.setItemDamage(frame.getItemDamage() + wear);
             if (frame.getItemDamage() >= frame.getMaxDamage()) {
