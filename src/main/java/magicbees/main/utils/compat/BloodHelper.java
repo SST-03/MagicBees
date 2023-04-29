@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
+import magicbees.main.utils.compat.bloodmagic.ItemBloodBaseFrame;
 import magicbees.main.utils.compat.bloodmagic.ItemBloodFrame;
 import magicbees.main.utils.compat.bloodmagic.ItemFrenziedFrame;
 import thaumcraft.api.ThaumcraftApi;
@@ -49,10 +50,11 @@ public class BloodHelper implements IModHelper {
     public static void getBlocks() {}
 
     public static void getItems() {
-        /*
-         * Config.hiveFrameBloodBase = new ItemBloodBaseFrame(); GameRegistry.registerItem( Config.hiveFrameBloodBase,
-         * Config.hiveFrameBloodBase.getUnlocalizedName(), CommonProxy.DOMAIN);
-         */
+        Config.hiveFrameBloodBase = new ItemBloodBaseFrame();
+        GameRegistry.registerItem(
+                Config.hiveFrameBloodBase,
+                Config.hiveFrameBloodBase.getUnlocalizedName(),
+                CommonProxy.DOMAIN);
 
         Config.hiveFrameBlood = new ItemBloodFrame();
         GameRegistry
