@@ -35,10 +35,10 @@ public class RingHousing implements IBeeHousing {
     private static final Iterable<IBeeListener> beeListeners = ImmutableSet.of(new DefaultBeeListener());
     private static final Iterable<IBeeModifier> beeModifiers = ImmutableSet.of(new RingHousing.RingHousingModifier());
 
-    public RingHousing(EntityPlayer player, InventoryBeeRing IBR) {
+    public RingHousing(EntityPlayer player, InventoryBeeRing inventoryBeeRing) {
         this.player = player;
         this.biome = player.getEntityWorld().getBiomeGenForCoords((int) player.posX, (int) player.posY);
-        this.inventory = new RingBeeHousingInventory(IBR);
+        this.inventory = new RingBeeHousingInventory(inventoryBeeRing);
         this.beekeepingLogic = BeeManager.beeRoot.createBeekeepingLogic(this);
     }
 
@@ -115,15 +115,15 @@ public class RingHousing implements IBeeHousing {
 
     private static class RingBeeHousingInventory implements IBeeHousingInventory {
 
-        private final InventoryBeeRing IBR;
+        private final InventoryBeeRing inventoryBeeRing;
 
         public RingBeeHousingInventory(InventoryBeeRing IBR) {
-            this.IBR = IBR;
+            this.inventoryBeeRing = IBR;
         }
 
         @Override
         public ItemStack getQueen() {
-            return IBR.getStackInSlot(1);
+            return inventoryBeeRing.getQueen();
         }
 
         @Override
@@ -133,7 +133,7 @@ public class RingHousing implements IBeeHousing {
 
         @Override
         public void setQueen(ItemStack itemStack) {
-            IBR.setInventorySlotContents(1, itemStack);
+            inventoryBeeRing.setQueen(itemStack);
         }
 
         @Override
