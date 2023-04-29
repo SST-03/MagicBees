@@ -3,7 +3,6 @@ package magicbees.main.utils.compat;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import WayofTime.alchemicalWizardry.*;
 import WayofTime.alchemicalWizardry.ModItems;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import cpw.mods.fml.common.Loader;
