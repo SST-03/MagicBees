@@ -17,7 +17,7 @@ import magicbees.main.utils.TabMagicBees;
 
 public class ItemBloodBaseFrame extends EnergyItems implements IHiveFrame {
 
-    private final IBeeModifier beeModifier = new BloodBaseFrameBeeModifier();
+    private final IBeeModifier beeModifier = new BloodFrameBeeModifier();
     private EntityPlayer owner = null;
 
     public ItemBloodBaseFrame() {
@@ -29,7 +29,7 @@ public class ItemBloodBaseFrame extends EnergyItems implements IHiveFrame {
         this.setUnlocalizedName("bloodSoakedFrame");
     }
 
-    private static class BloodBaseFrameBeeModifier implements IBeeModifier {
+    private static class BloodFrameBeeModifier implements IBeeModifier {
 
         @Override
         public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
