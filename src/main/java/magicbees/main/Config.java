@@ -490,7 +490,7 @@ public class Config {
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 
             if (BloodHelper.isActive()) {
-                BloodHelper.getItems();
+                // BloodHelper.getItems();
             }
         }
     }
