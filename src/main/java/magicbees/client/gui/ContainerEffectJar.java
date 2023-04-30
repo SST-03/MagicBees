@@ -1,7 +1,5 @@
 package magicbees.client.gui;
 
-import magicbees.tileentity.TileEntityEffectJar;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -11,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.tileentity.TileEntityEffectJar;
 
 public class ContainerEffectJar extends Container {
 

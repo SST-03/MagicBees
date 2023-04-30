@@ -1,13 +1,13 @@
 package magicbees.client.gui;
 
-import magicbees.main.CommonProxy;
-import magicbees.tileentity.TileEntityEffectJar;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import magicbees.main.CommonProxy;
+import magicbees.tileentity.TileEntityEffectJar;
 
 public class GUIEffectJar extends GuiContainer {
 

@@ -1,8 +1,5 @@
 package magicbees.client.gui;
 
-import magicbees.main.CommonProxy;
-import magicbees.tileentity.TileEntityMagicApiary;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,6 +9,8 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.main.CommonProxy;
+import magicbees.tileentity.TileEntityMagicApiary;
 
 @SideOnly(Side.CLIENT)
 public class GuiMagicApiary extends GuiContainer {

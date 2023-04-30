@@ -145,6 +145,9 @@ item.frameMetabolic.name=Metabolic Frame
 item.frameNecrotic.name=Necrotic Frame
 item.frameTemporal.name=Temporal Frame
 item.frameOblivion.name=Oblivion Frame
+item.bloodFrame.name=Sanguis Artus
+item.frenziedFrame.name=Maddening Frame of Frenzy
+item.bloodSoakedFrame.name=Blood Frame
 
 #Capsules
 capsule.magic=%s Magic Capsule
@@ -226,6 +229,16 @@ research.node.pure=Pure
 research.node.dark=Dark
 research.node.chaotic=Chaotic
 research.block.crystals=Crystal Cluster
+
+
+#Blood Magic Compat
+tc.research_name.MB_BloodFrame=Sanguis Artus
+tc.research_text.MB_BloodFrame=Welcome, honored guest. To the birthplace of our Dynasty!
+tc.research_name.MB_FrenziedFrame=Maddening Frame of Frenzy
+tc.research_text.MB_FrenziedFrame=May chaos take the world! May chaos take the world!
+frenziedFrame.1=You don't know how it came to you... madness, is it not?<BR>You remember yourself swearing to others that you heard some kind of voice in the back of your mind, almost silently... screaming? You can vaguely remember its ghastly call, screaming for you to burn the world in the purifying flames of chaos.<BR>You took it into your hands, and you distinctly remember feeling the chaotic energies burning through your body, singeing your very mind in its fire.<BR><BR>But... surely you didn't, that would be madness after all...
+bloodFrame.1=You feel a shiver pulse through your very soul as you hold this frame. You feel... horrified.<BR>You aren't quite sure what you created while you were entranced in a blood-enraged frenzy, but you can only watch in abject terror as your bees slowly crumble before your very eyes, only to be replaced in a flash by grotesque simulacrum.<BR>You almost swear you can see it... beating? As if somehow it were alive?<BR>But... surely not, that would be madness after all...
+
 
 #Species
 magicbees.speciesMystical=Mystical

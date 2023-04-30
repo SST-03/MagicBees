@@ -2,8 +2,6 @@ package magicbees.bees;
 
 import java.util.Locale;
 
-import magicbees.main.CommonProxy;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
@@ -11,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBeeIconProvider;
+import magicbees.main.CommonProxy;
 
 public enum BeeIconProvider implements IBeeIconProvider {
 

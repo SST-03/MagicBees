@@ -3,15 +3,14 @@ package magicbees.client.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import magicbees.main.Config;
-import magicbees.main.utils.VersionInfo;
-
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 
 import cpw.mods.fml.client.config.DummyConfigElement;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.IConfigElement;
+import magicbees.main.Config;
+import magicbees.main.utils.VersionInfo;
 
 public class ModGuiConfig extends GuiConfig {
 

@@ -1,8 +1,5 @@
 package magicbees.client.gui;
 
-import magicbees.itemInventories.InventoryBeeRing;
-import magicbees.main.CommonProxy;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -10,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import forestry.core.gui.GuiForestry;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.compat.baubles.InventoryBeeRing;
 
 public class GUIEffectRing extends GuiForestry<ContainerEffectRing, IInventory> {
 

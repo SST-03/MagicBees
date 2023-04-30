@@ -4,21 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import magicbees.bees.BeeManager;
-import magicbees.main.utils.compat.BotaniaHelper;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 
-import vazkii.botania.api.BotaniaAPI;
-import vazkii.botania.api.subtile.SubTileFunctional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
+import magicbees.bees.BeeManager;
+import magicbees.main.utils.compat.BotaniaHelper;
+import vazkii.botania.api.BotaniaAPI;
+import vazkii.botania.api.subtile.SubTileFunctional;
 
 public class SubTileHibeescus extends SubTileFunctional {
 

@@ -2,11 +2,6 @@ package magicbees.item;
 
 import java.util.List;
 
-import magicbees.main.CommonProxy;
-import magicbees.main.Config;
-import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.TabMagicBees;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -27,6 +22,10 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.main.CommonProxy;
+import magicbees.main.Config;
+import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.TabMagicBees;
 
 @Optional.Interface(modid = "Baubles", iface = "baubles.api.IBauble")
 public class ItemMysteriousMagnet extends Item implements IBauble {

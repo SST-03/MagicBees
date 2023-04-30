@@ -1,8 +1,5 @@
 package magicbees.item;
 
-import magicbees.main.Config;
-import magicbees.main.utils.compat.ThaumcraftHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -12,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import forestry.api.arboriculture.IToolGrafter;
+import magicbees.main.Config;
+import magicbees.main.utils.compat.ThaumcraftHelper;
 
 public class ItemGrafter extends Item implements IToolGrafter {
 

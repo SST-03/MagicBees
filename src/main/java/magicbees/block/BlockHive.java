@@ -3,9 +3,6 @@ package magicbees.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import magicbees.block.types.HiveType;
-import magicbees.main.Config;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,6 +17,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import magicbees.block.types.HiveType;
+import magicbees.main.Config;
 
 public class BlockHive extends Block {
 

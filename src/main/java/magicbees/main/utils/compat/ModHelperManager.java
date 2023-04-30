@@ -39,5 +39,7 @@ public class ModHelperManager {
         helpers.add(new RedstoneArsenalHelper());
         helpers.add(new BotaniaHelper());
         helpers.add(new AppliedEnergisticsHelper());
+        helpers.add(new BaublesHelper());
+        helpers.add(new BloodHelper());
     }
 }

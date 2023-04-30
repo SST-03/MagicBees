@@ -2,13 +2,6 @@ package magicbees.main.utils.compat;
 
 import java.util.Locale;
 
-import magicbees.bees.BeeManager;
-import magicbees.bees.HiveDescription;
-import magicbees.main.Config;
-import magicbees.main.utils.BlockInterface;
-import magicbees.main.utils.ItemInterface;
-import magicbees.main.utils.VersionInfo;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,6 +14,12 @@ import forestry.api.apiculture.hives.IHiveRegistry;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IAllele;
+import magicbees.bees.BeeManager;
+import magicbees.bees.HiveDescription;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
+import magicbees.main.utils.VersionInfo;
 
 public class ForestryHelper implements IModHelper {
 

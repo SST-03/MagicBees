@@ -1,7 +1,5 @@
 package magicbees.item;
 
-import magicbees.block.types.HiveType;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -9,6 +7,7 @@ import net.minecraft.util.IIcon;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.block.types.HiveType;
 
 /**
  * Created by Allen on 7/29/2014.

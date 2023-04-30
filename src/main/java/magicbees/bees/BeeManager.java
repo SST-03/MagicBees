@@ -5,12 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import magicbees.block.types.HiveType;
-import magicbees.item.types.DropType;
-import magicbees.main.Config;
-import magicbees.main.utils.Tuple;
-import magicbees.main.utils.compat.ExtraBeesHelper;
-
 import net.minecraft.item.ItemStack;
 
 import forestry.api.apiculture.EnumBeeType;
@@ -20,6 +14,11 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import magicbees.block.types.HiveType;
+import magicbees.item.types.DropType;
+import magicbees.main.Config;
+import magicbees.main.utils.Tuple;
+import magicbees.main.utils.compat.ExtraBeesHelper;
 
 public class BeeManager {
 

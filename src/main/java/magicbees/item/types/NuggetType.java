@@ -1,8 +1,8 @@
 package magicbees.item.types;
 
-import magicbees.main.utils.LocalizationManager;
-
 import net.minecraft.item.Item;
+
+import magicbees.main.utils.LocalizationManager;
 
 public enum NuggetType {
 

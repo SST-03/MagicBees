@@ -1,11 +1,5 @@
 package magicbees.block;
 
-import magicbees.client.gui.UIScreens;
-import magicbees.main.CommonProxy;
-import magicbees.main.MagicBees;
-import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityEffectJar;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,6 +13,11 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.client.gui.UIScreens;
+import magicbees.main.CommonProxy;
+import magicbees.main.MagicBees;
+import magicbees.main.utils.TabMagicBees;
+import magicbees.tileentity.TileEntityEffectJar;
 
 public class BlockEffectJar extends BlockContainer {
 

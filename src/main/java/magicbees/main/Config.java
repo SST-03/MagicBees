@@ -3,6 +3,23 @@ package magicbees.main;
 import java.io.File;
 import java.lang.reflect.Field;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+import net.minecraftforge.oredict.OreDictionary;
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.storage.BackpackManager;
+import forestry.api.storage.EnumBackpackType;
 import magicbees.block.BlockEffectJar;
 import magicbees.block.BlockEnchantedEarth;
 import magicbees.block.BlockHive;
@@ -26,24 +43,6 @@ import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
 import magicbees.tileentity.TileEntityVisAuraProvider;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-import net.minecraftforge.oredict.OreDictionary;
-
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.storage.BackpackManager;
-import forestry.api.storage.EnumBackpackType;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -75,6 +74,7 @@ public class Config {
     public static int thaumcraftNodeMaxSize;
 
     public static boolean arsMagicaActive;
+    public static boolean baublesActive;
     public static boolean bloodMagicActive;
     public static boolean equivalentExchangeActive;
     public static boolean extraBeesActive;
@@ -111,7 +111,6 @@ public class Config {
     public static ItemNugget nuggets;
     public static ItemMoonDial moonDial;
     public static ItemMysteriousMagnet magnet;
-    public static ItemBeeRing beeRing;
 
     public static Item voidScoop;
     public static Item voidGrafter;
@@ -183,7 +182,6 @@ public class Config {
         miscResources = new ItemMiscResources();
         pollen = new ItemPollen();
         moonDial = new ItemMoonDial();
-        beeRing = new ItemBeeRing();
 
         setupJellyBaby();
         setupNuggets();
@@ -232,6 +230,9 @@ public class Config {
         // Modules
         p = configuration.get(CATEGORY_MODULES, "ArsMagica", true);
         arsMagicaActive = p.getBoolean();
+
+        p = configuration.get(CATEGORY_MODULES, "Baubles", true);
+        baublesActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
         bloodMagicActive = p.getBoolean();

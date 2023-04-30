@@ -3,10 +3,10 @@ package magicbees.tileentity;
 import java.util.HashMap;
 import java.util.Map;
 
-import magicbees.bees.AuraCharge;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import magicbees.bees.AuraCharge;
 
 public class AuraCharges {
 

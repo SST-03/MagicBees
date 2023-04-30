@@ -2,17 +2,6 @@ package magicbees.main.utils.compat;
 
 import java.util.ArrayList;
 
-import magicbees.api.MagicBeesAPI;
-import magicbees.item.types.PollenType;
-import magicbees.item.types.PropolisType;
-import magicbees.item.types.ResourceType;
-import magicbees.item.types.WaxType;
-import magicbees.main.CommonProxy;
-import magicbees.main.Config;
-import magicbees.main.utils.BlockInterface;
-import magicbees.main.utils.ItemInterface;
-import magicbees.main.utils.LocalizationManager;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,6 +12,18 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import magicbees.api.MagicBeesAPI;
+import magicbees.item.types.PollenType;
+import magicbees.item.types.PropolisType;
+import magicbees.item.types.ResourceType;
+import magicbees.item.types.WaxType;
+import magicbees.main.CommonProxy;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
+import magicbees.main.utils.LocalizationManager;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -32,8 +33,6 @@ import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThaumcraftHelper implements IModHelper {
 
@@ -203,6 +202,14 @@ public class ThaumcraftHelper implements IModHelper {
     public static Item nuggetPork;
     public static Item zombieBrain;
 
+    public static ResearchItem bloodFramePage;
+    public static ResearchPage bloodFrame1;
+    public static ResearchPage bloodFrame2;
+
+    public static ResearchItem frenzyFramePage;
+    public static ResearchPage frenzyFrame1;
+    public static ResearchPage frenzyFrame2;
+
     public static Class<? extends TileEntity> nodeClass;
 
     public static final String Name = "Thaumcraft";
@@ -264,6 +271,9 @@ public class ThaumcraftHelper implements IModHelper {
     private static Object essenceTime;
     private static Object essenceOblivion;
     private static Object visAuraProvider;
+
+    public static Object bloodFrame;
+    public static Object frenziedFrame;
 
     private static Object voidScoop;
     private static Object voidGrafter;
@@ -520,7 +530,6 @@ public class ThaumcraftHelper implements IModHelper {
                         .setPages(getResearchPage("MB_GrafterVoid.1"), new ResearchPage((IArcaneRecipe) voidGrafter))
                         .setParents("MB_Grafter").setParentsHidden("VOIDMETAL").setSecondary().setConcealed()
                         .registerResearchItem();
-        //
 
         new ResearchItem(
                 "MB_FrameMagic",
@@ -676,6 +685,7 @@ public class ThaumcraftHelper implements IModHelper {
                                 getResearchPage("MB_VisAuraProvider.1"),
                                 new ResearchPage((IArcaneRecipe) visAuraProvider))
                         .setParentsHidden("VISPOWER").registerResearchItem();
+
     }
 
     private static ResearchPage getResearchPage(String ident) {
@@ -871,5 +881,6 @@ public class ThaumcraftHelper implements IModHelper {
                 item,
                 new int[] { item.getItemDamage() },
                 new AspectList().add(Aspect.VOID, 6).add((Aspect) aspectTime, 8));
+
     }
 }

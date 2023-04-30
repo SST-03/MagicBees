@@ -1,13 +1,5 @@
 package magicbees.bees;
 
-import magicbees.main.utils.compat.AppliedEnergisticsHelper;
-import magicbees.main.utils.compat.ArsMagicaHelper;
-import magicbees.main.utils.compat.BotaniaHelper;
-import magicbees.main.utils.compat.EquivalentExchangeHelper;
-import magicbees.main.utils.compat.RedstoneArsenalHelper;
-import magicbees.main.utils.compat.ThaumcraftHelper;
-import magicbees.main.utils.compat.ThermalModsHelper;
-
 import net.minecraft.item.ItemStack;
 
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -24,6 +16,13 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IClassification;
+import magicbees.main.utils.compat.AppliedEnergisticsHelper;
+import magicbees.main.utils.compat.ArsMagicaHelper;
+import magicbees.main.utils.compat.BotaniaHelper;
+import magicbees.main.utils.compat.EquivalentExchangeHelper;
+import magicbees.main.utils.compat.RedstoneArsenalHelper;
+import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.ThermalModsHelper;
 
 public enum BeeSpecies {
 

@@ -1,8 +1,5 @@
 package magicbees.client.render;
 
-import magicbees.client.model.ModelVisAuraProvider;
-import magicbees.tileentity.TileEntityVisAuraProvider;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,6 +8,8 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import magicbees.client.model.ModelVisAuraProvider;
+import magicbees.tileentity.TileEntityVisAuraProvider;
 
 public class RendererVisAuraProvider extends TileEntitySpecialRenderer implements IItemRenderer {
 

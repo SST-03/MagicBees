@@ -1,4 +1,4 @@
-package magicbees.itemInventories;
+package magicbees.main.utils.compat.baubles;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

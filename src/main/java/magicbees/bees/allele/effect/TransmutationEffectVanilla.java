@@ -1,13 +1,13 @@
 package magicbees.bees.allele.effect;
 
-import magicbees.api.bees.ITransmutationEffectLogic;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.oredict.OreDictionary;
+
+import magicbees.api.bees.ITransmutationEffectLogic;
 
 public class TransmutationEffectVanilla implements ITransmutationEffectLogic {
 

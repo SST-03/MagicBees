@@ -1,9 +1,5 @@
 package magicbees.block;
 
-import magicbees.main.CommonProxy;
-import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityVisAuraProvider;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,6 +9,9 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.main.CommonProxy;
+import magicbees.main.utils.TabMagicBees;
+import magicbees.tileentity.TileEntityVisAuraProvider;
 
 public class BlockVisAuraProvider extends BlockContainer {
 

@@ -7,14 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import magicbees.main.Config;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
+import magicbees.main.Config;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.nodes.INode;

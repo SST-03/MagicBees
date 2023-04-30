@@ -2,11 +2,6 @@ package magicbees.item;
 
 import java.util.List;
 
-import magicbees.main.CommonProxy;
-import magicbees.main.Config;
-import magicbees.main.utils.MoonPhase;
-import magicbees.main.utils.TabMagicBees;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,6 +11,10 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.main.CommonProxy;
+import magicbees.main.Config;
+import magicbees.main.utils.MoonPhase;
+import magicbees.main.utils.TabMagicBees;
 
 public class ItemMoonDial extends Item {
 

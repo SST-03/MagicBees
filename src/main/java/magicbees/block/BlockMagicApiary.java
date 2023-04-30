@@ -1,11 +1,5 @@
 package magicbees.block;
 
-import magicbees.client.gui.UIScreens;
-import magicbees.main.CommonProxy;
-import magicbees.main.MagicBees;
-import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityMagicApiary;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -20,6 +14,11 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magicbees.client.gui.UIScreens;
+import magicbees.main.CommonProxy;
+import magicbees.main.MagicBees;
+import magicbees.main.utils.TabMagicBees;
+import magicbees.tileentity.TileEntityMagicApiary;
 
 public class BlockMagicApiary extends BlockContainer {
 

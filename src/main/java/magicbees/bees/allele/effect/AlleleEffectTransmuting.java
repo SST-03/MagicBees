@@ -1,8 +1,5 @@
 package magicbees.bees.allele.effect;
 
-import magicbees.bees.AlleleEffect;
-import magicbees.bees.BeeManager;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
@@ -12,6 +9,8 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.AlleleEffect;
+import magicbees.bees.BeeManager;
 
 public class AlleleEffectTransmuting extends AlleleEffect {
 

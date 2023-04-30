@@ -4,16 +4,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.tileentity.TileEntity;
+
+import cpw.mods.fml.client.FMLClientHandler;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.net.NetworkEventHandler.EventType;
 import magicbees.tileentity.AuraCharges;
 import magicbees.tileentity.ITileEntityAuraCharged;
-
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.tileentity.TileEntity;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class EventAuraChargeUpdate extends EventCoords {
 

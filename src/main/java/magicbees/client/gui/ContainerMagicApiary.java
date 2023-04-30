@@ -1,9 +1,5 @@
 package magicbees.client.gui;
 
-import magicbees.bees.BeeManager;
-import magicbees.main.utils.ItemInterface;
-import magicbees.tileentity.TileEntityMagicApiary;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -11,6 +7,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.apiculture.IHiveFrame;
+import magicbees.bees.BeeManager;
+import magicbees.main.utils.ItemInterface;
+import magicbees.tileentity.TileEntityMagicApiary;
 
 public class ContainerMagicApiary extends ContainerMB {
 

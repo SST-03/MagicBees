@@ -2,10 +2,10 @@ package magicbees.bees;
 
 import java.util.ArrayList;
 
-import magicbees.main.utils.LocalizationManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
+import magicbees.main.utils.LocalizationManager;
 
 public enum BeeClassification implements IClassification {
 

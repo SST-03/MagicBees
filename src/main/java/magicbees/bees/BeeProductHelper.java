@@ -2,6 +2,11 @@ package magicbees.bees;
 
 import static magicbees.bees.BeeSpecies.*;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
 import magicbees.item.types.NuggetType;
@@ -19,11 +24,6 @@ import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.RedstoneArsenalHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.main.utils.compat.ThermalModsHelper;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class BeeProductHelper {
 

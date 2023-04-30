@@ -1,11 +1,10 @@
 package magicbees.client.gui;
 
-import magicbees.itemInventories.InventoryBeeRing;
-
 import net.minecraft.entity.player.InventoryPlayer;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.core.gui.ContainerItemInventory;
+import magicbees.main.utils.compat.baubles.InventoryBeeRing;
 
 public class ContainerEffectRing extends ContainerItemInventory<InventoryBeeRing> {
 
