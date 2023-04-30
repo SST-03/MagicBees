@@ -4,9 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import magicbees.bees.BeeManager;
-import magicbees.itemInventories.InventoryBeeRing;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChunkCoordinates;
@@ -22,6 +19,8 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IErrorLogic;
 import forestry.api.core.IErrorState;
+import magicbees.bees.BeeManager;
+import magicbees.itemInventories.InventoryBeeRing;
 
 // Class that simulates a BeeHouse using both player data and info from InventoryBeeRing
 public class RingHousing implements IBeeHousing {

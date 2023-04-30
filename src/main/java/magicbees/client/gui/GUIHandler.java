@@ -1,12 +1,10 @@
 package magicbees.client.gui;
 
-import magicbees.itemInventories.InventoryBeeRing;
-import magicbees.tileentity.TileEntityEffectJar;
-import magicbees.tileentity.TileEntityMagicApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import magicbees.itemInventories.InventoryBeeRing;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 
