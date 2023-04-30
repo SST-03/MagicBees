@@ -74,6 +74,7 @@ public class Config {
     public static int thaumcraftNodeMaxSize;
 
     public static boolean arsMagicaActive;
+    public static boolean baublesActive;
     public static boolean bloodMagicActive;
     public static boolean equivalentExchangeActive;
     public static boolean extraBeesActive;
@@ -229,6 +230,9 @@ public class Config {
         // Modules
         p = configuration.get(CATEGORY_MODULES, "ArsMagica", true);
         arsMagicaActive = p.getBoolean();
+
+        p = configuration.get(CATEGORY_MODULES, "Baubles", true);
+        baublesActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "BloodMagic", true);
         bloodMagicActive = p.getBoolean();

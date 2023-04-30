@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import magicbees.main.Config;
 import magicbees.main.utils.compat.baubles.ItemBeeRing;
 
 public class BaublesHelper implements IModHelper {
@@ -19,7 +20,7 @@ public class BaublesHelper implements IModHelper {
 
     @Override
     public void preInit() {
-        if (Loader.isModLoaded(Name)) {
+        if (Loader.isModLoaded(Name) && Config.baublesActive) {
             isModActive = true;
         }
     }
