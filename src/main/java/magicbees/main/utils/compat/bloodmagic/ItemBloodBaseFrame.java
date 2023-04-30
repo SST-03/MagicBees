@@ -88,7 +88,7 @@ public class ItemBloodBaseFrame extends EnergyItems implements IHiveFrame {
         par3List.add(StatCollector.translateToLocal("You feel gross touching this"));
         par3List.add(StatCollector.translateToLocal("Uses " + String.valueOf(energyUsed) + " LP per cycle"));
 
-        if (!(par1ItemStack.getTagCompound() == null)) {
+        if (par1ItemStack.hasTagCompound()) {
             par3List.add(
                     StatCollector.translateToLocal("tooltip.owner.currentowner") + " "
                             + par1ItemStack.getTagCompound().getString("ownerName"));

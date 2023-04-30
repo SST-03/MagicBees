@@ -110,7 +110,7 @@ public class Config {
     public static ItemNugget nuggets;
     public static ItemMoonDial moonDial;
     public static ItemMysteriousMagnet magnet;
-    public static ItemBeeRing beeRing;
+    // public static Item beeRing;
 
     public static Item voidScoop;
     public static Item voidGrafter;
@@ -182,7 +182,8 @@ public class Config {
         miscResources = new ItemMiscResources();
         pollen = new ItemPollen();
         moonDial = new ItemMoonDial();
-        beeRing = new ItemBeeRing();
+        // beeRing = new ItemBeeRing();
+        // This is to be set comemented until someone gives it a recipe, it's causing errors.
 
         setupJellyBaby();
         setupNuggets();
