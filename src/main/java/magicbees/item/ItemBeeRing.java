@@ -4,14 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import magicbees.bees.BeeManager;
-import magicbees.client.gui.UIScreens;
-import magicbees.itemInventories.InventoryBeeRing;
-import magicbees.main.CommonProxy;
-import magicbees.main.MagicBees;
-import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.RingHousing;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -25,6 +17,13 @@ import baubles.common.lib.PlayerHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IEffectData;
+import magicbees.bees.BeeManager;
+import magicbees.client.gui.UIScreens;
+import magicbees.itemInventories.InventoryBeeRing;
+import magicbees.main.CommonProxy;
+import magicbees.main.MagicBees;
+import magicbees.main.utils.TabMagicBees;
+import magicbees.tileentity.RingHousing;
 
 public class ItemBeeRing extends Item implements IBauble {
 
