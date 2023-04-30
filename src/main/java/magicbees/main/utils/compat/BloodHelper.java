@@ -35,18 +35,21 @@ public class BloodHelper implements IModHelper {
         return isBloodMagicActive;
     }
 
+    @Override
     public void preInit() {
         if (Loader.isModLoaded(Name)) {
             isBloodMagicActive = true;
         }
     }
 
+    @Override
     public void init() {
         if (isActive()) {
             getItems();
         }
     }
 
+    @Override
     public void postInit() {
         if (isActive()) {
             getRecipes();
@@ -57,10 +60,8 @@ public class BloodHelper implements IModHelper {
         }
     }
 
-    public static void getBlocks() {}
-
     @Optional.Method(modid = Name)
-    public static void getItems() {
+    private static void getItems() {
         hiveFrameBloodBase = new ItemBloodBaseFrame();
         GameRegistry.registerItem(hiveFrameBloodBase, hiveFrameBloodBase.getUnlocalizedName(), CommonProxy.DOMAIN);
 

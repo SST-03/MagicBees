@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import WayofTime.alchemicalWizardry.api.soulNetwork.SoulNetworkHandler;
 import WayofTime.alchemicalWizardry.common.items.EnergyItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +19,6 @@ import magicbees.main.utils.TabMagicBees;
 public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
     private final IBeeModifier beeModifier = new BloodFrameBeeModifier();
-    private EntityPlayer owner = null;
     int energyUsed = 1000;
 
     public ItemBloodFrame() {
@@ -84,6 +84,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
     }
 
     @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
         par3List.add(StatCollector.translateToLocal("tooltip.bloodframe.desc"));
         par3List.add(StatCollector.translateToLocal("Uses " + String.valueOf(energyUsed) + " LP per cycle"));
@@ -106,7 +107,6 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 
         if (EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer)) {
-            owner = par3EntityPlayer;
             if (par1ItemStack.getItemDamage() > 0) {
                 if (EnergyItems.syphonBatteries(par1ItemStack, par3EntityPlayer, getEnergyUsed())) {
                     par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
@@ -120,9 +120,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
     @Override
     public ItemStack frameUsed(IBeeHousing housing, ItemStack frame, IBee queen, int wear) {
         if (EnergyItems.canSyphonInContainer(frame, getEnergyUsed() * wear)) {
-            if (owner != null) {
-                EnergyItems.drainPlayerNetwork(owner, getEnergyUsed() * wear);
-            }
+            SoulNetworkHandler.syphonFromNetwork(frame, getEnergyUsed() * wear);
         } else {
             frame.setItemDamage(frame.getItemDamage() + wear);
             if (frame.getItemDamage() >= frame.getMaxDamage()) {
