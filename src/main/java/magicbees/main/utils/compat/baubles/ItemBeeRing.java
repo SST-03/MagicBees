@@ -1,4 +1,4 @@
-package magicbees.item;
+package magicbees.main.utils.compat.baubles;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,11 +19,9 @@ import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IEffectData;
 import magicbees.bees.BeeManager;
 import magicbees.client.gui.UIScreens;
-import magicbees.itemInventories.InventoryBeeRing;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.RingHousing;
 
 public class ItemBeeRing extends Item implements IBauble {
 
@@ -76,19 +74,17 @@ public class ItemBeeRing extends Item implements IBauble {
 
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase entityLivingBase) {
-        if (entityLivingBase.worldObj.getWorldTime() % 20 == 0) {
-            if (!(entityLivingBase instanceof EntityPlayer)) {
-                return;
-            }
+        if (!(entityLivingBase instanceof EntityPlayer)) {
+            return;
+        }
 
-            EntityPlayer player = (EntityPlayer) entityLivingBase;
-            InventoryBeeRing inventoryBeeRing = new InventoryBeeRing(itemStack, player);
+        EntityPlayer player = (EntityPlayer) entityLivingBase;
+        InventoryBeeRing inventoryBeeRing = new InventoryBeeRing(itemStack, player);
 
-            if (inventoryBeeRing.hasQueen()) {
-                tickQueen(player, inventoryBeeRing);
-            } else if (inventoryBeeRing.hasDrone()) {
-                createQueenFromDrone(inventoryBeeRing);
-            }
+        if (inventoryBeeRing.hasQueen()) {
+            tickQueen(player, inventoryBeeRing);
+        } else if (inventoryBeeRing.hasDrone()) {
+            createQueenFromDrone(inventoryBeeRing);
         }
     }
 
@@ -125,12 +121,6 @@ public class ItemBeeRing extends Item implements IBauble {
         int index = inventoryBeeRing.getRingSlotIndex();
         RingHousing housingLogic = new RingHousing(player, inventoryBeeRing);
         effects[index] = queen.doEffect(effects[index], housingLogic);
-
-        try {
-            effects[index][0].setInteger(0, effects[index][0].getInteger(index) + 20);
-            effects[index][1].setInteger(0, effects[index][1].getInteger(index) + 20);
-        } catch (Exception ignored) {}
-
         if (player.worldObj.isRemote && player.worldObj.getWorldTime() % 5 == 0) {
             effects[index] = queen.doFX(effects[index], housingLogic);
         }
@@ -150,7 +140,7 @@ public class ItemBeeRing extends Item implements IBauble {
                 inventoryBeeRing.setQueen(queenStack);
             }
         } else {
-            inventoryBeeRing.setThrottle(throttle + 20);
+            inventoryBeeRing.setThrottle(throttle + 1);
         }
     }
 

@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import forestry.core.gui.GuiForestry;
-import magicbees.itemInventories.InventoryBeeRing;
 import magicbees.main.CommonProxy;
+import magicbees.main.utils.compat.baubles.InventoryBeeRing;
 
 public class GUIEffectRing extends GuiForestry<ContainerEffectRing, IInventory> {
 
