@@ -19,12 +19,13 @@ public class ItemFrenziedFrame extends EnergyItems implements IHiveFrame {
 
     private final IBeeModifier beeModifier = new FrenziedFrameBeeModifier();
     private EntityPlayer owner = null;
+    int energyUsed = 1000;
 
     public ItemFrenziedFrame() {
         super();
         this.maxStackSize = 1;
         this.setMaxDamage(1);
-        setEnergyUsed(1000);
+        setEnergyUsed(energyUsed);
         setCreativeTab(TabMagicBees.tabMagicBees);
         this.setUnlocalizedName("frenziedFrame");
     }
@@ -85,6 +86,7 @@ public class ItemFrenziedFrame extends EnergyItems implements IHiveFrame {
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
         par3List.add(StatCollector.translateToLocal("MAY CHAOS TAKE THE WORLD"));
+        par3List.add(StatCollector.translateToLocal("Uses " + String.valueOf(energyUsed) + " LP per cycle"));
 
         if (!(par1ItemStack.getTagCompound() == null)) {
             par3List.add(
