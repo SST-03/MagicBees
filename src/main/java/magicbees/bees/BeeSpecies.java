@@ -150,9 +150,6 @@ public enum BeeSpecies {
             false, false),
     MANYULLYN("Manyullyn", "manahmanah", BeeClassification.METALLIC, 0x481D6D, 0xBD92F1, EnumTemperature.HOT,
             EnumHumidity.ARID, true, false),
-    OSMIUM("Osmium", "hyacintho", BeeClassification.METALLIC, 0x374B5B, 0x6C7B89, EnumTemperature.NORMAL,
-            EnumHumidity.NORMAL, false, false),
-
     DIAMOND("Diamond", "diamond", BeeClassification.GEM, 0x209581, 0x8DF5E3, EnumTemperature.NORMAL,
             EnumHumidity.NORMAL, true, false),
     EMERALD("Emerald", "prasinus", BeeClassification.GEM, 0x005300, 0x17DD62, EnumTemperature.NORMAL,
@@ -385,7 +382,6 @@ public enum BeeSpecies {
         ARDITE.registerGenomeTemplate(BeeGenomeManager.getTemplateArdite());
         COBALT.registerGenomeTemplate(BeeGenomeManager.getTemplateCobalt());
         MANYULLYN.registerGenomeTemplate(BeeGenomeManager.getTemplateManyullyn());
-        OSMIUM.registerGenomeTemplate(BeeGenomeManager.getTemplateOsmium());
         DIAMOND.registerGenomeTemplate(BeeGenomeManager.getTemplateDiamond());
         EMERALD.registerGenomeTemplate(BeeGenomeManager.getTemplateEmerald());
         APATITE.registerGenomeTemplate(BeeGenomeManager.getTemplateApatite());

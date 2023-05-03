@@ -718,15 +718,6 @@ public class BeeGenomeManager {
         return genome;
     }
 
-    public static IAllele[] getTemplateOsmium() {
-        IAllele[] genome = getTemplateBaseMetallic();
-
-        genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.OSMIUM.getSpecies();
-        genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLonger");
-
-        return genome;
-    }
-
     public static IAllele[] getTemplateDiamond() {
         IAllele[] genome = getTemplateBaseMetallic();
 
