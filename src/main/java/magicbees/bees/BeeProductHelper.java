@@ -2,13 +2,13 @@ package magicbees.bees;
 
 import static magicbees.bees.BeeSpecies.*;
 
-import cpw.mods.fml.common.Loader;
-import gregtech.api.enums.Materials;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import cpw.mods.fml.common.Loader;
+import gregtech.api.enums.Materials;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
 import magicbees.item.types.NuggetType;
@@ -139,12 +139,18 @@ public class BeeProductHelper {
 
     public static void initOreDictSProducts() {
         SILVER.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            SILVER.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Silver.getNuggets(1) : OreDictionary.getOres("nuggetSilver").get(0), 0.16f);
+        SILVER.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Silver.getNuggets(1)
+                        : OreDictionary.getOres("nuggetSilver").get(0),
+                0.16f);
 
         LEAD.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            LEAD.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Lead.getNuggets(1) : OreDictionary.getOres("nuggetLead").get(0), 0.17f);
+        LEAD.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Lead.getNuggets(1)
+                        : OreDictionary.getOres("nuggetLead").get(0),
+                0.17f);
 
-        //Oil berry alu bee
+        // Oil berry alu bee
         ALUMINUM.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
         if (OreDictionary.getOres("nuggetAluminum").size() > 0) {
             ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetAluminum").get(0), 0.20f);
@@ -153,32 +159,55 @@ public class BeeProductHelper {
         }
 
         TE_PLATINUM.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            TE_PLATINUM.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Platinum.getNuggets(1) : OreDictionary.getOres("nuggetPlatinum").get(0), 0.18f);
+        TE_PLATINUM.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Platinum.getNuggets(1)
+                        : OreDictionary.getOres("nuggetPlatinum").get(0),
+                0.18f);
 
         TE_NICKEL.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            TE_NICKEL.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Nickel.getNuggets(1) : OreDictionary.getOres("nuggetNickel").get(0), 0.18f);
+        TE_NICKEL.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Nickel.getNuggets(1)
+                        : OreDictionary.getOres("nuggetNickel").get(0),
+                0.18f);
 
         ARDITE.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            ARDITE.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Ardite.getNuggets(1) : OreDictionary.getOres("nuggetArdite").get(0), 0.18f);
+        ARDITE.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Ardite.getNuggets(1)
+                        : OreDictionary.getOres("nuggetArdite").get(0),
+                0.18f);
 
         COBALT.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        if (OreDictionary.getOres("nuggetCobalt").size() > 0) {
-            COBALT.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Cobalt.getNuggets(1) : OreDictionary.getOres("nuggetCobalt").get(0), 0.18f);
+        COBALT.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Cobalt.getNuggets(1)
+                        : OreDictionary.getOres("nuggetCobalt").get(0),
+                0.18f);
         if (COBALT.getSpecies().getSpecialtyChances().size() <= 0) {
             COBALT.setInactive();
         }
 
         TE_BRONZE.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            TE_BRONZE.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Bronze.getNuggets(1) : OreDictionary.getOres("nuggetBronze").get(0), 0.18f);
+        TE_BRONZE.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Bronze.getNuggets(1)
+                        : OreDictionary.getOres("nuggetBronze").get(0),
+                0.18f);
 
         TE_INVAR.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            TE_INVAR.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Invar.getNuggets(1) : OreDictionary.getOres("nuggetInvar").get(0), 0.18f);
+        TE_INVAR.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Invar.getNuggets(1)
+                        : OreDictionary.getOres("nuggetInvar").get(0),
+                0.18f);
 
         TE_ELECTRUM.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            TE_ELECTRUM.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Electrum.getNuggets(1) : OreDictionary.getOres("nuggetElectrum").get(0), 0.18f);
+        TE_ELECTRUM.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Electrum.getNuggets(1)
+                        : OreDictionary.getOres("nuggetElectrum").get(0),
+                0.18f);
 
         MANYULLYN.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-            MANYULLYN.addSpecialty(Loader.isModLoaded("gregtech") ? Materials.Manyullyn.getNuggets(1) : OreDictionary.getOres("nuggetManyullyn").get(0), 0.18f);
+        MANYULLYN.addSpecialty(
+                Loader.isModLoaded("gregtech") ? Materials.Manyullyn.getNuggets(1)
+                        : OreDictionary.getOres("nuggetManyullyn").get(0),
+                0.18f);
 
         CERTUS.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
         if (OreDictionary.getOres("crystalCertusQuartz").size() > 0) {
