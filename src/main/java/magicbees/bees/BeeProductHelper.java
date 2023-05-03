@@ -138,17 +138,24 @@ public class BeeProductHelper {
     }
 
     public static void initOreDictSProducts() {
+        boolean isGTLoaded = Loader.isModLoaded("gregtech");
         SILVER.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        SILVER.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Silver.getNuggets(1)
-                        : OreDictionary.getOres("nuggetSilver").get(0),
-                0.16f);
+        if (OreDictionary.getOres("nuggetSilver").size() > 0) {
+            SILVER.addSpecialty(
+                    isGTLoaded ? Materials.Silver.getNuggets(1) : OreDictionary.getOres("nuggetSilver").get(0),
+                    0.16f);
+        } else {
+            SILVER.setInactive();
+        }
 
         LEAD.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        LEAD.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Lead.getNuggets(1)
-                        : OreDictionary.getOres("nuggetLead").get(0),
-                0.17f);
+        if (OreDictionary.getOres("nuggetLead").size() > 0) {
+            LEAD.addSpecialty(
+                    isGTLoaded ? Materials.Lead.getNuggets(1) : OreDictionary.getOres("nuggetLead").get(0),
+                    0.17f);
+        } else {
+            LEAD.setInactive();
+        }
 
         // Oil berry alu bee
         ALUMINUM.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
@@ -159,55 +166,76 @@ public class BeeProductHelper {
         }
 
         TE_PLATINUM.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        TE_PLATINUM.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Platinum.getNuggets(1)
-                        : OreDictionary.getOres("nuggetPlatinum").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetPlatinum").size() > 0) {
+            TE_PLATINUM.addSpecialty(
+                    isGTLoaded ? Materials.Platinum.getNuggets(1) : OreDictionary.getOres("nuggetPlatinum").get(0),
+                    0.18f);
+        } else {
+            TE_PLATINUM.setInactive();
+        }
 
         TE_NICKEL.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        TE_NICKEL.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Nickel.getNuggets(1)
-                        : OreDictionary.getOres("nuggetNickel").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetNickel").size() > 0) {
+            TE_NICKEL.addSpecialty(
+                    isGTLoaded ? Materials.Nickel.getNuggets(1) : OreDictionary.getOres("nuggetNickel").get(0),
+                    0.18f);
+        } else {
+            TE_NICKEL.setInactive();
+        }
 
         ARDITE.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        ARDITE.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Ardite.getNuggets(1)
-                        : OreDictionary.getOres("nuggetArdite").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetArdite").size() > 0) {
+            ARDITE.addSpecialty(
+                    isGTLoaded ? Materials.Ardite.getNuggets(1) : OreDictionary.getOres("nuggetArdite").get(0),
+                    0.18f);
+        } else {
+            ARDITE.setInactive();
+        }
 
         COBALT.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        COBALT.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Cobalt.getNuggets(1)
-                        : OreDictionary.getOres("nuggetCobalt").get(0),
-                0.18f);
-        if (COBALT.getSpecies().getSpecialtyChances().size() <= 0) {
+        if (OreDictionary.getOres("nuggetCobalt").size() > 0) {
+            COBALT.addSpecialty(
+                    isGTLoaded ? Materials.Cobalt.getNuggets(1) : OreDictionary.getOres("nuggetCobalt").get(0),
+                    0.18f);
+        } else {
             COBALT.setInactive();
         }
 
         TE_BRONZE.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        TE_BRONZE.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Bronze.getNuggets(1)
-                        : OreDictionary.getOres("nuggetBronze").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetBronze").size() > 0) {
+            TE_BRONZE.addSpecialty(
+                    isGTLoaded ? Materials.Bronze.getNuggets(1) : OreDictionary.getOres("nuggetBronze").get(0),
+                    0.18f);
+        } else {
+            TE_BRONZE.setInactive();
+        }
 
         TE_INVAR.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        TE_INVAR.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Invar.getNuggets(1)
-                        : OreDictionary.getOres("nuggetInvar").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetInvar").size() > 0) {
+            TE_INVAR.addSpecialty(
+                    isGTLoaded ? Materials.Invar.getNuggets(1) : OreDictionary.getOres("nuggetInvar").get(0),
+                    0.18f);
+        } else {
+            TE_INVAR.setInactive();
+        }
 
         TE_ELECTRUM.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        TE_ELECTRUM.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Electrum.getNuggets(1)
-                        : OreDictionary.getOres("nuggetElectrum").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetElectrum").size() > 0) {
+            TE_ELECTRUM.addSpecialty(
+                    isGTLoaded ? Materials.Electrum.getNuggets(1) : OreDictionary.getOres("nuggetElectrum").get(0),
+                    0.18f);
+        } else {
+            TE_ELECTRUM.setInactive();
+        }
 
         MANYULLYN.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
-        MANYULLYN.addSpecialty(
-                Loader.isModLoaded("gregtech") ? Materials.Manyullyn.getNuggets(1)
-                        : OreDictionary.getOres("nuggetManyullyn").get(0),
-                0.18f);
+        if (OreDictionary.getOres("nuggetManyullyn").size() > 0) {
+            MANYULLYN.addSpecialty(
+                    isGTLoaded ? Materials.Manyullyn.getNuggets(1) : OreDictionary.getOres("nuggetManyullyn").get(0),
+                    0.18f);
+        } else {
+            MANYULLYN.setInactive();
+        }
 
         CERTUS.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
         if (OreDictionary.getOres("crystalCertusQuartz").size() > 0) {
