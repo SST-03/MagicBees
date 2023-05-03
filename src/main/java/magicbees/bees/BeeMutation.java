@@ -417,15 +417,6 @@ public class BeeMutation {
                     9).requireResource("blockManyullyn");
         }
 
-        if (BeeSpecies.OSMIUM.isActive()) {
-            baseA = (BeeSpecies.SILVER.isActive()) ? BeeSpecies.SILVER.getSpecies() : Allele.getBaseSpecies("Imperial");
-            baseB = (BeeSpecies.COBALT.isActive()) ? BeeSpecies.COBALT.getSpecies() : BeeSpecies.INFERNAL.getSpecies();
-            mutation = beeMutationFactory.createMutation(baseA, baseB, BeeSpecies.OSMIUM.getGenome(), 11);
-            if (OreDictionary.getOres("blockOsmium").size() > 0) {
-                mutation.requireResource("blockOsmium");
-            }
-        }
-
         beeMutationFactory.createMutation(
                 Allele.getBaseSpecies("Austere"),
                 BeeSpecies.GOLD.getSpecies(),
