@@ -10,9 +10,9 @@ public enum HiveFrameType implements IBeeModifier {
     RESILIENT("Resilient", 800, 1f, 1f, 1f, 2f, 0.5f),
     GENTLE("Gentle", 200, 1f, 0.7f, 1.5f, 1.4f, 0.01f),
     METABOLIC("Metabolic", 130, 1f, 1.8f, 1f, 1.2f, 1f),
-    NECROTIC("Necrotic", 280, 1f, 1f, 0.3f, 0.75f, 1.2f),
-    TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f, 0.8f),
-    OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f, 1f);
+    NECROTIC("Necrotic", 280, 1f, 1f, 0.3f, -0.25f, 1.2f), // production was 0.75x, now -0.25
+    TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 0f, 0.8f), // production was 1x, now +0
+    OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, -9001f, 1f);// production was 0.0001x, now -9001
 
     private final String frameName;
     public final int maxDamage;
