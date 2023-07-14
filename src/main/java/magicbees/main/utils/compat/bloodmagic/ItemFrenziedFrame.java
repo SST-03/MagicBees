@@ -44,7 +44,7 @@ public class ItemFrenziedFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-            return 0;
+            return -9001f;
         }
 
         @Override
