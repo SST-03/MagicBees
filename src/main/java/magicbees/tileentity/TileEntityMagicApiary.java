@@ -660,7 +660,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         public float getProductionModifier(IBeeGenome genome, float currentModifier) {
             float mod = -0.1f;// was 0.9x, now -0.1
             if (magicApiary.isProductionBoosted()) {
-                mod = 1.8f;// was 1.8x, now +1.8
+                mod = 0.8f;// was 1.8x, now +0.8
             }
             return mod;
         }
