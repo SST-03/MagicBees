@@ -34,7 +34,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-            return 1;
+            return 1f;
         }
 
         @Override
@@ -44,17 +44,17 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-            return 0;
+            return -9001f;
         }
 
         @Override
         public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
-            return 1;
+            return 1f;
         }
 
         @Override
         public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
-            return 1;
+            return 1f;
         }
 
         @Override
@@ -79,7 +79,7 @@ public class ItemBloodFrame extends EnergyItems implements IHiveFrame {
 
         @Override
         public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
-            return 1;
+            return 1f;
         }
     }
 
