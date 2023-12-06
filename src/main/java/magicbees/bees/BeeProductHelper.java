@@ -1,32 +1,5 @@
 package magicbees.bees;
 
-
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import cpw.mods.fml.common.Loader;
-import gregtech.api.enums.Materials;
-import magicbees.item.types.CombType;
-import magicbees.item.types.DropType;
-import magicbees.item.types.NuggetType;
-import magicbees.item.types.PollenType;
-import magicbees.item.types.PropolisType;
-import magicbees.item.types.ResourceType;
-import magicbees.main.Config;
-import magicbees.main.utils.LogHelper;
-import magicbees.main.utils.compat.AppliedEnergisticsHelper;
-import magicbees.main.utils.compat.ArsMagicaHelper;
-import magicbees.main.utils.compat.BotaniaHelper;
-import magicbees.main.utils.compat.BotaniaHelper.PastureSeed;
-import magicbees.main.utils.compat.EquivalentExchangeHelper;
-import magicbees.main.utils.compat.ForestryHelper;
-import magicbees.main.utils.compat.RedstoneArsenalHelper;
-import magicbees.main.utils.compat.ThaumcraftHelper;
-import magicbees.main.utils.compat.ThermalModsHelper;
-
 import static magicbees.bees.BeeSpecies.ABANDONED;
 import static magicbees.bees.BeeSpecies.AE_SKYSTONE;
 import static magicbees.bees.BeeSpecies.ALUMINUM;
@@ -152,6 +125,31 @@ import static magicbees.bees.BeeSpecies.UNUSUAL;
 import static magicbees.bees.BeeSpecies.WATERY;
 import static magicbees.bees.BeeSpecies.WINDY;
 import static magicbees.bees.BeeSpecies.WITHERING;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import cpw.mods.fml.common.Loader;
+import gregtech.api.enums.Materials;
+import magicbees.item.types.CombType;
+import magicbees.item.types.DropType;
+import magicbees.item.types.NuggetType;
+import magicbees.item.types.PollenType;
+import magicbees.item.types.PropolisType;
+import magicbees.item.types.ResourceType;
+import magicbees.main.Config;
+import magicbees.main.utils.LogHelper;
+import magicbees.main.utils.compat.AppliedEnergisticsHelper;
+import magicbees.main.utils.compat.ArsMagicaHelper;
+import magicbees.main.utils.compat.BotaniaHelper;
+import magicbees.main.utils.compat.BotaniaHelper.PastureSeed;
+import magicbees.main.utils.compat.EquivalentExchangeHelper;
+import magicbees.main.utils.compat.ForestryHelper;
+import magicbees.main.utils.compat.RedstoneArsenalHelper;
+import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.ThermalModsHelper;
 
 public class BeeProductHelper {
 
@@ -575,7 +573,7 @@ public class BeeProductHelper {
         BOT_BLOSSOM.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 0.20f)
                 .addProduct(Config.combs.getStackForType(CombType.TRANSMUTED), 0.05f);
         BOT_FLORAL.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 0.25f)
-            .addProduct(Config.combs.getStackForType(CombType.TRANSMUTED), 0.05f);
+                .addProduct(Config.combs.getStackForType(CombType.TRANSMUTED), 0.05f);
         BOT_VAZBEE.addProduct(Config.combs.getStackForType(CombType.SOUL), 0.05f)
                 .addProduct(new ItemStack(Items.dye, 1, 9), 0.20f).addProduct(new ItemStack(Blocks.wool, 1, 9), 0.02f)
                 .addProduct(new ItemStack(Blocks.red_flower, 1, 7), 0.06f)
