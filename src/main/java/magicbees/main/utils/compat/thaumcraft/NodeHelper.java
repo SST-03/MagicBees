@@ -118,9 +118,6 @@ public class NodeHelper {
         for (Chunk chunk : chunks) {
             for (INode node : findNodesInChunkWithinRange(chunk, xCoord, yCoord, zCoord, range)) {
                 if (node != null) {
-                    if (ThaumicHorizonsHelper.isActive() && node instanceof TileSyntheticNode) {
-                        continue;
-                    }
                     ++attemptedNodes;
                     AspectList aspectsBase = node.getAspectsBase();
                     int randBase = Math.max(aspectsBase.visSize(), 1);
@@ -186,9 +183,6 @@ public class NodeHelper {
         for (Chunk chunk : chunks) {
             INode node = findNode(chunk, xCoord, yCoord, zCoord, range);
             if (node != null) {
-                if (ThaumicHorizonsHelper.isActive() && node instanceof TileSyntheticNode) {
-                    continue;
-                }
                 boolean nodeChanged = false;
                 if (node.getNodeType() == NodeType.UNSTABLE) {
                     node.setNodeType(NodeType.NORMAL);
@@ -235,9 +229,6 @@ public class NodeHelper {
         boolean nodeChanged = false;
         for (Chunk chunk : chunks) {
             for (INode node : findNodesInChunkWithinRange(chunk, xCoord, yCoord, zCoord, range)) {
-                if (ThaumicHorizonsHelper.isActive() && node instanceof TileSyntheticNode) {
-                    continue;
-                }
                 ++attemptedNodes;
                 NodeType nodeType = node.getNodeType();
                 if (nodeType != targetType && nodeType != NodeType.NORMAL) {
