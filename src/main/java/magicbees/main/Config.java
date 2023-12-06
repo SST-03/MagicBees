@@ -27,7 +27,24 @@ import magicbees.block.BlockMagicApiary;
 import magicbees.block.BlockManaAuraProvider;
 import magicbees.block.BlockVisAuraProvider;
 import magicbees.block.types.HiveType;
-import magicbees.item.*;
+import magicbees.item.ItemCapsule;
+import magicbees.item.ItemComb;
+import magicbees.item.ItemDrop;
+import magicbees.item.ItemMagicHive;
+import magicbees.item.ItemMagicHiveFrame;
+import magicbees.item.ItemManasteelGrafter;
+import magicbees.item.ItemManasteelScoop;
+import magicbees.item.ItemMiscResources;
+import magicbees.item.ItemMoonDial;
+import magicbees.item.ItemMysteriousMagnet;
+import magicbees.item.ItemNugget;
+import magicbees.item.ItemPollen;
+import magicbees.item.ItemPropolis;
+import magicbees.item.ItemThaumiumGrafter;
+import magicbees.item.ItemThaumiumScoop;
+import magicbees.item.ItemVoidGrafter;
+import magicbees.item.ItemVoidScoop;
+import magicbees.item.ItemWax;
 import magicbees.item.types.CapsuleType;
 import magicbees.item.types.HiveFrameType;
 import magicbees.item.types.NuggetType;
@@ -80,6 +97,7 @@ public class Config {
     public static boolean extraBeesActive;
     public static boolean redstoneArsenalActive;
     public static boolean thaumcraftActive;
+    public static boolean thaumicHorizonsActive;
     public static boolean thermalFoundationActive;
     public static boolean botaniaActive;
     public static boolean ae2Active;
@@ -248,6 +266,9 @@ public class Config {
 
         p = configuration.get(CATEGORY_MODULES, "Thaumcraft", true);
         thaumcraftActive = p.getBoolean();
+
+        p = configuration.get(CATEGORY_MODULES, "ThaumicHorizons", true);
+        thaumicHorizonsActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "ThermalExpansion", true);
         thermalFoundationActive = p.getBoolean();
