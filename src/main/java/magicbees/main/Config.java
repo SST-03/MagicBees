@@ -80,6 +80,7 @@ public class Config {
     public static boolean extraBeesActive;
     public static boolean redstoneArsenalActive;
     public static boolean thaumcraftActive;
+    public static boolean thaumicHorizonsActive;
     public static boolean thermalFoundationActive;
     public static boolean botaniaActive;
     public static boolean ae2Active;
@@ -248,6 +249,9 @@ public class Config {
 
         p = configuration.get(CATEGORY_MODULES, "Thaumcraft", true);
         thaumcraftActive = p.getBoolean();
+
+        p = configuration.get(CATEGORY_MODULES, "ThaumicHorizons", true);
+        thaumicHorizonsActive = p.getBoolean();
 
         p = configuration.get(CATEGORY_MODULES, "ThermalExpansion", true);
         thermalFoundationActive = p.getBoolean();
