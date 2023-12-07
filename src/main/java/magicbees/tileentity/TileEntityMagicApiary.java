@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import forestry.apiculture.ApiaryBeeListener;
-import forestry.apiculture.IApiary;
-import forestry.apiculture.inventory.IApiaryInventory;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -43,6 +41,9 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.ForestryAPI;
 import forestry.api.core.IErrorLogic;
+import forestry.apiculture.ApiaryBeeListener;
+import forestry.apiculture.IApiary;
+import forestry.apiculture.inventory.IApiaryInventory;
 import magicbees.api.bees.IMagicApiaryAuraProvider;
 import magicbees.bees.AuraCharge;
 import magicbees.bees.BeeManager;
@@ -109,10 +110,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     @Override
     public IBeekeepingLogic getBeekeepingLogic() {
         return beeLogic;
-    }
-
-    public void setOwner(EntityPlayer player) {
-        this.ownerProfile = player.getGameProfile();
     }
 
     @Override
@@ -240,14 +237,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 
     public int getHealthScaled(int i) {
         return (breedingProgressPercent * i) / 100;
-    }
-
-    public int getTemperatureScaled(int i) {
-        return Math.round(i * (getExactTemperature() / 2));
-    }
-
-    public int getHumidityScaled(int i) {
-        return Math.round(i * getExactHumidity());
     }
 
     /* Saving and loading */
@@ -606,12 +595,12 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
             return hiveFrames;
         }
 
-        public void wearOutFrames(IBeeHousing beeHousing,int amount) {
+        public void wearOutFrames(IBeeHousing beeHousing, int amount) {
             IBeekeepingMode beekeepingMode = BeeManager.beeRoot.getBeekeepingMode(magicApiary.getWorldObj());
             int wear = Math.round(amount * beekeepingMode.getWearModifier());
 
             for (int i = MagicApiaryInventory.SLOT_FRAME_START; i
-                < MagicApiaryInventory.SLOT_FRAME_START + MagicApiaryInventory.SLOT_FRAME_COUNT; i++) {
+                    < MagicApiaryInventory.SLOT_FRAME_START + MagicApiaryInventory.SLOT_FRAME_COUNT; i++) {
                 ItemStack hiveFrameStack = magicApiary.getStackInSlot(i);
                 if (hiveFrameStack == null) {
                     continue;
