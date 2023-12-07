@@ -21,9 +21,9 @@ public class MagicApiaryInventory implements IApiaryInventory {
 
     public static final int SLOT_QUEEN = 0;
     public static final int SLOT_DRONE = 1;
-    public static final int SLOT_FRAME_START = 9;
+    public static final int SLOT_FRAME_START = 2;
     public static final int SLOT_FRAME_COUNT = 3;
-    public static final int SLOT_PRODUCTS_START = 2;
+    public static final int SLOT_PRODUCTS_START = 5;
     public static final int SLOT_PRODUCTS_COUNT = 7;
 
     private final TileEntityMagicApiary magicApiary;
