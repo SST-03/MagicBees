@@ -267,10 +267,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         return event.getPacket();
     }
 
-    public float getExactTemperature() {
-        return getBiome().getFloatTemperature(xCoord, yCoord, zCoord);
-    }
-
     public float getExactHumidity() {
         return getBiome().rainfall;
     }
@@ -661,29 +657,17 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 
         @Override
         public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-            float mod = 1.0f;
-            if (magicApiary.isMutationBoosted()) {
-                mod = mod * 2f;
-            }
-            return mod;
+            return magicApiary.isMutationBoosted() ? 2f : 1f;
         }
 
         @Override
         public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-            float mod = 1.0f;
-            if (magicApiary.isDeathRateBoosted()) {
-                mod = mod / 2f;
-            }
-            return mod;
+            return magicApiary.isDeathRateBoosted() ? 2f : 1f;
         }
 
         @Override
         public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-            float mod = -0.1f;// was 0.9x, now -0.1
-            if (magicApiary.isProductionBoosted()) {
-                mod = 0.8f;// was 1.8x, now +0.8
-            }
-            return mod;
+            return magicApiary.isProductionBoosted() ? 0.8f : -0.1f;
         }
 
         @Override
