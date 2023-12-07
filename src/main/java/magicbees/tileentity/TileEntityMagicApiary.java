@@ -57,19 +57,12 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private BiomeGenBase biome;
     private int breedingProgressPercent = 0;
 
-    private final IBeekeepingLogic beeLogic;
-    private final IErrorLogic errorLogic;
+    private final IBeekeepingLogic beeLogic = BeeManager.beeRoot.createBeekeepingLogic(this);
     private final IBeeListener beeListener = new ApiaryBeeListener(this);
-    private final IBeeModifier beeModifier;
-    private final MagicApiaryInventory inventory;
+    private final IBeeModifier beeModifier = new MagicApiaryBeeModifier(this);
+    private final MagicApiaryInventory inventory = new MagicApiaryInventory(this);
+    private final IErrorLogic errorLogic = ForestryAPI.errorStateRegistry.createErrorLogic();
     private final AuraCharges auraCharges = new AuraCharges();
-
-    public TileEntityMagicApiary() {
-        beeLogic = BeeManager.beeRoot.createBeekeepingLogic(this);
-        beeModifier = new MagicApiaryBeeModifier(this);
-        inventory = new MagicApiaryInventory(this);
-        errorLogic = ForestryAPI.errorStateRegistry.createErrorLogic();
-    }
 
     @Override
     public Iterable<IBeeModifier> getBeeModifiers() {
