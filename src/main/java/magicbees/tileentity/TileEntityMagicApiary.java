@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import forestry.apiculture.ApiaryBeeListener;
+import forestry.apiculture.IApiary;
+import forestry.apiculture.inventory.IApiaryInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -26,7 +29,6 @@ import net.minecraftforge.common.util.Constants;
 
 import com.mojang.authlib.GameProfile;
 
-import forestry.api.apiculture.DefaultBeeListener;
 import forestry.api.apiculture.DefaultBeeModifier;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -50,7 +52,7 @@ import magicbees.main.utils.ItemStackUtils;
 import magicbees.main.utils.net.EventAuraChargeUpdate;
 import magicbees.main.utils.net.NetworkEventHandler;
 
-public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing, ITileEntityAuraCharged {
+public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IApiary, ITileEntityAuraCharged {
 
     // Constants
     private static final int AURAPROVIDER_SEARCH_RADIUS = 6;
@@ -64,7 +66,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 
     private final IBeekeepingLogic beeLogic;
     private final IErrorLogic errorLogic;
-    private final IBeeListener beeListener;
+    private final IBeeListener beeListener = new ApiaryBeeListener(this);
     private final IBeeModifier beeModifier;
     private final MagicApiaryInventory inventory;
     private final AuraCharges auraCharges = new AuraCharges();
@@ -72,7 +74,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     public TileEntityMagicApiary() {
         beeLogic = BeeManager.beeRoot.createBeekeepingLogic(this);
         beeModifier = new MagicApiaryBeeModifier(this);
-        beeListener = new MagicApiaryBeeListener(this);
         inventory = new MagicApiaryInventory(this);
         errorLogic = ForestryAPI.errorStateRegistry.createErrorLogic();
     }
@@ -97,6 +98,11 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 
     @Override
     public IBeeHousingInventory getBeeInventory() {
+        return inventory;
+    }
+
+    @Override
+    public IApiaryInventory getApiaryInventory() {
         return inventory;
     }
 
@@ -480,7 +486,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         return inventory.canExtractItem(i, itemStack, i1);
     }
 
-    private static class MagicApiaryInventory implements IBeeHousingInventory {
+    private static class MagicApiaryInventory implements IApiaryInventory {
 
         public static final int SLOT_QUEEN = 0;
         public static final int SLOT_DRONE = 1;
@@ -490,7 +496,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         public static final int SLOT_PRODUCTS_COUNT = 7;
 
         private final TileEntityMagicApiary magicApiary;
-        private ItemStack[] items;
+        private final ItemStack[] items;
 
         public MagicApiaryInventory(TileEntityMagicApiary magicApiary) {
             this.magicApiary = magicApiary;
@@ -600,6 +606,32 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
             return hiveFrames;
         }
 
+        public void wearOutFrames(IBeeHousing beeHousing,int amount) {
+            IBeekeepingMode beekeepingMode = BeeManager.beeRoot.getBeekeepingMode(magicApiary.getWorldObj());
+            int wear = Math.round(amount * beekeepingMode.getWearModifier());
+
+            for (int i = MagicApiaryInventory.SLOT_FRAME_START; i
+                < MagicApiaryInventory.SLOT_FRAME_START + MagicApiaryInventory.SLOT_FRAME_COUNT; i++) {
+                ItemStack hiveFrameStack = magicApiary.getStackInSlot(i);
+                if (hiveFrameStack == null) {
+                    continue;
+                }
+
+                Item hiveFrameItem = hiveFrameStack.getItem();
+                if (!(hiveFrameItem instanceof IHiveFrame)) {
+                    continue;
+                }
+
+                IHiveFrame hiveFrame = (IHiveFrame) hiveFrameItem;
+
+                ItemStack queenStack = magicApiary.getBeeInventory().getQueen();
+                IBee queen = BeeManager.beeRoot.getMember(queenStack);
+                ItemStack usedFrame = hiveFrame.frameUsed(magicApiary, hiveFrameStack, queen, wear);
+
+                magicApiary.setInventorySlotContents(i, usedFrame);
+            }
+        }
+
         public void writeToNBT(NBTTagCompound compound) {
             NBTTagList itemsNBT = new NBTTagList();
 
@@ -668,42 +700,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         @Override
         public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
             return 0.8f;
-        }
-    }
-
-    private static class MagicApiaryBeeListener extends DefaultBeeListener {
-
-        private final TileEntityMagicApiary magicApiary;
-
-        public MagicApiaryBeeListener(TileEntityMagicApiary magicApiary) {
-            this.magicApiary = magicApiary;
-        }
-
-        @Override
-        public void wearOutEquipment(int amount) {
-            IBeekeepingMode beekeepingMode = BeeManager.beeRoot.getBeekeepingMode(magicApiary.getWorldObj());
-            int wear = Math.round(amount * beekeepingMode.getWearModifier());
-
-            for (int i = MagicApiaryInventory.SLOT_FRAME_START; i
-                    < MagicApiaryInventory.SLOT_FRAME_START + MagicApiaryInventory.SLOT_FRAME_COUNT; i++) {
-                ItemStack hiveFrameStack = magicApiary.getStackInSlot(i);
-                if (hiveFrameStack == null) {
-                    continue;
-                }
-
-                Item hiveFrameItem = hiveFrameStack.getItem();
-                if (!(hiveFrameItem instanceof IHiveFrame)) {
-                    continue;
-                }
-
-                IHiveFrame hiveFrame = (IHiveFrame) hiveFrameItem;
-
-                ItemStack queenStack = magicApiary.getBeeInventory().getQueen();
-                IBee queen = BeeManager.beeRoot.getMember(queenStack);
-                ItemStack usedFrame = hiveFrame.frameUsed(magicApiary, hiveFrameStack, queen, wear);
-
-                magicApiary.setInventorySlotContents(i, usedFrame);
-            }
         }
     }
 }
