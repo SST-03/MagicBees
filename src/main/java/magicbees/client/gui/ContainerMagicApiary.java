@@ -19,8 +19,8 @@ public class ContainerMagicApiary extends ContainerMB {
     // Constants
     private static final int SLOT_QUEEN = 0;
     private static final int SLOT_DRONE = 1;
-    private static final int SLOT_FRAME_START = 2;
-    private static final int SLOT_INVENTORY_START = 5;
+    private static final int SLOT_FRAME_START = 9;
+    private static final int SLOT_INVENTORY_START = 2;
     private static final int SLOT_FRAME_COUNT = 3;
     private static final int SLOT_INVENTORY_COUNT = 7;
 

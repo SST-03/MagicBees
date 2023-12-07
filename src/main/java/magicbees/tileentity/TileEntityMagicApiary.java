@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -475,9 +474,9 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 
         public static final int SLOT_QUEEN = 0;
         public static final int SLOT_DRONE = 1;
-        public static final int SLOT_FRAME_START = 2;
+        public static final int SLOT_FRAME_START = 9;
         public static final int SLOT_FRAME_COUNT = 3;
-        public static final int SLOT_PRODUCTS_START = 5;
+        public static final int SLOT_PRODUCTS_START = 2;
         public static final int SLOT_PRODUCTS_COUNT = 7;
 
         private final TileEntityMagicApiary magicApiary;
@@ -559,14 +558,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         }
 
         public boolean canExtractItem(int slot, ItemStack itemStack, int side) {
-            switch (slot) {
-                case SLOT_FRAME_START:
-                case SLOT_FRAME_START + 1:
-                case SLOT_FRAME_START + 2:
-                    return false;
-                default:
-                    return true;
-            }
+            return slot >= SLOT_FRAME_START && slot <= SLOT_FRAME_START + 2;
         }
 
         public int getInventoryStackLimit() {
