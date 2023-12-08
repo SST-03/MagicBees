@@ -91,6 +91,8 @@ public class Config {
     public static double thaumcraftSaplingDroprate;
     public static int aromaticLumpSwarmerRate;
     public static int thaumcraftNodeMaxSize;
+    public static int thaumcraftEssentiaBeePhialingCabinetTimeBetween;
+    public static int thaumcraftEssentiaBeePhialingCabinetAmount;
 
     public static boolean arsMagicaActive;
     public static boolean baublesActive;
@@ -335,6 +337,24 @@ public class Config {
                 64,
                 32767);
         thaumcraftNodeMaxSize = p.getInt(256);
+
+        p = configuration.get(
+            CATEGORY_GENERAL,
+            "thaumcraftEssentiaBeePhialingCabinetTimeBetween",
+            10,
+            "The time in ticks between Phialing Cabinet essentia generation",
+            1,
+            32767);
+        thaumcraftEssentiaBeePhialingCabinetTimeBetween = p.getInt(10);
+
+        p = configuration.get(
+            CATEGORY_GENERAL,
+            "thaumcraftEssentiaBeePhialingCabinetAmount",
+            2,
+            "The amount that the Phialing Cabinet generates on every round",
+            1,
+            32767);
+        thaumcraftEssentiaBeePhialingCabinetAmount = p.getInt(2);
 
         p = configuration.get(CATEGORY_GENERAL, "moonDialShowText", false);
         p.comment = "set to true to show the current moon phase in mouse-over text.";

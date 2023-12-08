@@ -2,6 +2,7 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
+import magicbees.main.Config;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -31,7 +32,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         // If there's no stored aspect we shouldn't even check for the above block.
         if (aspect == null) return;
 
-        if (increment >= 20) {
+        if (increment % Config.thaumcraftEssentiaBeePhialingCabinetTimeBetween == 0) {
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
@@ -44,11 +45,14 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                     IBee queen = BeeManager.beeRoot.getMember(queenStack);
                     String queenUID = queen.getGenome().getPrimary().getUID();
 
-                    if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID()))
-                        this.myAspects.add(aspect, 1);
+                    if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
+                        this.myAspects.add(aspect, Config.thaumcraftEssentiaBeePhialingCabinetAmount);
+                        increment = 0;
+                    }
                 }
             } catch (Exception ignored) {}
         }
+
         increment++;
     }
 
