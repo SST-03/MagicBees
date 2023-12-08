@@ -1,20 +1,19 @@
 package magicbees.tileentity;
 
-import forestry.api.apiculture.IBeeHousing;
-import magicbees.bees.BeeSpecies;
+import java.util.Objects;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import forestry.api.apiculture.IBee;
-import forestry.apiculture.IApiary;
+import forestry.api.apiculture.IBeeHousing;
 import magicbees.bees.BeeManager;
+import magicbees.bees.BeeSpecies;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
-
-import java.util.Objects;
 
 public class TileEntityPhialingCabinet extends TileEntity implements IAspectContainer, IEssentiaTransport {
 
@@ -45,7 +44,8 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                     IBee queen = BeeManager.beeRoot.getMember(queenStack);
                     String queenUID = queen.getGenome().getPrimary().getUID();
 
-                    if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) this.myAspects.add(aspect, 1);
+                    if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID()))
+                        this.myAspects.add(aspect, 1);
                 }
             } catch (Exception ignored) {}
         }
