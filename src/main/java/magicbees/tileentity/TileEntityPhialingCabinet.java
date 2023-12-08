@@ -24,8 +24,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     public AspectList myAspects = new AspectList();
     public Aspect aspect;
     public int amount = 0;
-    public int maxAmount = 64;
-    public int increment = 0;
+    public int maxAmount = Config.thaumcraftEssentiaBeePhialingCabinetCapacity;
+
+    private int increment = 0;
 
     @Override
     public void updateEntity() {
@@ -46,7 +47,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                     String queenUID = queen.getGenome().getPrimary().getUID();
 
                     if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
-                        this.myAspects.add(aspect, Config.thaumcraftEssentiaBeePhialingCabinetAmount);
+                        addToContainer(aspect, Config.thaumcraftEssentiaBeePhialingCabinetAmount);
                         increment = 0;
                     }
                 }
@@ -78,17 +79,15 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     // added directly from the crucible of souls
     @Override
     public int addToContainer(Aspect tag, int am) {
-        if (am == 0) {
-            return am;
-        } else {
+        if (am != 0) {
             if (this.amount < this.maxAmount && tag == this.aspect || this.amount == 0) {
                 this.aspect = tag;
                 int added = Math.min(am, this.maxAmount - this.amount);
                 this.amount += added;
                 am -= added;
             }
-            return am;
         }
+        return am;
     }
 
     // added directly from the crucible of souls
@@ -113,7 +112,6 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         if (!this.worldObj.isRemote) {
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         }
-        ot.aspects.keySet().iterator();
         for (Aspect next : ot.aspects.keySet()) {
             if (this.myAspects.getAmount(next) < ot.getAmount(next)) hasIt = false;
         }
@@ -138,7 +136,6 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     @Override
     public boolean doesContainerContain(AspectList ot) {
         boolean hasIt = true;
-        ot.aspects.keySet().iterator();
         for (Aspect next : ot.aspects.keySet()) {
             if (this.myAspects.getAmount(next) < ot.getAmount(next)) hasIt = false;
         }
@@ -178,8 +175,8 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
     // added directly from the crucible of souls
     @Override
-    public int takeEssentia(Aspect aspect, int amount, ForgeDirection arg2) {
-        if (arg2 != ForgeDirection.UP) {
+    public int takeEssentia(Aspect aspect, int amount, ForgeDirection face) {
+        if (face != ForgeDirection.UP) {
             if (!this.worldObj.isRemote) {
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
             }
@@ -241,81 +238,8 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
     // added directly from the crucible of souls
     @Override
-    public int addEssentia(Aspect arg0, int arg1, ForgeDirection arg2) {
+    public int addEssentia(Aspect aspect, int amount, ForgeDirection arg2) {
         // TODO Auto-generated method stub
         return 0;
     }
-
-    /*
-     * @Override public boolean isItemValidForSlot(int i, ItemStack itemStack) { return true; }
-     * @Override public void openInventory() { }
-     * @Override public void closeInventory() { }
-     * @Override public boolean isUseableByPlayer(EntityPlayer entityPlayer) { return entityPlayer.getDistanceSq(xCoord
-     * + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64; }
-     * @Override public int getInventoryStackLimit() { return inventory.getInventoryStackLimit(); }
-     * @Override public boolean hasCustomInventoryName() { return false; }
-     * @Override public String getInventoryName() { return tileEntityName; }
-     * @Override public void setInventorySlotContents(int i, ItemStack itemStack) {
-     * inventory.setInventorySlotContents(i, itemStack); markDirty(); }
-     * @Override public ItemStack getStackInSlotOnClosing(int i) { ItemStack item = getStackInSlot(i);
-     * setInventorySlotContents(i, null); return item; }
-     * @Override public ItemStack decrStackSize(int i, int j) { ItemStack itemStack = getStackInSlot(i); if (itemStack
-     * != null) { if (itemStack.stackSize <= j) { setInventorySlotContents(i, null); }else{ itemStack =
-     * itemStack.splitStack(j); markDirty(); } } return itemStack; }
-     * @Override public ItemStack getStackInSlot(int i) { return inventory.getStackInSlot(i); }
-     * @Override public int[] getAccessibleSlotsFromSide(int i) { return inventory.getAccessibleSlotsFromSide(i); }
-     * @Override public boolean canInsertItem(int i, ItemStack itemStack, int i1) { return inventory.canInsertItem(i,
-     * itemStack, i1); }
-     * @Override public boolean canExtractItem(int i, ItemStack itemStack, int i1) { return inventory.canExtractItem(i,
-     * itemStack, i1); }
-     * @Override public int getSizeInventory() { return inventory.getSizeInventory(); } private static class
-     * PhialingCabinetInventory implements IPhialingCabinetInventory { public static final int SLOT_ONE = 0; public
-     * static final int SLOT_TWO = 1; public static final int SLOT_THREE = 2; public static final int SLOT_FOUR = 3;
-     * public static final int SLOT_FIVE = 4; public static final int SLOT_SIX = 5; public static final int SLOT_SEVEN =
-     * 6; public static final int SLOT_EIGHT = 7; public static final int SLOT_NINE = 8; private final
-     * TileEntityPhialingCabinet phialingCabinet; private ItemStack[] items; private
-     * PhialingCabinetInventory(TileEntityPhialingCabinet phialingCabinet) { this.phialingCabinet = phialingCabinet;
-     * this.items = new ItemStack[12]; }
-     * @Override public ItemStack getSlot1() { return phialingCabinet.getStackInSlot(SLOT_ONE); }
-     * @Override public ItemStack getSlot2() { return phialingCabinet.getStackInSlot(SLOT_TWO); }
-     * @Override public ItemStack getSlot3() { return phialingCabinet.getStackInSlot(SLOT_THREE); }
-     * @Override public ItemStack getSlot4() { return phialingCabinet.getStackInSlot(SLOT_FOUR); }
-     * @Override public ItemStack getSlot5() { return phialingCabinet.getStackInSlot(SLOT_FIVE); }
-     * @Override public ItemStack getSlot6() { return phialingCabinet.getStackInSlot(SLOT_SIX); }
-     * @Override public ItemStack getSlot7() { return phialingCabinet.getStackInSlot(SLOT_SEVEN); }
-     * @Override public ItemStack getSlot8() { return phialingCabinet.getStackInSlot(SLOT_EIGHT); }
-     * @Override public ItemStack getSlot9() { return phialingCabinet.getStackInSlot(SLOT_NINE); }
-     * @Override public void setSlot1(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_ONE,
-     * itemstack); }
-     * @Override public void setSlot2(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_TWO,
-     * itemstack); }
-     * @Override public void setSlot3(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_THREE,
-     * itemstack); }
-     * @Override public void setSlot4(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_FOUR,
-     * itemstack); }
-     * @Override public void setSlot5(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_FIVE,
-     * itemstack); }
-     * @Override public void setSlot6(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_SIX,
-     * itemstack); }
-     * @Override public void setSlot7(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_SEVEN,
-     * itemstack); }
-     * @Override public void setSlot8(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_EIGHT,
-     * itemstack); }
-     * @Override public void setSlot9(ItemStack itemstack) { phialingCabinet.setInventorySlotContents(SLOT_NINE,
-     * itemstack); } public int getSizeInventory() { return items.length; } public ItemStack getStackInSlot(int i) {
-     * return items[i]; } public void setInventorySlotContents(int i, ItemStack itemStack) { items[i] = itemStack; if
-     * (itemStack != null && itemStack.stackSize > getInventoryStackLimit()){ itemStack.stackSize =
-     * getInventoryStackLimit(); } } public int[] getAccessibleSlotsFromSide(int side) { if (side == 0 || side == 1) {
-     * return new int[] { SLOT_ONE, SLOT_TWO }; } else { int[] slots = new int[SLOT_NINE+1]; for (int i = 0, slot =
-     * SLOT_ONE; i < SLOT_NINE; i++, slot++) { slots[i] = slot; } return slots; } } public boolean canInsertItem(int
-     * slot, ItemStack itemStack, int side) { return true; } public boolean canExtractItem(int slot, ItemStack
-     * itemStack, int side) { return true; } public int getInventoryStackLimit() { return 64; } public void
-     * writeToNBT(NBTTagCompound compound) { NBTTagList itemsNBT = new NBTTagList(); for (int i = 0; i < items.length;
-     * i++) { ItemStack itemStack = items[i]; if (itemStack != null) { NBTTagCompound item = new NBTTagCompound();
-     * item.setByte("Slot", (byte)i); itemStack.writeToNBT(item); itemsNBT.appendTag(item); } } compound.setTag("Items",
-     * itemsNBT); } public void readFromNBT(NBTTagCompound compound) { NBTTagList items = compound.getTagList("Items",
-     * Constants.NBT.TAG_COMPOUND); for (int i = 0; i < items.tagCount(); i++) { NBTTagCompound item =
-     * items.getCompoundTagAt(i); int slot = item.getByte("Slot"); if (slot >= 0 && slot < getSizeInventory()) {
-     * setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item)); } } } }
-     */
 }
