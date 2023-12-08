@@ -25,6 +25,7 @@ import magicbees.block.BlockEnchantedEarth;
 import magicbees.block.BlockHive;
 import magicbees.block.BlockMagicApiary;
 import magicbees.block.BlockManaAuraProvider;
+import magicbees.block.BlockPhialingCabinet;
 import magicbees.block.BlockVisAuraProvider;
 import magicbees.block.types.HiveType;
 import magicbees.item.ItemCapsule;
@@ -59,6 +60,7 @@ import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
+import magicbees.tileentity.TileEntityPhialingCabinet;
 import magicbees.tileentity.TileEntityVisAuraProvider;
 
 /**
@@ -112,6 +114,7 @@ public class Config {
     public static BlockEffectJar effectJar;
     public static BlockHive hive;
     public static BlockMagicApiary magicApiary;
+    public static BlockPhialingCabinet phialingCabinet;
     public static BlockManaAuraProvider manaAuraProvider;
     public static BlockVisAuraProvider visAuraProvider;
 
@@ -209,6 +212,7 @@ public class Config {
         voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
 
         setupThaumcraftItems();
+        setupPhialingCabinet();
         setupBotaniaItems();
 
         setupOreDictionaryEntries();
@@ -493,6 +497,12 @@ public class Config {
         }
     }
 
+    public void setupPhialingCabinet() {
+        phialingCabinet = new BlockPhialingCabinet();
+        GameRegistry.registerBlock(phialingCabinet, "phialingCabinet");
+        GameRegistry.registerTileEntity(TileEntityPhialingCabinet.class, TileEntityPhialingCabinet.tileEntityName);
+    }
+
     private void setupThaumcraftBackpacks() {
         try {
             // 0x8700C6 is a purple-y colour, which is associated with Thaumcraft.
@@ -520,7 +530,7 @@ public class Config {
     private void setupMiscForestryItemHooks() {
         // Make Aromatic Lumps a swarmer inducer. Chance is /1000.
         if (aromaticLumpSwarmerRate > 0) {
-            aromaticLumpSwarmerRate = (aromaticLumpSwarmerRate >= 1000) ? 1000 : aromaticLumpSwarmerRate;
+            aromaticLumpSwarmerRate = Math.min(aromaticLumpSwarmerRate, 1000);
             BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), aromaticLumpSwarmerRate);
         }
     }
