@@ -1,5 +1,6 @@
 package magicbees.tileentity;
 
+import forestry.api.apiculture.IBeeHousing;
 import magicbees.bees.BeeSpecies;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,9 +35,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         if (increment >= 20) {
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
-                if (IApiary.class.isAssignableFrom(above.getClass())) {
-                    IApiary apiary = (IApiary) above;
-                    ItemStack queenStack = apiary.getApiaryInventory().getQueen();
+                if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
+                    IBeeHousing heeHousing = (IBeeHousing) above;
+                    ItemStack queenStack = heeHousing.getBeeInventory().getQueen();
 
                     // If the bee isn't a queen then what are we even doing?
                     if (!BeeManager.beeRoot.isMated(queenStack)) return;
