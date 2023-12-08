@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeHousing;
-import magicbees.bees.BeeManager;
+import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeSpecies;
 import magicbees.main.Config;
 import thaumcraft.api.aspects.Aspect;
@@ -37,16 +37,17 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
-                    IBeeHousing heeHousing = (IBeeHousing) above;
-                    ItemStack queenStack = heeHousing.getBeeInventory().getQueen();
+                    IBeeHousing beeHousing = (IBeeHousing) above;
+                    ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
 
-                    // If the bee isn't a queen then what are we even doing?
-                    if (!BeeManager.beeRoot.isMated(queenStack)) return;
+                    // This performs all the checks to see if the bee is a living queen and if the species conditions
+                    // are met.
+                    if (!beeHousing.getBeekeepingLogic().canWork()) return;
 
-                    IBee queen = BeeManager.beeRoot.getMember(queenStack);
-                    String queenUID = queen.getGenome().getPrimary().getUID();
+                    IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
+                    if (queenSpecies == null) return;
 
-                    if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
+                    if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
                         addToContainer(aspect, Config.thaumcraftEssentiaBeePhialingCabinetAmount);
                         increment = 0;
                     }

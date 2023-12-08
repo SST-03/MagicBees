@@ -459,12 +459,12 @@ public enum BeeSpecies {
         BeeProductHelper.initThaumcraftProducts();
         if (!ThaumcraftHelper.isActive()) {
             TC_CHAOS.setInactive();
-            TC_ESSENTIA.setInactive();
             TC_AIR.setInactive();
             TC_FIRE.setInactive();
             TC_WATER.setInactive();
             TC_EARTH.setInactive();
             TC_ORDER.setInactive();
+            TC_ESSENTIA.setInactive();
 
             TC_VIS.setInactive();
             TC_REJUVENATING.setInactive();

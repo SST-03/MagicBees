@@ -215,7 +215,6 @@ public class Config {
         voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
 
         setupThaumcraftItems();
-        setupPhialingCabinet();
         setupBotaniaItems();
 
         setupOreDictionaryEntries();
@@ -503,6 +502,10 @@ public class Config {
             visAuraProvider = new BlockVisAuraProvider();
             GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
             GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
+
+            phialingCabinet = new BlockPhialingCabinet();
+            GameRegistry.registerBlock(phialingCabinet, "phialingCabinet");
+            GameRegistry.registerTileEntity(TileEntityPhialingCabinet.class, TileEntityPhialingCabinet.tileEntityName);
         }
     }
 
@@ -523,12 +526,6 @@ public class Config {
             voidGrafter = new ItemVoidGrafter();
             GameRegistry.registerItem(voidGrafter, voidGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
         }
-    }
-
-    public void setupPhialingCabinet() {
-        phialingCabinet = new BlockPhialingCabinet();
-        GameRegistry.registerBlock(phialingCabinet, "phialingCabinet");
-        GameRegistry.registerTileEntity(TileEntityPhialingCabinet.class, TileEntityPhialingCabinet.tileEntityName);
     }
 
     private void setupThaumcraftBackpacks() {
