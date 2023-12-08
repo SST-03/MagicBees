@@ -1,5 +1,6 @@
 package magicbees.tileentity;
 
+import magicbees.bees.BeeSpecies;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -11,6 +12,8 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
+
+import java.util.Objects;
 
 public class TileEntityPhialingCabinet extends TileEntity implements IAspectContainer, IEssentiaTransport {
 
@@ -25,6 +28,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
     @Override
     public void updateEntity() {
+        // If there's no stored aspect we shouldn't even check for the above block.
+        if (aspect == null) return;
+
         if (increment >= 20) {
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
@@ -38,9 +44,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                     IBee queen = BeeManager.beeRoot.getMember(queenStack);
                     String queenUID = queen.getGenome().getPrimary().getUID();
 
-                    Aspect aspect = Aspect.AIR;
-
-                    this.myAspects.add(aspect, 1);
+                    if (Objects.equals(queenUID, BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) this.myAspects.add(aspect, 1);
                 }
             } catch (Exception ignored) {}
         }
