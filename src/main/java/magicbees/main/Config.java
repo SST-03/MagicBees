@@ -339,21 +339,21 @@ public class Config {
         thaumcraftNodeMaxSize = p.getInt(256);
 
         p = configuration.get(
-            CATEGORY_GENERAL,
-            "thaumcraftEssentiaBeePhialingCabinetTimeBetween",
-            10,
-            "The time in ticks between Phialing Cabinet essentia generation",
-            1,
-            32767);
+                CATEGORY_GENERAL,
+                "thaumcraftEssentiaBeePhialingCabinetTimeBetween",
+                10,
+                "The time in ticks between Phialing Cabinet essentia generation",
+                1,
+                32767);
         thaumcraftEssentiaBeePhialingCabinetTimeBetween = p.getInt(10);
 
         p = configuration.get(
-            CATEGORY_GENERAL,
-            "thaumcraftEssentiaBeePhialingCabinetAmount",
-            2,
-            "The amount that the Phialing Cabinet generates on every round",
-            1,
-            32767);
+                CATEGORY_GENERAL,
+                "thaumcraftEssentiaBeePhialingCabinetAmount",
+                2,
+                "The amount that the Phialing Cabinet generates on every round",
+                1,
+                32767);
         thaumcraftEssentiaBeePhialingCabinetAmount = p.getInt(2);
 
         p = configuration.get(CATEGORY_GENERAL, "moonDialShowText", false);

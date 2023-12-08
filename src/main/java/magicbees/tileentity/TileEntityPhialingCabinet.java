@@ -2,7 +2,6 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
-import magicbees.main.Config;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -11,6 +10,7 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeHousing;
 import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
+import magicbees.main.Config;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
