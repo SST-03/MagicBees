@@ -4,9 +4,7 @@ import java.util.Objects;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -58,9 +56,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                         increment = 0;
                     }
                 }
-            } catch (Exception ignored) {
-                MinecraftServer.getServer().addChatMessage(new ChatComponentText(ignored.toString()));
-            }
+            } catch (Exception ignored) {}
         }
 
         increment++;
