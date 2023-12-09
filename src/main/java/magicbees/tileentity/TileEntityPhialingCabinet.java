@@ -20,11 +20,11 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
     public static final String tileEntityName = "Phialing Cabinet";
 
-    // added directly from the crucible of souls
-    public AspectList myAspects = new AspectList();
     public Aspect aspect;
+    public AspectList essentia = new AspectList();
+
     public int amount = 0;
-    public int maxAmount = Config.thaumcraftEssentiaBeePhialingCabinetCapacity;
+    public final int maxAmount = Config.thaumcraftEssentiaBeePhialingCabinetCapacity;
 
     private int increment = 0;
 
@@ -58,26 +58,21 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         increment++;
     }
 
-    // added directly from the crucible of souls
     @Override
     public AspectList getAspects() {
-        // TODO Auto-generated method stub
-        return this.myAspects;
+        return this.essentia;
     }
 
-    // added directly from the crucible of souls
     @Override
     public void setAspects(AspectList aspects) {
-        this.myAspects = aspects;
+        this.essentia = aspects;
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean doesContainerAccept(Aspect tag) {
         return false;
     }
 
-    // added directly from the crucible of souls
     @Override
     public int addToContainer(Aspect tag, int am) {
         if (am != 0) {
@@ -91,21 +86,19 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         return am;
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean takeFromContainer(Aspect tag, int amount) {
         if (!this.worldObj.isRemote) {
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         }
-        if (this.myAspects.getAmount(tag) >= amount) {
-            this.myAspects.reduce(tag, amount);
+        if (this.essentia.getAmount(tag) >= amount) {
+            this.essentia.reduce(tag, amount);
             return true;
         } else {
             return false;
         }
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean takeFromContainer(AspectList ot) {
         // TODO Auto-generated method stub
@@ -114,11 +107,11 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         }
         for (Aspect next : ot.aspects.keySet()) {
-            if (this.myAspects.getAmount(next) < ot.getAmount(next)) hasIt = false;
+            if (this.essentia.getAmount(next) < ot.getAmount(next)) hasIt = false;
         }
         if (hasIt) {
             for (Aspect next : ot.aspects.keySet()) {
-                myAspects.reduce(next, ot.getAmount(next));
+                essentia.reduce(next, ot.getAmount(next));
             }
             return true;
         } else {
@@ -126,121 +119,97 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         }
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean doesContainerContainAmount(Aspect tag, int amount) {
-        // TODO Auto-generated method stub
-        return (this.myAspects.getAmount(tag) > amount);
+        return this.essentia.getAmount(tag) >= amount;
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean doesContainerContain(AspectList ot) {
         boolean hasIt = true;
         for (Aspect next : ot.aspects.keySet()) {
-            if (this.myAspects.getAmount(next) < ot.getAmount(next)) hasIt = false;
+            if (this.essentia.getAmount(next) < ot.getAmount(next)) hasIt = false;
         }
         return hasIt;
     }
 
-    // added directly from the crucible of souls
     @Override
     public int containerContains(Aspect tag) {
-        return this.myAspects.getAmount(tag);
+        return this.essentia.getAmount(tag);
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean isConnectable(ForgeDirection face) {
         return (face != ForgeDirection.UP);
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean canInputFrom(ForgeDirection face) {
         return false;
     }
 
-    // added directly from the crucible of souls
     @Override
     public boolean canOutputTo(ForgeDirection face) {
         return (face != ForgeDirection.UP);
     }
 
-    // added directly from the crucible of souls
-    @Override
-    public void setSuction(Aspect aspect, int amount) {
-        // TODO Auto-generated method stub
-
-    }
-
-    // added directly from the crucible of souls
     @Override
     public int takeEssentia(Aspect aspect, int amount, ForgeDirection face) {
         if (face != ForgeDirection.UP) {
             if (!this.worldObj.isRemote) {
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
             }
-            if (amount > this.myAspects.getAmount(aspect)) {
-                int total = this.myAspects.getAmount(aspect);
-                this.myAspects.reduce(aspect, total);
+            if (amount > this.essentia.getAmount(aspect)) {
+                int total = this.essentia.getAmount(aspect);
+                this.essentia.reduce(aspect, total);
                 return total;
             } else {
-                this.myAspects.reduce(aspect, amount);
+                this.essentia.reduce(aspect, amount);
                 return amount;
             }
 
         } else {
             return 0;
         }
-
     }
 
-    // added directly from the crucible of souls
+    @Override
+    public void setSuction(Aspect aspect, int amount) {}
+
     @Override
     public int getMinimumSuction() {
-        // TODO Auto-generated method stub
-        return 0;
+        return -1;
     }
 
-    // added directly from the crucible of souls
+    @Override
+    public int getSuctionAmount(ForgeDirection face) {
+        return -1;
+    }
+
     @Override
     public boolean renderExtendedTube() {
-        // TODO Auto-generated method stub
         return false;
-        // NEW AFTER THIS LINE
     }
 
-    // added directly from the crucible of souls
     @Override
     public Aspect getSuctionType(ForgeDirection face) {
         return null;
     }
 
-    // added directly from the crucible of souls
-    @Override
-    public int getSuctionAmount(ForgeDirection face) {
-        return 0;
-    }
-
-    // added directly from the crucible of souls
     @Override
     public Aspect getEssentiaType(ForgeDirection face) {
-        return this.myAspects.size() > 0
-                ? this.myAspects.getAspects()[this.worldObj.rand.nextInt(this.myAspects.getAspects().length)]
+        return this.essentia.size() > 0
+                ? this.essentia.getAspects()[this.worldObj.rand.nextInt(this.essentia.getAspects().length)]
                 : null;
     }
 
-    // added directly from the crucible of souls
     @Override
     public int getEssentiaAmount(ForgeDirection face) {
-        return this.myAspects.visSize();
+        return this.essentia.visSize();
     }
 
-    // added directly from the crucible of souls
     @Override
-    public int addEssentia(Aspect aspect, int amount, ForgeDirection arg2) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int addEssentia(Aspect aspect, int amount, ForgeDirection face) {
+        return this.canInputFrom(face) ? amount - this.addToContainer(aspect, amount) : 0;
     }
 }
