@@ -2,7 +2,9 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
+import magicbees.main.utils.ChunkCoords;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -23,7 +25,6 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     public Aspect aspect;
     public AspectList essentia = new AspectList();
 
-    public int amount = 0;
     public final int maxAmount = Config.thaumcraftEssentiaBeePhialingCabinetCapacity;
 
     private int increment = 0;
@@ -38,12 +39,12 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
                     IBeeHousing beeHousing = (IBeeHousing) above;
-                    ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
 
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
                     // are met.
                     if (!beeHousing.getBeekeepingLogic().canWork()) return;
 
+                    ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
                     IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
                     if (queenSpecies == null) return;
 
@@ -76,10 +77,10 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     @Override
     public int addToContainer(Aspect tag, int am) {
         if (am != 0) {
-            if (this.amount < this.maxAmount && tag == this.aspect || this.amount == 0) {
+            int amount = this.essentia.visSize();
+            if (amount < this.maxAmount && tag == this.aspect || amount == 0) {
                 this.aspect = tag;
-                int added = Math.min(am, this.maxAmount - this.amount);
-                this.amount += added;
+                int added = Math.min(am, this.maxAmount - amount);
                 am -= added;
             }
         }
@@ -211,5 +212,27 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     @Override
     public int addEssentia(Aspect aspect, int amount, ForgeDirection face) {
         return this.canInputFrom(face) ? amount - this.addToContainer(aspect, amount) : 0;
+    }
+
+    /* Saving and loading */
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+
+        this.essentia.writeToNBT(compound);
+        compound.setString("aspect", aspect.getTag());
+        compound.setInteger("increment", increment);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+
+        this.essentia.readFromNBT(compound);
+        if (this.essentia.visSize() > this.maxAmount) {
+            this.essentia = new AspectList();
+        }
+        aspect = Aspect.getAspect(compound.getString("aspect"));
+        increment = compound.getInteger("increment");
     }
 }
