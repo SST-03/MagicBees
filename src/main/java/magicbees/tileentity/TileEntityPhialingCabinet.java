@@ -2,13 +2,13 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
+import forestry.api.apiculture.*;
+import magicbees.bees.BeeManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeHousing;
 import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeSpecies;
 import magicbees.main.Config;
@@ -43,17 +43,24 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
                     IBeeHousing beeHousing = (IBeeHousing) above;
+                    IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
 
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
                     // are met.
-                    if (!beeHousing.getBeekeepingLogic().canWork()) return;
+                    if (!beekeepingLogic.canWork()) return;
 
                     ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
                     IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
                     if (queenSpecies == null) return;
 
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
-                        addToContainer(aspect, Config.thaumcraftEssentiaBeePhialingCabinetAmount);
+                        IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
+                        IBeeGenome queenGenome = BeeManager.beeRoot.getMember(queenStack).getGenome();
+                        float productionMultiplier = Math.abs(modifier.getProductionModifier(queenGenome, 1.0F));
+
+                        int amount = Math.round(Config.thaumcraftEssentiaBeePhialingCabinetAmount * productionMultiplier);
+
+                        addToContainer(aspect, amount);
                     }
                 }
             } catch (Exception ignored) {}
