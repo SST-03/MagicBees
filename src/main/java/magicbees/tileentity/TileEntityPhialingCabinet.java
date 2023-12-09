@@ -62,8 +62,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                         IBeeGenome queenGenome = BeeManager.beeRoot.getMember(queenStack).getGenome();
                         float productionMultiplier = Math.abs(modifier.getProductionModifier(queenGenome, 1.0F));
 
-                        int amount = Math
-                                .round(Config.thaumcraftEssentiaBeePhialingCabinetAmount * productionMultiplier);
+                        int amount = (int) Math.ceil(
+                                Config.thaumcraftEssentiaBeePhialingCabinetAmount
+                                        * Math.max(productionMultiplier, 1.0F));
 
                         addToContainer(aspect, amount);
                     }
