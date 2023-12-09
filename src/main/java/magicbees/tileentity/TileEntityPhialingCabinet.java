@@ -2,10 +2,11 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
-import magicbees.main.utils.ChunkCoords;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -28,6 +29,10 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     public final int maxAmount = Config.thaumcraftEssentiaBeePhialingCabinetCapacity;
 
     private int increment = 0;
+
+    public void setAspect(Aspect sAspect) {
+        aspect = sAspect;
+    }
 
     @Override
     public void updateEntity() {
@@ -53,7 +58,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                         increment = 0;
                     }
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+                MinecraftServer.getServer().addChatMessage(new ChatComponentText(ignored.toString()));
+            }
         }
 
         increment++;
@@ -76,14 +83,15 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
     @Override
     public int addToContainer(Aspect tag, int am) {
-        if (am != 0) {
-            int amount = this.essentia.visSize();
-            if (amount < this.maxAmount && tag == this.aspect || amount == 0) {
-                this.aspect = tag;
-                int added = Math.min(am, this.maxAmount - amount);
-                am -= added;
-            }
+        int toAdd = Math.min(maxAmount - essentia.visSize(), am);
+
+        if (aspect.equals(tag) && toAdd > 0) {
+            essentia.add(aspect, toAdd);
+            markDirty();
+            return am - toAdd;
         }
+
+        markDirty();
         return am;
     }
 
