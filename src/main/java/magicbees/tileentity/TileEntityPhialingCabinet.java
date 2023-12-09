@@ -2,14 +2,18 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
-import forestry.api.apiculture.*;
-import magicbees.bees.BeeManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.apiculture.genetics.BeeGenome;
+import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.main.Config;
 import thaumcraft.api.aspects.Aspect;
@@ -58,7 +62,8 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                         IBeeGenome queenGenome = BeeManager.beeRoot.getMember(queenStack).getGenome();
                         float productionMultiplier = Math.abs(modifier.getProductionModifier(queenGenome, 1.0F));
 
-                        int amount = Math.round(Config.thaumcraftEssentiaBeePhialingCabinetAmount * productionMultiplier);
+                        int amount = Math
+                                .round(Config.thaumcraftEssentiaBeePhialingCabinetAmount * productionMultiplier);
 
                         addToContainer(aspect, amount);
                     }
