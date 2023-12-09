@@ -35,7 +35,8 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
     @Override
     public void updateEntity() {
         // If there's no stored aspect we shouldn't even check for the above block.
-        if (aspect == null) return;
+        // We also don't need to run all the logic if the cabinet is full.
+        if (aspect == null || essentia.visSize() == maxAmount) return;
 
         if (increment % Config.thaumcraftEssentiaBeePhialingCabinetTimeBetween == 0) {
             try {
@@ -53,10 +54,10 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
                         addToContainer(aspect, Config.thaumcraftEssentiaBeePhialingCabinetAmount);
-                        increment = 0;
                     }
                 }
             } catch (Exception ignored) {}
+            increment = 0;
         }
 
         increment++;
