@@ -22,6 +22,7 @@ import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 
 public class TileEntityPhialingCabinet extends TileEntity implements IAspectContainer, IEssentiaTransport {
+
     public Aspect aspect;
     public AspectList essentia = new AspectList();
 
