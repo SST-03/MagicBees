@@ -505,7 +505,7 @@ public class Config {
 
             phialingCabinet = new BlockPhialingCabinet();
             GameRegistry.registerBlock(phialingCabinet, "phialingCabinet");
-            GameRegistry.registerTileEntity(TileEntityPhialingCabinet.class, TileEntityPhialingCabinet.tileEntityName);
+            GameRegistry.registerTileEntity(TileEntityPhialingCabinet.class, "phialingCabinet");
         }
     }
 
