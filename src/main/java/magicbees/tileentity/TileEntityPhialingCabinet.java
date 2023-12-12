@@ -2,12 +2,18 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
-import forestry.api.apiculture.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
