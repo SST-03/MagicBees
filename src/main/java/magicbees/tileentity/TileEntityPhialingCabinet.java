@@ -236,7 +236,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         super.writeToNBT(compound);
 
         this.essentia.writeToNBT(compound);
-        compound.setString("aspect", aspect.getTag());
+        if (aspect != null) compound.setString("aspect", aspect.getTag());
         compound.setInteger("increment", increment);
     }
 
@@ -248,7 +248,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         if (this.essentia.visSize() > this.maxAmount) {
             this.essentia = new AspectList();
         }
-        aspect = Aspect.getAspect(compound.getString("aspect"));
+        if (compound.hasKey("aspect")) aspect = Aspect.getAspect(compound.getString("aspect"));
         increment = compound.getInteger("increment");
     }
 }
