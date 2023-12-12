@@ -85,6 +85,7 @@ public class ThaumcraftHelper implements IModHelper {
     private static Object visAuraProvider;
     private static Object voidScoop;
     private static Object voidGrafter;
+    private static InfusionRecipe phialingCabinet;
 
     public static boolean isActive() {
         return isThaumcraftPresent;
@@ -290,6 +291,14 @@ public class ThaumcraftHelper implements IModHelper {
                 Items.stick,
                 'T',
                 new ItemStack(miscResource, 1, MiscResource.VOID_INGOT.ordinal()));
+
+        phialingCabinet = ThaumcraftApi.addInfusionCraftingRecipe(
+                "MB_PhialingCabinet",
+                new ItemStack(Config.phialingCabinet),
+                6,
+                new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20).add(Aspect.VOID, 15),
+                Config.propolis.getStackForType(PropolisType.UNSTABLE),
+                new ItemStack[] { input, input, in2 });
     }
 
     private static void setupResearch() {
@@ -533,6 +542,18 @@ public class ThaumcraftHelper implements IModHelper {
                                 getResearchPage("MB_VisAuraProvider.1"),
                                 new ResearchPage((IArcaneRecipe) visAuraProvider))
                         .setParentsHidden("VISPOWER").registerResearchItem();
+
+        new ResearchItem(
+                "MB_PhialingCabinet",
+                category,
+                new AspectList().add(Aspect.ELDRITCH, 1).add(Aspect.HARVEST, 1).add(Aspect.MAGIC, 1)
+                        .add((Aspect) aspectTime, 1),
+                -3,
+                5,
+                4,
+                new ItemStack(Config.phialingCabinet))
+                        .setPages(getResearchPage("MB_PhialingCabinet.1"), new ResearchPage(phialingCabinet))
+                        .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setConcealed().registerResearchItem();
 
     }
 
