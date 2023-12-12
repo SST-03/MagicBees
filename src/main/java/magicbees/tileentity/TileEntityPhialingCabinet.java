@@ -1,6 +1,5 @@
 package magicbees.tileentity;
 
-import java.lang.reflect.Field;
 import java.util.Objects;
 
 import forestry.api.apiculture.*;
@@ -63,10 +62,6 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                                         * Math.max(productionMultiplier, 1.0F));
 
                         addToContainer(aspect, amount);
-
-                        try {
-                            drainQueen(beeHousing, beekeepingLogic, modifier, queen);
-                        } catch (Exception ignored) {}
                     }
                 }
             } catch (Exception ignored) {}
@@ -74,24 +69,6 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         }
 
         increment++;
-    }
-
-    private void drainQueen(IBeeHousing housing, IBeekeepingLogic beekeepingLogic, IBeeModifier modifier, IBee queen) throws NoSuchFieldException, IllegalAccessException {
-        float lifespanModifier = modifier.getLifespanModifier(queen.getGenome(), queen.getMate(), 1.0f);
-        queen.age(housing.getWorld(), lifespanModifier);
-
-        // Write the changed queen back into the item stack.
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        queen.writeToNBT(nbttagcompound);
-        housing.getBeeInventory().getQueen().setTagCompound(nbttagcompound);
-
-        Field beeProgress = beekeepingLogic.getClass().getDeclaredField("beeProgress");
-        beeProgress.setAccessible(true);
-        Field beeProgressMax = beekeepingLogic.getClass().getDeclaredField("beeProgressMax");
-        beeProgressMax.setAccessible(true);
-
-        beeProgress.set(beekeepingLogic, queen.getHealth());
-        beeProgressMax.set(beekeepingLogic, queen.getMaxHealth());
     }
 
     @Override
