@@ -71,6 +71,7 @@ public class BlockPhialingCabinet extends BlockContainer {
             } else return false;
         }
     }
+
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {

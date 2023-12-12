@@ -341,7 +341,7 @@ public class Config {
         p = configuration.get(
                 CATEGORY_GENERAL,
                 "thaumcraftEssentiaBeePhialingCabinetTimeBetween",
-                10,
+                200,
                 "The time in ticks between Phialing Cabinet essentia generation",
                 1,
                 32767);
@@ -349,7 +349,7 @@ public class Config {
         p = configuration.get(
                 CATEGORY_GENERAL,
                 "thaumcraftEssentiaBeePhialingCabinetAmount",
-                2,
+                1,
                 "The amount that the Phialing Cabinet generates on every round",
                 1,
                 32767);

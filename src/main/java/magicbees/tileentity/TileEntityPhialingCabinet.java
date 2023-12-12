@@ -62,19 +62,30 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                         IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
                         IBee queen = BeeManager.beeRoot.getMember(queenStack);
                         IBeeGenome queenGenome = queen.getGenome();
-                        float productionMultiplier = Math.abs(modifier.getProductionModifier(queenGenome, 1.0F));
+                        float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
 
                         int amount = (int) Math.ceil(
                                 Config.thaumcraftEssentiaBeePhialingCabinetAmount
                                         * Math.max(productionMultiplier, 1.0F));
 
                         addToContainer(aspect, amount);
+                        drainQueen(beeHousing, modifier, queen);
                     }
                 }
             } catch (Exception ignored) {}
         }
 
         increment++;
+    }
+
+    private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
+        float lifespanModifier = modifier.getLifespanModifier(queen.getGenome(), queen.getMate(), 1.0f);
+        queen.age(housing.getWorld(), lifespanModifier);
+
+        // Write the changed queen back into the item stack.
+        NBTTagCompound nbttagcompound = new NBTTagCompound();
+        queen.writeToNBT(nbttagcompound);
+        housing.getBeeInventory().getQueen().setTagCompound(nbttagcompound);
     }
 
     @Override
