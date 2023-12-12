@@ -345,7 +345,7 @@ public class Config {
                 "The time in ticks between Phialing Cabinet essentia generation",
                 1,
                 32767);
-        thaumcraftEssentiaBeePhialingCabinetTimeBetween = p.getInt(10);
+        thaumcraftEssentiaBeePhialingCabinetTimeBetween = p.getInt(200);
         p = configuration.get(
                 CATEGORY_GENERAL,
                 "thaumcraftEssentiaBeePhialingCabinetAmount",
@@ -353,7 +353,7 @@ public class Config {
                 "The amount that the Phialing Cabinet generates on every round",
                 1,
                 32767);
-        thaumcraftEssentiaBeePhialingCabinetAmount = p.getInt(2);
+        thaumcraftEssentiaBeePhialingCabinetAmount = p.getInt(1);
         p = configuration.get(
                 CATEGORY_GENERAL,
                 "thaumcraftEssentiaBeePhialingCabinetCapacity",
@@ -361,7 +361,7 @@ public class Config {
                 "The amount that the Phialing Cabinet can hold of each aspect",
                 1,
                 32767);
-        thaumcraftEssentiaBeePhialingCabinetCapacity = p.getInt(64);
+        thaumcraftEssentiaBeePhialingCabinetCapacity = p.getInt(256);
 
         p = configuration.get(CATEGORY_GENERAL, "moonDialShowText", false);
         p.comment = "set to true to show the current moon phase in mouse-over text.";

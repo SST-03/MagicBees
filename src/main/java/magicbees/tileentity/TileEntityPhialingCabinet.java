@@ -42,7 +42,8 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         // We also don't need to run all the logic if the cabinet is full.
         if (aspect == null || essentia.visSize() == maxAmount) return;
 
-        if (increment % Config.thaumcraftEssentiaBeePhialingCabinetTimeBetween == 0) {
+        if (increment >= Config.thaumcraftEssentiaBeePhialingCabinetTimeBetween) {
+            increment = 0;
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
@@ -71,7 +72,6 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                     }
                 }
             } catch (Exception ignored) {}
-            increment = 0;
         }
 
         increment++;
