@@ -71,7 +71,6 @@ public class BlockPhialingCabinet extends BlockContainer {
             } else return false;
         }
     }
-
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
@@ -80,10 +79,8 @@ public class BlockPhialingCabinet extends BlockContainer {
             return icons[0];
         } else if (side == 1) {
             return icons[1];
-        } else if (side == 2 || side == 3) {
-            return icons[2];
         } else {
-            return icons[3];
+            return icons[2];
         }
     }
 
@@ -92,9 +89,8 @@ public class BlockPhialingCabinet extends BlockContainer {
     public void registerBlockIcons(IIconRegister register) {
         icons = new IIcon[4];
 
-        icons[0] = register.registerIcon(CommonProxy.DOMAIN + ":stripped_tainted_birch_log_top");
-        icons[1] = register.registerIcon(CommonProxy.DOMAIN + ":stripped_tainted_birch_log_top");
-        icons[2] = register.registerIcon(CommonProxy.DOMAIN + ":stripped_tainted_birch_log");
-        icons[3] = register.registerIcon(CommonProxy.DOMAIN + ":stripped_tainted_birch_wood");
+        icons[0] = register.registerIcon(CommonProxy.DOMAIN + ":phialingcabinet.0");
+        icons[1] = register.registerIcon(CommonProxy.DOMAIN + ":phialingcabinet.1");
+        icons[2] = register.registerIcon(CommonProxy.DOMAIN + ":phialingcabinet.2");
     }
 }
