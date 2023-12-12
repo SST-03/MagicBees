@@ -1,17 +1,14 @@
 package magicbees.tileentity;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 
+import forestry.api.apiculture.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
@@ -53,11 +50,12 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
 
                     ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
                     IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
-                    if (queenSpecies == null) return;
+                    if (queenSpecies == null || BeeManager.beeRoot.getType(queenStack) != EnumBeeType.QUEEN) return;
 
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
                         IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
-                        IBeeGenome queenGenome = BeeManager.beeRoot.getMember(queenStack).getGenome();
+                        IBee queen = BeeManager.beeRoot.getMember(queenStack);
+                        IBeeGenome queenGenome = queen.getGenome();
                         float productionMultiplier = Math.abs(modifier.getProductionModifier(queenGenome, 1.0F));
 
                         int amount = (int) Math.ceil(
@@ -65,6 +63,10 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                                         * Math.max(productionMultiplier, 1.0F));
 
                         addToContainer(aspect, amount);
+
+                        try {
+                            drainQueen(beeHousing, beekeepingLogic, modifier, queen);
+                        } catch (Exception ignored) {}
                     }
                 }
             } catch (Exception ignored) {}
@@ -72,6 +74,24 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         }
 
         increment++;
+    }
+
+    private void drainQueen(IBeeHousing housing, IBeekeepingLogic beekeepingLogic, IBeeModifier modifier, IBee queen) throws NoSuchFieldException, IllegalAccessException {
+        float lifespanModifier = modifier.getLifespanModifier(queen.getGenome(), queen.getMate(), 1.0f);
+        queen.age(housing.getWorld(), lifespanModifier);
+
+        // Write the changed queen back into the item stack.
+        NBTTagCompound nbttagcompound = new NBTTagCompound();
+        queen.writeToNBT(nbttagcompound);
+        housing.getBeeInventory().getQueen().setTagCompound(nbttagcompound);
+
+        Field beeProgress = beekeepingLogic.getClass().getDeclaredField("beeProgress");
+        beeProgress.setAccessible(true);
+        Field beeProgressMax = beekeepingLogic.getClass().getDeclaredField("beeProgressMax");
+        beeProgressMax.setAccessible(true);
+
+        beeProgress.set(beekeepingLogic, queen.getHealth());
+        beeProgressMax.set(beekeepingLogic, queen.getMaxHealth());
     }
 
     @Override
