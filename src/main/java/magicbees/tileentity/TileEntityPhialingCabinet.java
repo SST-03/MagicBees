@@ -95,7 +95,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
             .collect(Collectors.toSet());
         LogHelper.warn(classes);
 
-        return classes.contains("forestry.api.apiculture.IBeeHousing") ? above : null;
+        return classes.contains("forestry.api.apiculture.IBeeHousing") ? (IBeeHousing) above : null;
     }
 
     private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
