@@ -2,6 +2,7 @@ package magicbees.tileentity;
 
 import java.util.stream.Collectors;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -49,7 +50,6 @@ public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainer
 
         if (GTMetaTileEntity != null) {
             IMetaTileEntity underlyingMetaTileEntity = GTMetaTileEntity.getMetaTileEntity();
-
             if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
 
             return (IBeeHousing) underlyingMetaTileEntity;
@@ -60,10 +60,24 @@ public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainer
 
     @Override
     protected boolean canWork(IBeeHousing beeHousing, TileEntity te) {
-        boolean canNormallyWork = super.canWork(beeHousing, te);
         BaseMetaTileEntity GTMetaTileEntity = GTTileEntity(te);
 
-        return GTMetaTileEntity != null ? GTMetaTileEntity.isActive() : canNormallyWork;
+        return GTMetaTileEntity != null ? GTMetaTileEntity.isActive() : super.canWork(beeHousing, te);
+    }
+
+    @Override
+    protected ItemStack getQueen(IBeeHousing beeHousing, TileEntity te) {
+        BaseMetaTileEntity GTMetaTileEntity = GTTileEntity(te);
+
+        if (GTMetaTileEntity != null) {
+            IMetaTileEntity underlyingMetaTileEntity = GTMetaTileEntity.getMetaTileEntity();
+            if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
+            GT_MetaTileEntity_IndustrialApiary industrialApiary = (GT_MetaTileEntity_IndustrialApiary) underlyingMetaTileEntity;
+
+            return industrialApiary.getUsedQueen();
+        }
+
+        return super.getQueen(beeHousing, te);
     }
 
     private BaseMetaTileEntity GTTileEntity(TileEntity te) {

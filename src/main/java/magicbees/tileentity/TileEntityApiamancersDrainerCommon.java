@@ -18,7 +18,6 @@ import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.main.Config;
-import magicbees.main.utils.LogHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
@@ -49,27 +48,24 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 IBeeHousing beeHousing = beeHousing(above);
                 if (beeHousing != null) {
-                    LogHelper.warn("is housing");
-
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
                     // are met.
                     if (!canWork(beeHousing, above)) return;
-                    LogHelper.warn("can work");
 
-                    ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
+                    // The beeRoot.isMember call will treat null the same as EnumBeeType.NONE which leads getSpecies to
+                    // return null.
+                    ItemStack queenStack = getQueen(beeHousing, above);
                     IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
                     if (queenSpecies == null) return;
-                    LogHelper.warn("has species");
+
                     if (BeeManager.beeRoot.getType(queenStack) != EnumBeeType.QUEEN) return;
-                    LogHelper.warn("is queen");
 
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
-                        LogHelper.warn("is essentia");
                         IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
                         IBee queen = BeeManager.beeRoot.getMember(queenStack);
                         IBeeGenome queenGenome = queen.getGenome();
-                        float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
 
+                        float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
                         int amount = (int) Math.ceil(Config.drainerAmount * Math.max(productionMultiplier, 1.0F));
 
                         addToContainer(aspect, amount);
@@ -89,6 +85,10 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
     protected boolean canWork(IBeeHousing beeHousing, TileEntity above) {
         IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
         return beekeepingLogic.canWork();
+    }
+
+    protected ItemStack getQueen(IBeeHousing beeHousing, TileEntity te) {
+        return beeHousing.getBeeInventory().getQueen();
     }
 
     private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
