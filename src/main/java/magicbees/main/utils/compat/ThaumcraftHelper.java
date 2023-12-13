@@ -85,7 +85,7 @@ public class ThaumcraftHelper implements IModHelper {
     private static Object visAuraProvider;
     private static Object voidScoop;
     private static Object voidGrafter;
-    private static InfusionRecipe phialingCabinet;
+    private static InfusionRecipe apiamancersDrainer;
 
     public static boolean isActive() {
         return isThaumcraftPresent;
@@ -292,9 +292,9 @@ public class ThaumcraftHelper implements IModHelper {
                 'T',
                 new ItemStack(miscResource, 1, MiscResource.VOID_INGOT.ordinal()));
 
-        phialingCabinet = ThaumcraftApi.addInfusionCraftingRecipe(
-                "MB_PhialingCabinet",
-                new ItemStack(Config.phialingCabinet),
+        apiamancersDrainer = ThaumcraftApi.addInfusionCraftingRecipe(
+                "MB_ApiamancersDrainer",
+                new ItemStack(Config.apiamancersDrainer),
                 6,
                 new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20).add(Aspect.VOID, 15),
                 Config.propolis.getStackForType(PropolisType.UNSTABLE),
@@ -544,15 +544,15 @@ public class ThaumcraftHelper implements IModHelper {
                         .setParentsHidden("VISPOWER").registerResearchItem();
 
         new ResearchItem(
-                "MB_PhialingCabinet",
+                "MB_ApiamancersDrainer",
                 category,
                 new AspectList().add(Aspect.ELDRITCH, 1).add(Aspect.HARVEST, 1).add(Aspect.MAGIC, 1)
                         .add((Aspect) aspectTime, 1),
                 -3,
                 5,
                 4,
-                new ItemStack(Config.phialingCabinet))
-                        .setPages(getResearchPage("MB_PhialingCabinet.1"), new ResearchPage(phialingCabinet))
+                new ItemStack(Config.apiamancersDrainer))
+                        .setPages(getResearchPage("MB_ApiamancersDrainer.1"), new ResearchPage(apiamancersDrainer))
                         .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setConcealed().registerResearchItem();
 
     }

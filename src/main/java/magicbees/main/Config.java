@@ -20,12 +20,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
+import magicbees.block.BlockApiamancersDrainer;
 import magicbees.block.BlockEffectJar;
 import magicbees.block.BlockEnchantedEarth;
 import magicbees.block.BlockHive;
 import magicbees.block.BlockMagicApiary;
 import magicbees.block.BlockManaAuraProvider;
-import magicbees.block.BlockPhialingCabinet;
 import magicbees.block.BlockVisAuraProvider;
 import magicbees.block.types.HiveType;
 import magicbees.item.ItemCapsule;
@@ -57,10 +57,10 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
+import magicbees.tileentity.TileEntityApiamancersDrainer;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
-import magicbees.tileentity.TileEntityPhialingCabinet;
 import magicbees.tileentity.TileEntityVisAuraProvider;
 
 /**
@@ -91,9 +91,9 @@ public class Config {
     public static double thaumcraftSaplingDroprate;
     public static int aromaticLumpSwarmerRate;
     public static int thaumcraftNodeMaxSize;
-    public static int thaumcraftEssentiaBeePhialingCabinetTimeBetween;
-    public static int thaumcraftEssentiaBeePhialingCabinetAmount;
-    public static int thaumcraftEssentiaBeePhialingCabinetCapacity;
+    public static int drainerTimeBetween;
+    public static int drainerAmount;
+    public static int drainerCapacity;
 
     public static boolean arsMagicaActive;
     public static boolean baublesActive;
@@ -117,7 +117,7 @@ public class Config {
     public static BlockEffectJar effectJar;
     public static BlockHive hive;
     public static BlockMagicApiary magicApiary;
-    public static BlockPhialingCabinet phialingCabinet;
+    public static BlockApiamancersDrainer apiamancersDrainer;
     public static BlockManaAuraProvider manaAuraProvider;
     public static BlockVisAuraProvider visAuraProvider;
 
@@ -340,28 +340,28 @@ public class Config {
 
         p = configuration.get(
                 CATEGORY_GENERAL,
-                "thaumcraftEssentiaBeePhialingCabinetTimeBetween",
+                "drainerTimeBetween",
                 200,
-                "The time in ticks between Phialing Cabinet essentia generation",
+                "The time in ticks between Apiamancer's Drainer essentia generation",
                 1,
                 32767);
-        thaumcraftEssentiaBeePhialingCabinetTimeBetween = p.getInt(200);
+        drainerTimeBetween = p.getInt(200);
         p = configuration.get(
                 CATEGORY_GENERAL,
-                "thaumcraftEssentiaBeePhialingCabinetAmount",
+                "drainerAmount",
                 1,
-                "The amount that the Phialing Cabinet generates on every round",
+                "The amount that the Apiamancer's Drainer generates on every round",
                 1,
                 32767);
-        thaumcraftEssentiaBeePhialingCabinetAmount = p.getInt(1);
+        drainerAmount = p.getInt(1);
         p = configuration.get(
                 CATEGORY_GENERAL,
-                "thaumcraftEssentiaBeePhialingCabinetCapacity",
+                "drainerCapacity",
                 64,
-                "The amount that the Phialing Cabinet can hold of each aspect",
+                "The amount that the Apiamancer's Drainer can hold of each aspect",
                 1,
                 32767);
-        thaumcraftEssentiaBeePhialingCabinetCapacity = p.getInt(256);
+        drainerCapacity = p.getInt(256);
 
         p = configuration.get(CATEGORY_GENERAL, "moonDialShowText", false);
         p.comment = "set to true to show the current moon phase in mouse-over text.";
@@ -503,9 +503,9 @@ public class Config {
             GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
             GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
 
-            phialingCabinet = new BlockPhialingCabinet();
-            GameRegistry.registerBlock(phialingCabinet, "phialingCabinet");
-            GameRegistry.registerTileEntity(TileEntityPhialingCabinet.class, "phialingCabinet");
+            apiamancersDrainer = new BlockApiamancersDrainer();
+            GameRegistry.registerBlock(apiamancersDrainer, "apiamancersDrainer");
+            GameRegistry.registerTileEntity(TileEntityApiamancersDrainer.class, "apiamancersDrainer");
         }
     }
 

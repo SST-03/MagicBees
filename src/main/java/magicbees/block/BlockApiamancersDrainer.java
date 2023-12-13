@@ -15,27 +15,27 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityPhialingCabinet;
+import magicbees.tileentity.TileEntityApiamancersDrainer;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 
-public class BlockPhialingCabinet extends BlockContainer {
+public class BlockApiamancersDrainer extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public BlockPhialingCabinet() {
-        super(Material.wood);
+    public BlockApiamancersDrainer() {
+        super(Material.rock);
         this.setCreativeTab(TabMagicBees.tabMagicBees);
-        this.setBlockName("phialingCabinet");
+        this.setBlockName("apiamancersDrainer");
         this.setHardness(1f);
         this.setResistance(1.5f);
-        this.setHarvestLevel("axe", 0);
+        this.setHarvestLevel("pickaxe", 0);
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityPhialingCabinet();
+        return new TileEntityApiamancersDrainer();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class BlockPhialingCabinet extends BlockContainer {
             return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileEntityPhialingCabinet) {
+            if (tile instanceof TileEntityApiamancersDrainer) {
                 ItemStack tItemStack = player.getHeldItem();
                 if (tItemStack != null) {
                     Item tItem = tItemStack.getItem();
@@ -54,14 +54,14 @@ public class BlockPhialingCabinet extends BlockContainer {
                             && ((IEssentiaContainerItem) tItem).getAspects(player.getHeldItem()).size() > 0) {
                         Aspect tLocked = ((IEssentiaContainerItem) tItem).getAspects(player.getHeldItem())
                                 .getAspects()[0];
-                        ((TileEntityPhialingCabinet) tile).setAspect(tLocked);
+                        ((TileEntityApiamancersDrainer) tile).setAspect(tLocked);
 
                         // TODO: improve text
                         player.addChatMessage(
                                 new ChatComponentTranslation("Producing " + tLocked.getLocalizedDescription()));
                     }
                 } else {
-                    ((TileEntityPhialingCabinet) tile).setAspect(null);
+                    ((TileEntityApiamancersDrainer) tile).setAspect(null);
 
                     // TODO: improve text
                     player.addChatMessage(new ChatComponentTranslation("Cleared production specifier"));
@@ -90,8 +90,8 @@ public class BlockPhialingCabinet extends BlockContainer {
     public void registerBlockIcons(IIconRegister register) {
         icons = new IIcon[4];
 
-        icons[0] = register.registerIcon(CommonProxy.DOMAIN + ":phialingcabinet.0");
-        icons[1] = register.registerIcon(CommonProxy.DOMAIN + ":phialingcabinet.1");
-        icons[2] = register.registerIcon(CommonProxy.DOMAIN + ":phialingcabinet.2");
+        icons[0] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer.0");
+        icons[1] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer.1");
+        icons[2] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer.2");
     }
 }

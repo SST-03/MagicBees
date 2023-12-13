@@ -28,12 +28,12 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 
-public class TileEntityPhialingCabinet extends TileEntity implements IAspectContainer, IEssentiaTransport {
+public class TileEntityApiamancersDrainer extends TileEntity implements IAspectContainer, IEssentiaTransport {
 
     public Aspect aspect;
     public AspectList essentia = new AspectList();
 
-    public final int maxAmount = Config.thaumcraftEssentiaBeePhialingCabinetCapacity;
+    public final int maxAmount = Config.drainerCapacity;
 
     private int increment = 0;
 
@@ -47,7 +47,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         // We also don't need to run all the logic if the cabinet is full.
         if (aspect == null || essentia.visSize() == maxAmount) return;
 
-        if (increment >= Config.thaumcraftEssentiaBeePhialingCabinetTimeBetween) {
+        if (increment >= Config.drainerTimeBetween) {
             increment = 0;
             try {
                 IBeeHousing beeHousing = beeHousing();
@@ -74,9 +74,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
                         IBeeGenome queenGenome = queen.getGenome();
                         float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
 
-                        int amount = (int) Math.ceil(
-                                Config.thaumcraftEssentiaBeePhialingCabinetAmount
-                                        * Math.max(productionMultiplier, 1.0F));
+                        int amount = (int) Math.ceil(Config.drainerAmount * Math.max(productionMultiplier, 1.0F));
 
                         addToContainer(aspect, amount);
                         drainQueen(beeHousing, modifier, queen);
@@ -92,7 +90,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
         // TODO: Revert once Industrial Apiary is working
         Set<String> classes = ClassUtils.getAllInterfaces(above.getClass()).stream().map(Class::getName)
-            .collect(Collectors.toSet());
+                .collect(Collectors.toSet());
         LogHelper.warn(classes);
 
         return classes.contains("forestry.api.apiculture.IBeeHousing") ? (IBeeHousing) above : null;
