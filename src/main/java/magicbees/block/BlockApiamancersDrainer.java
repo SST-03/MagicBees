@@ -15,7 +15,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityApiamancersDrainer;
+import magicbees.tileentity.TileEntityApiamancersDrainerCommon;
+import magicbees.tileentity.TileEntityApiamancersDrainerGT;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 
@@ -35,7 +36,8 @@ public class BlockApiamancersDrainer extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityApiamancersDrainer();
+        return TileEntityApiamancersDrainerGT.isGTLoaded ? new TileEntityApiamancersDrainerGT()
+                : new TileEntityApiamancersDrainerCommon();
     }
 
     @Override
@@ -45,7 +47,7 @@ public class BlockApiamancersDrainer extends BlockContainer {
             return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileEntityApiamancersDrainer) {
+            if (tile instanceof TileEntityApiamancersDrainerCommon) {
                 ItemStack tItemStack = player.getHeldItem();
                 if (tItemStack != null) {
                     Item tItem = tItemStack.getItem();
@@ -54,14 +56,14 @@ public class BlockApiamancersDrainer extends BlockContainer {
                             && ((IEssentiaContainerItem) tItem).getAspects(player.getHeldItem()).size() > 0) {
                         Aspect tLocked = ((IEssentiaContainerItem) tItem).getAspects(player.getHeldItem())
                                 .getAspects()[0];
-                        ((TileEntityApiamancersDrainer) tile).setAspect(tLocked);
+                        ((TileEntityApiamancersDrainerCommon) tile).setAspect(tLocked);
 
                         // TODO: improve text
                         player.addChatMessage(
                                 new ChatComponentTranslation("Producing " + tLocked.getLocalizedDescription()));
                     }
                 } else {
-                    ((TileEntityApiamancersDrainer) tile).setAspect(null);
+                    ((TileEntityApiamancersDrainerCommon) tile).setAspect(null);
 
                     // TODO: improve text
                     player.addChatMessage(new ChatComponentTranslation("Cleared production specifier"));

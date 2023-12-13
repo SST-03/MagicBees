@@ -57,11 +57,7 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
-import magicbees.tileentity.TileEntityApiamancersDrainer;
-import magicbees.tileentity.TileEntityEffectJar;
-import magicbees.tileentity.TileEntityMagicApiary;
-import magicbees.tileentity.TileEntityManaAuraProvider;
-import magicbees.tileentity.TileEntityVisAuraProvider;
+import magicbees.tileentity.*;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -505,7 +501,10 @@ public class Config {
 
             apiamancersDrainer = new BlockApiamancersDrainer();
             GameRegistry.registerBlock(apiamancersDrainer, "apiamancersDrainer");
-            GameRegistry.registerTileEntity(TileEntityApiamancersDrainer.class, "apiamancersDrainer");
+            GameRegistry.registerTileEntity(
+                    TileEntityApiamancersDrainerGT.isGTLoaded ? TileEntityApiamancersDrainerGT.class
+                            : TileEntityApiamancersDrainerCommon.class,
+                    "apiamancersDrainer");
         }
     }
 
