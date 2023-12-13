@@ -1,14 +1,15 @@
 package magicbees.tileentity;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import magicbees.main.utils.LogHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import org.apache.commons.lang3.ClassUtils;
 
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -21,6 +22,7 @@ import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.main.Config;
+import magicbees.main.utils.LogHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
@@ -49,7 +51,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
             increment = 0;
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
-                if (above instanceof IBeeHousing) {
+                Set<String> classes = ClassUtils.getAllInterfaces(above.getClass()).stream().map(Class::getName)
+                        .collect(Collectors.toSet());
+                if (classes.contains("forestry.api.apiculture.IBeeHousing")) {
                     LogHelper.warn("is housing");
                     IBeeHousing beeHousing = (IBeeHousing) above;
                     IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
