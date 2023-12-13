@@ -1,18 +1,12 @@
 package magicbees.tileentity;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import net.minecraft.tileentity.TileEntity;
-
-import org.apache.commons.lang3.ClassUtils;
 
 import cpw.mods.fml.common.Loader;
 import forestry.api.apiculture.*;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.BaseMetaTileEntity;
 import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_IndustrialApiary;
-import magicbees.main.utils.LogHelper;
 
 public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainerCommon {
 
@@ -23,21 +17,30 @@ public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainer
         IBeeHousing regularCheck = super.beeHousing(above);
         if (regularCheck != null) return regularCheck;
 
-        boolean isGTMetaTileEntity = above instanceof BaseMetaTileEntity;
+        BaseMetaTileEntity GTMetaTileEntity = GTTileEntity(above);
 
-        if (isGTMetaTileEntity) {
-            BaseMetaTileEntity metaTileEntity = (BaseMetaTileEntity) above;
-            IMetaTileEntity underlyingMetaTileEntity = metaTileEntity.getMetaTileEntity();
+        if (GTMetaTileEntity != null) {
+            IMetaTileEntity underlyingMetaTileEntity = GTMetaTileEntity.getMetaTileEntity();
 
             if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
-
-            Set<String> classes = ClassUtils.getAllInterfaces(underlyingMetaTileEntity.getClass()).stream()
-                    .map(Class::getName).collect(Collectors.toSet());
-            LogHelper.warn(classes);
 
             return (IBeeHousing) underlyingMetaTileEntity;
         }
 
         return null;
+    }
+
+    @Override
+    protected boolean canWork(IBeeHousing beeHousing, TileEntity te) {
+        boolean canNormallyWork = super.canWork(beeHousing, te);
+        BaseMetaTileEntity GTMetaTileEntity = GTTileEntity(te);
+
+        return GTMetaTileEntity != null ? GTMetaTileEntity.isActive() : canNormallyWork;
+    }
+
+    private BaseMetaTileEntity GTTileEntity(TileEntity te) {
+        boolean isGTMetaTileEntity = te instanceof BaseMetaTileEntity;
+
+        return isGTMetaTileEntity ? (BaseMetaTileEntity) te : null;
     }
 }

@@ -1,15 +1,11 @@
 package magicbees.tileentity;
 
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import org.apache.commons.lang3.ClassUtils;
 
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -35,7 +31,7 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
 
     public final int maxAmount = Config.drainerCapacity;
 
-    private int increment = 0;
+    protected int increment = 0;
 
     public void setAspect(Aspect sAspect) {
         aspect = sAspect;
@@ -54,11 +50,10 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
                 IBeeHousing beeHousing = beeHousing(above);
                 if (beeHousing != null) {
                     LogHelper.warn("is housing");
-                    IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
 
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
                     // are met.
-                    if (!beekeepingLogic.canWork()) return;
+                    if (!canWork(beeHousing, above)) return;
                     LogHelper.warn("can work");
 
                     ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
@@ -88,12 +83,12 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
     }
 
     protected IBeeHousing beeHousing(TileEntity above) {
-        // TODO: Revert once Industrial Apiary is working
-        Set<String> classes = ClassUtils.getAllInterfaces(above.getClass()).stream().map(Class::getName)
-                .collect(Collectors.toSet());
-        LogHelper.warn(classes);
+        return above instanceof IBeeHousing ? (IBeeHousing) above : null;
+    }
 
-        return classes.contains("forestry.api.apiculture.IBeeHousing") ? (IBeeHousing) above : null;
+    protected boolean canWork(IBeeHousing beeHousing, TileEntity above) {
+        IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
+        return beekeepingLogic.canWork();
     }
 
     private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
@@ -143,9 +138,8 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
         if (this.essentia.getAmount(tag) >= amount) {
             this.essentia.reduce(tag, amount);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -163,9 +157,8 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
                 essentia.reduce(next, ot.getAmount(next));
             }
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override

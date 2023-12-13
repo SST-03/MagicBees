@@ -77,14 +77,7 @@ public class BlockApiamancersDrainer extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-
-        if (side == 0) {
-            return icons[0];
-        } else if (side == 1) {
-            return icons[1];
-        } else {
-            return icons[2];
-        }
+        return icons[side <= 1 ? side : 2];
     }
 
     @Override
@@ -92,8 +85,8 @@ public class BlockApiamancersDrainer extends BlockContainer {
     public void registerBlockIcons(IIconRegister register) {
         icons = new IIcon[4];
 
-        icons[0] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer.0");
-        icons[1] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer.1");
-        icons[2] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer.2");
+        for (int i = 0; i < icons.length; i++) {
+            icons[i] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer." + i);
+        }
     }
 }
