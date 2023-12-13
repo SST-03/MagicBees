@@ -50,12 +50,9 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         if (increment >= Config.thaumcraftEssentiaBeePhialingCabinetTimeBetween) {
             increment = 0;
             try {
-                TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
-                Set<String> classes = ClassUtils.getAllInterfaces(above.getClass()).stream().map(Class::getName)
-                        .collect(Collectors.toSet());
-                if (classes.contains("forestry.api.apiculture.IBeeHousing")) {
+                IBeeHousing beeHousing = beeHousing();
+                if (beeHousing != null) {
                     LogHelper.warn("is housing");
-                    IBeeHousing beeHousing = (IBeeHousing) above;
                     IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
 
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
@@ -89,6 +86,16 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
         }
 
         increment++;
+    }
+
+    protected IBeeHousing beeHousing() {
+        TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
+        // TODO: Revert once Industrial Apiary is working
+        Set<String> classes = ClassUtils.getAllInterfaces(above.getClass()).stream().map(Class::getName)
+            .collect(Collectors.toSet());
+        LogHelper.warn(classes);
+
+        return classes.contains("forestry.api.apiculture.IBeeHousing") ? above : null;
     }
 
     private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
