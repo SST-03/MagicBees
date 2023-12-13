@@ -19,8 +19,10 @@ public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainer
     public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
 
     @Override
-    protected IBeeHousing beeHousing() {
-        TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
+    protected IBeeHousing beeHousing(TileEntity above) {
+        IBeeHousing regularCheck = super.beeHousing(above);
+        if (regularCheck != null) return regularCheck;
+
         boolean isGTMetaTileEntity = above instanceof BaseMetaTileEntity;
 
         if (isGTMetaTileEntity) {

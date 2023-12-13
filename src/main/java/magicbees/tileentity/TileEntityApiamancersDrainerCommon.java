@@ -50,7 +50,8 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
         if (increment >= Config.drainerTimeBetween) {
             increment = 0;
             try {
-                IBeeHousing beeHousing = beeHousing();
+                TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
+                IBeeHousing beeHousing = beeHousing(above);
                 if (beeHousing != null) {
                     LogHelper.warn("is housing");
                     IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
@@ -86,8 +87,7 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
         increment++;
     }
 
-    protected IBeeHousing beeHousing() {
-        TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
+    protected IBeeHousing beeHousing(TileEntity above) {
         // TODO: Revert once Industrial Apiary is working
         Set<String> classes = ClassUtils.getAllInterfaces(above.getClass()).stream().map(Class::getName)
                 .collect(Collectors.toSet());
