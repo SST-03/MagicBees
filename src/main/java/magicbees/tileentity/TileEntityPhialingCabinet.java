@@ -2,9 +2,12 @@ package magicbees.tileentity;
 
 import java.util.Objects;
 
+import magicbees.main.utils.LogHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import forestry.api.apiculture.EnumBeeType;
@@ -47,18 +50,24 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
                 if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
+                    LogHelper.warn("is housing");
                     IBeeHousing beeHousing = (IBeeHousing) above;
                     IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
 
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
                     // are met.
                     if (!beekeepingLogic.canWork()) return;
+                    LogHelper.warn("can work");
 
                     ItemStack queenStack = beeHousing.getBeeInventory().getQueen();
                     IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
-                    if (queenSpecies == null || BeeManager.beeRoot.getType(queenStack) != EnumBeeType.QUEEN) return;
+                    if (queenSpecies == null) return;
+                    LogHelper.warn("has species");
+                    if (BeeManager.beeRoot.getType(queenStack) != EnumBeeType.QUEEN) return;
+                    LogHelper.warn("is queen");
 
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
+                        LogHelper.warn("is essentia");
                         IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
                         IBee queen = BeeManager.beeRoot.getMember(queenStack);
                         IBeeGenome queenGenome = queen.getGenome();
