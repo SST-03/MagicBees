@@ -49,7 +49,7 @@ public class TileEntityPhialingCabinet extends TileEntity implements IAspectCont
             increment = 0;
             try {
                 TileEntity above = worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
-                if (IBeeHousing.class.isAssignableFrom(above.getClass())) {
+                if (above instanceof IBeeHousing) {
                     LogHelper.warn("is housing");
                     IBeeHousing beeHousing = (IBeeHousing) above;
                     IBeekeepingLogic beekeepingLogic = beeHousing.getBeekeepingLogic();
