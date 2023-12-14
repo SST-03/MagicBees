@@ -353,11 +353,11 @@ public class Config {
         p = configuration.get(
                 CATEGORY_GENERAL,
                 "drainerCapacity",
-                64,
+            512,
                 "The amount that the Apiamancer's Drainer can hold of each aspect",
                 1,
                 32767);
-        drainerCapacity = p.getInt(256);
+        drainerCapacity = p.getInt(512);
 
         p = configuration.get(CATEGORY_GENERAL, "moonDialShowText", false);
         p.comment = "set to true to show the current moon phase in mouse-over text.";

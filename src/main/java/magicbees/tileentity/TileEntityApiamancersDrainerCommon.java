@@ -63,10 +63,8 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
                         IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
                         IBee queen = BeeManager.beeRoot.getMember(queenStack);
-                        IBeeGenome queenGenome = queen.getGenome();
 
-                        float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
-                        int amount = (int) Math.ceil(Config.drainerAmount * Math.max(productionMultiplier, 1.0F));
+                        int amount = Config.drainerAmount * getProductionMultiplier(modifier, queen, above);
 
                         addToContainer(aspect, amount);
                         drainQueen(beeHousing, modifier, queen);
@@ -89,6 +87,14 @@ public class TileEntityApiamancersDrainerCommon extends TileEntity implements IA
 
     protected ItemStack getQueen(IBeeHousing beeHousing, TileEntity te) {
         return beeHousing.getBeeInventory().getQueen();
+    }
+
+    protected int getProductionMultiplier(IBeeModifier modifier, IBee queen, TileEntity te) {
+        IBeeGenome queenGenome = queen.getGenome();
+        float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
+        float minimum = Math.max(productionMultiplier, 1.0F);
+
+        return (int) Math.ceil(minimum);
     }
 
     private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
