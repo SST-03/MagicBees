@@ -57,7 +57,12 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
-import magicbees.tileentity.*;
+import magicbees.tileentity.TileEntityApiamancersDrainerCommon;
+import magicbees.tileentity.TileEntityApiamancersDrainerGT;
+import magicbees.tileentity.TileEntityEffectJar;
+import magicbees.tileentity.TileEntityMagicApiary;
+import magicbees.tileentity.TileEntityManaAuraProvider;
+import magicbees.tileentity.TileEntityVisAuraProvider;
 
 /**
  * A class to hold some data related to mod state & functions.
