@@ -353,7 +353,7 @@ public class Config {
         p = configuration.get(
                 CATEGORY_GENERAL,
                 "drainerCapacity",
-            512,
+                512,
                 "The amount that the Apiamancer's Drainer can hold of each aspect",
                 1,
                 32767);
