@@ -16,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
 import magicbees.tileentity.TileEntityApiamancersDrainerCommon;
-import magicbees.tileentity.TileEntityApiamancersDrainerGT;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 
@@ -24,6 +23,8 @@ public class BlockApiamancersDrainer extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
+
+    public static Class<? extends TileEntity> drainer = TileEntityApiamancersDrainerCommon.class;
 
     public BlockApiamancersDrainer() {
         super(Material.rock);
@@ -36,8 +37,11 @@ public class BlockApiamancersDrainer extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return TileEntityApiamancersDrainerGT.isGTLoaded ? new TileEntityApiamancersDrainerGT()
-                : new TileEntityApiamancersDrainerCommon();
+        try {
+            return drainer.newInstance();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

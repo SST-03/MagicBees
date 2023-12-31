@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 
-import cpw.mods.fml.common.Loader;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
@@ -17,8 +16,6 @@ import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_IndustrialA
 
 public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainerCommon
         implements IGregTechDeviceInformation {
-
-    public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
 
     @Override
     public boolean isGivingInformation() {

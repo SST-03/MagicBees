@@ -14,6 +14,7 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -57,7 +58,6 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
-import magicbees.tileentity.TileEntityApiamancersDrainerCommon;
 import magicbees.tileentity.TileEntityApiamancersDrainerGT;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
@@ -162,6 +162,9 @@ public class Config {
 
     // ----- Config State info ----------------------------------
     public static Configuration configuration;
+
+    // ---- Loaded mods -----------------------------------------
+    public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
 
     public Config(File configFile) {
         configuration = new Configuration(configFile);
@@ -504,12 +507,10 @@ public class Config {
             GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
             GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
 
+            if (isGTLoaded) BlockApiamancersDrainer.drainer = TileEntityApiamancersDrainerGT.class;
             apiamancersDrainer = new BlockApiamancersDrainer();
             GameRegistry.registerBlock(apiamancersDrainer, "apiamancersDrainer");
-            GameRegistry.registerTileEntity(
-                    TileEntityApiamancersDrainerGT.isGTLoaded ? TileEntityApiamancersDrainerGT.class
-                            : TileEntityApiamancersDrainerCommon.class,
-                    "apiamancersDrainer");
+            GameRegistry.registerTileEntity(BlockApiamancersDrainer.drainer, "apiamancersDrainer");
         }
     }
 
