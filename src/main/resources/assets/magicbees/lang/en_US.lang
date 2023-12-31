@@ -38,7 +38,7 @@ item.beeRing.name=Collector's Bee Ring
 tile.effectJar.name=Bee Collector's Jar
 tile.magicApiary.name=Magic Apiary
 tile.visAuraProvider.name=Vis Apiary Booster
-tile.ApiamancersDrainer.name=Apiamancer's Drainer
+tile.apiamancersDrainer.name=Apiamancer's Drainer
 tile.manaAuraProvider.name=Mana Apiary Booster
 tile.hive.curious.name=Curious Hive
 tile.hive.unusual.name=Unusual Hive
@@ -687,7 +687,7 @@ tc.research_page.MB_VisAuraProvider.1=Infusing Unusual Pollen with vis and combi
 
 tc.research_name.MB_ApiamancersDrainer=Apiamancer's Drainer
 tc.research_text.MB_ApiamancersDrainer=How long will your queen last?
-tc.research_page.MB_ApiamancersDrainer.1=
+tc.research_page.MB_ApiamancersDrainer.1=The Apiamancer's Drainer is an innovative device in the field of Apimancy, designed to extract essentia from the life force of bees. It is placed beneath an apiary, establishing a direct connection with the hive above.<BR>To determine the type of essentia it produces, the Drainer is attuned by inserting a container filled with the desired essentia. This attunement process aligns the Drainer with the essence in the container, setting the specific type of essentia it will generate.<BR>Once attuned, the Drainer converts the life energy of the bees into the selected essentia...
 
 tc.research_name.MB_ScoopVoid=Void Scoop
 tc.research_text.MB_ScoopVoid=The dark net
