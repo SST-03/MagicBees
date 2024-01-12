@@ -14,12 +14,14 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
+import magicbees.block.BlockApiamancersDrainer;
 import magicbees.block.BlockEffectJar;
 import magicbees.block.BlockEnchantedEarth;
 import magicbees.block.BlockHive;
@@ -56,6 +58,7 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
+import magicbees.tileentity.TileEntityApiamancersDrainerGT;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
@@ -89,6 +92,9 @@ public class Config {
     public static double thaumcraftSaplingDroprate;
     public static int aromaticLumpSwarmerRate;
     public static int thaumcraftNodeMaxSize;
+    public static int drainerTimeBetween;
+    public static int drainerAmount;
+    public static int drainerCapacity;
 
     public static boolean arsMagicaActive;
     public static boolean baublesActive;
@@ -112,6 +118,7 @@ public class Config {
     public static BlockEffectJar effectJar;
     public static BlockHive hive;
     public static BlockMagicApiary magicApiary;
+    public static BlockApiamancersDrainer apiamancersDrainer;
     public static BlockManaAuraProvider manaAuraProvider;
     public static BlockVisAuraProvider visAuraProvider;
 
@@ -155,6 +162,9 @@ public class Config {
 
     // ----- Config State info ----------------------------------
     public static Configuration configuration;
+
+    // ---- Loaded mods -----------------------------------------
+    public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
 
     public Config(File configFile) {
         configuration = new Configuration(configFile);
@@ -332,6 +342,31 @@ public class Config {
                 32767);
         thaumcraftNodeMaxSize = p.getInt(256);
 
+        p = configuration.get(
+                CATEGORY_GENERAL,
+                "drainerTimeBetween",
+                200,
+                "The time in ticks between Apiamancer's Drainer essentia generation",
+                1,
+                32767);
+        drainerTimeBetween = p.getInt(200);
+        p = configuration.get(
+                CATEGORY_GENERAL,
+                "drainerAmount",
+                1,
+                "The amount that the Apiamancer's Drainer generates on every round",
+                1,
+                32767);
+        drainerAmount = p.getInt(1);
+        p = configuration.get(
+                CATEGORY_GENERAL,
+                "drainerCapacity",
+                512,
+                "The amount that the Apiamancer's Drainer can hold of each aspect",
+                1,
+                32767);
+        drainerCapacity = p.getInt(512);
+
         p = configuration.get(CATEGORY_GENERAL, "moonDialShowText", false);
         p.comment = "set to true to show the current moon phase in mouse-over text.";
         moonDialShowsPhaseInText = p.getBoolean(false);
@@ -471,6 +506,11 @@ public class Config {
             visAuraProvider = new BlockVisAuraProvider();
             GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
             GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
+
+            if (isGTLoaded) BlockApiamancersDrainer.drainer = TileEntityApiamancersDrainerGT.class;
+            apiamancersDrainer = new BlockApiamancersDrainer();
+            GameRegistry.registerBlock(apiamancersDrainer, "apiamancersDrainer");
+            GameRegistry.registerTileEntity(BlockApiamancersDrainer.drainer, "apiamancersDrainer");
         }
     }
 
@@ -520,7 +560,7 @@ public class Config {
     private void setupMiscForestryItemHooks() {
         // Make Aromatic Lumps a swarmer inducer. Chance is /1000.
         if (aromaticLumpSwarmerRate > 0) {
-            aromaticLumpSwarmerRate = (aromaticLumpSwarmerRate >= 1000) ? 1000 : aromaticLumpSwarmerRate;
+            aromaticLumpSwarmerRate = Math.min(aromaticLumpSwarmerRate, 1000);
             BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), aromaticLumpSwarmerRate);
         }
     }
