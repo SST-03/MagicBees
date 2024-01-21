@@ -32,12 +32,8 @@ public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainer
                                 + e.getValue())
                 .collect(Collectors.joining(EnumChatFormatting.RESET + ", " + EnumChatFormatting.RESET));
 
-        return new String[] { //
-                EnumChatFormatting.DARK_PURPLE + "Apiamancer's Drainer" + EnumChatFormatting.RESET, //
-                aspect != null ? "Attuned: " + aspect.getName() : "Not attuned", //
-                "Stored Essentia:", //
-                aspects //
-        };
+        return new String[] { EnumChatFormatting.DARK_PURPLE + "Apiamancer's Drainer" + EnumChatFormatting.RESET,
+                aspect != null ? "Attuned: " + aspect.getName() : "Not attuned", "Stored Essentia:", aspects };
     }
 
     @Override

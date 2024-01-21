@@ -62,14 +62,11 @@ public class BlockApiamancersDrainer extends BlockContainer {
                                 .getAspects()[0];
                         ((TileEntityApiamancersDrainerCommon) tile).setAspect(tLocked);
 
-                        // TODO: improve text
                         player.addChatMessage(
                                 new ChatComponentTranslation("Producing " + tLocked.getLocalizedDescription()));
                     }
                 } else {
                     ((TileEntityApiamancersDrainerCommon) tile).setAspect(null);
-
-                    // TODO: improve text
                     player.addChatMessage(new ChatComponentTranslation("Cleared production specifier"));
                 }
                 world.markBlockForUpdate(x, y, z);
