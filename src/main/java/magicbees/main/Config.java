@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
-import magicbees.block.BlockApiamancersDrainer;
+import magicbees.block.BlockApimancersDrainer;
 import magicbees.block.BlockEffectJar;
 import magicbees.block.BlockEnchantedEarth;
 import magicbees.block.BlockHive;
@@ -58,7 +58,7 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.BotaniaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
-import magicbees.tileentity.TileEntityApiamancersDrainerGT;
+import magicbees.tileentity.TileEntityApimancersDrainerGT;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
@@ -118,7 +118,7 @@ public class Config {
     public static BlockEffectJar effectJar;
     public static BlockHive hive;
     public static BlockMagicApiary magicApiary;
-    public static BlockApiamancersDrainer apiamancersDrainer;
+    public static BlockApimancersDrainer apimancersDrainer;
     public static BlockManaAuraProvider manaAuraProvider;
     public static BlockVisAuraProvider visAuraProvider;
 
@@ -507,10 +507,10 @@ public class Config {
             GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
             GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
 
-            if (isGTLoaded) BlockApiamancersDrainer.drainer = TileEntityApiamancersDrainerGT.class;
-            apiamancersDrainer = new BlockApiamancersDrainer();
-            GameRegistry.registerBlock(apiamancersDrainer, "apiamancersDrainer");
-            GameRegistry.registerTileEntity(BlockApiamancersDrainer.drainer, "apiamancersDrainer");
+            if (isGTLoaded) BlockApimancersDrainer.drainer = TileEntityApimancersDrainerGT.class;
+            apimancersDrainer = new BlockApimancersDrainer();
+            GameRegistry.registerBlock(apimancersDrainer, "apimancersDrainer");
+            GameRegistry.registerTileEntity(BlockApimancersDrainer.drainer, "apimancersDrainer");
         }
     }
 

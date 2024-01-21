@@ -14,7 +14,7 @@ import gregtech.api.interfaces.tileentity.IGregTechDeviceInformation;
 import gregtech.api.metatileentity.BaseMetaTileEntity;
 import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_IndustrialApiary;
 
-public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainerCommon
+public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCommon
         implements IGregTechDeviceInformation {
 
     @Override
@@ -32,7 +32,7 @@ public class TileEntityApiamancersDrainerGT extends TileEntityApiamancersDrainer
                                 + e.getValue())
                 .collect(Collectors.joining(EnumChatFormatting.RESET + ", " + EnumChatFormatting.RESET));
 
-        return new String[] { EnumChatFormatting.DARK_PURPLE + "Apiamancer's Drainer" + EnumChatFormatting.RESET,
+        return new String[] { EnumChatFormatting.DARK_PURPLE + "Apimancer's Drainer" + EnumChatFormatting.RESET,
                 aspect != null ? "Attuned: " + aspect.getName() : "Not attuned", "Stored Essentia:", aspects };
     }
 

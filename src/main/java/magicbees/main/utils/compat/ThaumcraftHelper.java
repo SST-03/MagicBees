@@ -86,7 +86,7 @@ public class ThaumcraftHelper implements IModHelper {
     private static Object visAuraProvider;
     private static Object voidScoop;
     private static Object voidGrafter;
-    private static InfusionRecipe apiamancersDrainer;
+    private static InfusionRecipe apimancersDrainer;
 
     public static boolean isActive() {
         return isThaumcraftPresent;
@@ -295,9 +295,9 @@ public class ThaumcraftHelper implements IModHelper {
 
         ItemStack centrifuge = new ItemStack(ConfigBlocks.blockTube);
         centrifuge.setItemDamage(2);
-        apiamancersDrainer = ThaumcraftApi.addInfusionCraftingRecipe(
-                "MB_ApiamancersDrainer",
-                new ItemStack(Config.apiamancersDrainer),
+        apimancersDrainer = ThaumcraftApi.addInfusionCraftingRecipe(
+                "MB_ApimancersDrainer",
+                new ItemStack(Config.apimancersDrainer),
                 6,
                 new AspectList().add(Aspect.MAGIC, 40).add(Aspect.HARVEST, 20).add(Aspect.EXCHANGE, 20)
                         .add(Aspect.ELDRITCH, 20),
@@ -552,15 +552,15 @@ public class ThaumcraftHelper implements IModHelper {
                         .setParentsHidden("VISPOWER").registerResearchItem();
 
         new ResearchItem(
-                "MB_ApiamancersDrainer",
+                "MB_ApimancersDrainer",
                 category,
                 new AspectList().add(Aspect.ELDRITCH, 1).add(Aspect.HARVEST, 1).add(Aspect.MAGIC, 1)
                         .add((Aspect) aspectTime, 1),
                 -3,
                 5,
                 4,
-                new ItemStack(Config.apiamancersDrainer))
-                        .setPages(getResearchPage("MB_ApiamancersDrainer.1"), new ResearchPage(apiamancersDrainer))
+                new ItemStack(Config.apimancersDrainer))
+                        .setPages(getResearchPage("MB_ApimancersDrainer.1"), new ResearchPage(apimancersDrainer))
                         .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setParents("MB_EssenceUnstable")
                         .setConcealed().registerResearchItem();
 
