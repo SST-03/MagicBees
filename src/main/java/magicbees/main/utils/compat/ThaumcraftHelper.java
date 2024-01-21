@@ -33,6 +33,7 @@ import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
+import thaumcraft.common.config.ConfigBlocks;
 
 public class ThaumcraftHelper implements IModHelper {
 
@@ -292,13 +293,26 @@ public class ThaumcraftHelper implements IModHelper {
                 'T',
                 new ItemStack(miscResource, 1, MiscResource.VOID_INGOT.ordinal()));
 
+        ItemStack centrifuge = new ItemStack(ConfigBlocks.blockTube);
+        centrifuge.setItemDamage(2);
         apiamancersDrainer = ThaumcraftApi.addInfusionCraftingRecipe(
                 "MB_ApiamancersDrainer",
                 new ItemStack(Config.apiamancersDrainer),
                 6,
-                new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20).add(Aspect.VOID, 15),
-                Config.propolis.getStackForType(PropolisType.UNSTABLE),
-                new ItemStack[] { input, input, in2 });
+                new AspectList()
+                    .add(Aspect.MAGIC, 40)
+                    .add(Aspect.HARVEST, 20)
+                    .add(Aspect.EXCHANGE, 20)
+                    .add(Aspect.ELDRITCH, 20),
+                new ItemStack(ConfigBlocks.blockEssentiaReservoir),
+                new ItemStack[] {
+                    centrifuge,
+                    Config.pollen.getStackForType(PollenType.UNUSUAL),
+                    Config.pollen.getStackForType(PollenType.PHASED),
+                    Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY),
+                    Config.pollen.getStackForType(PollenType.UNUSUAL),
+                    Config.pollen.getStackForType(PollenType.PHASED)
+                });
     }
 
     private static void setupResearch() {
@@ -553,7 +567,7 @@ public class ThaumcraftHelper implements IModHelper {
                 4,
                 new ItemStack(Config.apiamancersDrainer))
                         .setPages(getResearchPage("MB_ApiamancersDrainer.1"), new ResearchPage(apiamancersDrainer))
-                        .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setConcealed().registerResearchItem();
+                        .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setParents("MB_EssenceUnstable").setConcealed().registerResearchItem();
 
     }
 
