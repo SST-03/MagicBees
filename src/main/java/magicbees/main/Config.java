@@ -346,7 +346,7 @@ public class Config {
                 CATEGORY_GENERAL,
                 "drainerTimeBetween",
                 200,
-                "The time in ticks between Apiamancer's Drainer essentia generation",
+                "The time in ticks between Apimancer's Drainer essentia generation",
                 1,
                 32767);
         drainerTimeBetween = p.getInt(200);
@@ -354,7 +354,7 @@ public class Config {
                 CATEGORY_GENERAL,
                 "drainerAmount",
                 1,
-                "The amount that the Apiamancer's Drainer generates on every round",
+                "The amount that the Apimancer's Drainer generates on every round",
                 1,
                 32767);
         drainerAmount = p.getInt(1);
@@ -362,7 +362,7 @@ public class Config {
                 CATEGORY_GENERAL,
                 "drainerCapacity",
                 512,
-                "The amount that the Apiamancer's Drainer can hold of each aspect",
+                "The amount that the Apimancer's Drainer can hold of each aspect",
                 1,
                 32767);
         drainerCapacity = p.getInt(512);
