@@ -299,20 +299,14 @@ public class ThaumcraftHelper implements IModHelper {
                 "MB_ApiamancersDrainer",
                 new ItemStack(Config.apiamancersDrainer),
                 6,
-                new AspectList()
-                    .add(Aspect.MAGIC, 40)
-                    .add(Aspect.HARVEST, 20)
-                    .add(Aspect.EXCHANGE, 20)
-                    .add(Aspect.ELDRITCH, 20),
+                new AspectList().add(Aspect.MAGIC, 40).add(Aspect.HARVEST, 20).add(Aspect.EXCHANGE, 20)
+                        .add(Aspect.ELDRITCH, 20),
                 new ItemStack(ConfigBlocks.blockEssentiaReservoir),
-                new ItemStack[] {
-                    centrifuge,
-                    Config.pollen.getStackForType(PollenType.UNUSUAL),
-                    Config.pollen.getStackForType(PollenType.PHASED),
-                    Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY),
-                    Config.pollen.getStackForType(PollenType.UNUSUAL),
-                    Config.pollen.getStackForType(PollenType.PHASED)
-                });
+                new ItemStack[] { centrifuge, Config.pollen.getStackForType(PollenType.UNUSUAL),
+                        Config.pollen.getStackForType(PollenType.PHASED),
+                        Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY),
+                        Config.pollen.getStackForType(PollenType.UNUSUAL),
+                        Config.pollen.getStackForType(PollenType.PHASED) });
     }
 
     private static void setupResearch() {
@@ -567,7 +561,8 @@ public class ThaumcraftHelper implements IModHelper {
                 4,
                 new ItemStack(Config.apiamancersDrainer))
                         .setPages(getResearchPage("MB_ApiamancersDrainer.1"), new ResearchPage(apiamancersDrainer))
-                        .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setParents("MB_EssenceUnstable").setConcealed().registerResearchItem();
+                        .setParentsHidden("VOIDMETAL", "ESSENTIARESERVOIR").setParents("MB_EssenceUnstable")
+                        .setConcealed().registerResearchItem();
 
     }
 
