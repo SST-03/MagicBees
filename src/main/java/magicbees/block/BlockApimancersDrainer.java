@@ -15,21 +15,21 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityApiamancersDrainerCommon;
+import magicbees.tileentity.TileEntityApimancersDrainerCommon;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 
-public class BlockApiamancersDrainer extends BlockContainer {
+public class BlockApimancersDrainer extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public static Class<? extends TileEntity> drainer = TileEntityApiamancersDrainerCommon.class;
+    public static Class<? extends TileEntity> drainer = TileEntityApimancersDrainerCommon.class;
 
-    public BlockApiamancersDrainer() {
+    public BlockApimancersDrainer() {
         super(Material.rock);
         this.setCreativeTab(TabMagicBees.tabMagicBees);
-        this.setBlockName("apiamancersDrainer");
+        this.setBlockName("apimancersDrainer");
         this.setHardness(1f);
         this.setResistance(1.5f);
         this.setHarvestLevel("pickaxe", 0);
@@ -51,7 +51,7 @@ public class BlockApiamancersDrainer extends BlockContainer {
             return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileEntityApiamancersDrainerCommon) {
+            if (tile instanceof TileEntityApimancersDrainerCommon) {
                 ItemStack tItemStack = player.getHeldItem();
                 if (tItemStack != null) {
                     Item tItem = tItemStack.getItem();
@@ -60,16 +60,13 @@ public class BlockApiamancersDrainer extends BlockContainer {
                             && ((IEssentiaContainerItem) tItem).getAspects(player.getHeldItem()).size() > 0) {
                         Aspect tLocked = ((IEssentiaContainerItem) tItem).getAspects(player.getHeldItem())
                                 .getAspects()[0];
-                        ((TileEntityApiamancersDrainerCommon) tile).setAspect(tLocked);
+                        ((TileEntityApimancersDrainerCommon) tile).setAspect(tLocked);
 
-                        // TODO: improve text
                         player.addChatMessage(
                                 new ChatComponentTranslation("Producing " + tLocked.getLocalizedDescription()));
                     }
                 } else {
-                    ((TileEntityApiamancersDrainerCommon) tile).setAspect(null);
-
-                    // TODO: improve text
+                    ((TileEntityApimancersDrainerCommon) tile).setAspect(null);
                     player.addChatMessage(new ChatComponentTranslation("Cleared production specifier"));
                 }
                 world.markBlockForUpdate(x, y, z);
@@ -90,7 +87,7 @@ public class BlockApiamancersDrainer extends BlockContainer {
         icons = new IIcon[4];
 
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = register.registerIcon(CommonProxy.DOMAIN + ":apiamancersdrainer." + i);
+            icons[i] = register.registerIcon(CommonProxy.DOMAIN + ":apimancersdrainer." + i);
         }
     }
 }

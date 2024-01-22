@@ -23,7 +23,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 
-public class TileEntityApiamancersDrainerCommon extends TileEntity implements IAspectContainer, IEssentiaTransport {
+public class TileEntityApimancersDrainerCommon extends TileEntity implements IAspectContainer, IEssentiaTransport {
 
     public Aspect aspect;
     public AspectList essentia = new AspectList();
