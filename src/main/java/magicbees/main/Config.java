@@ -164,8 +164,7 @@ public class Config {
     public static Configuration configuration;
 
     // ---- Loaded mods -----------------------------------------
-    public static boolean isGTLoaded = Loader.isModLoaded("gregtech")
-            && !Loader.instance().getIndexedModList().get("gregtech").getVersion().startsWith("GT6");
+    public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
 
     public Config(File configFile) {
         configuration = new Configuration(configFile);

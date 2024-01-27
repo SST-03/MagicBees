@@ -131,6 +131,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import cpw.mods.fml.common.Loader;
 import gregtech.api.enums.Materials;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
@@ -261,7 +262,7 @@ public class BeeProductHelper {
     }
 
     public static void initOreDictSProducts() {
-        boolean isGTLoaded = Config.isGTLoaded;
+        boolean isGTLoaded = Loader.isModLoaded("gregtech");
         SILVER.addProduct(ForestryHelper.itemHoneycomb, 0.10f);
         if (OreDictionary.getOres("nuggetSilver").size() > 0) {
             SILVER.addSpecialty(
