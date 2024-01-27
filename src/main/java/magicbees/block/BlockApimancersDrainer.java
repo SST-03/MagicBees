@@ -45,13 +45,13 @@ public class BlockApimancersDrainer extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7,
             float par8, float par9) {
         if (world.isRemote) {
             return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileEntityApimancersDrainerCommon) {
+            if (tile instanceof TileEntityApimancersDrainerCommon && side != 0) {
                 ItemStack tItemStack = player.getHeldItem();
                 if (tItemStack != null) {
                     Item tItem = tItemStack.getItem();
@@ -71,7 +71,9 @@ public class BlockApimancersDrainer extends BlockContainer {
                 }
                 world.markBlockForUpdate(x, y, z);
                 return true;
-            } else return false;
+            } else {
+                return false;
+            }
         }
     }
 

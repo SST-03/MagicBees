@@ -165,6 +165,7 @@ public class Config {
 
     // ---- Loaded mods -----------------------------------------
     public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
+    public static boolean isGTNHCoreModLoaded = Loader.isModLoaded("gregtech") && Loader.isModLoaded("dreamcraft");
 
     public Config(File configFile) {
         configuration = new Configuration(configFile);
@@ -507,7 +508,7 @@ public class Config {
             GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
             GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
 
-            if (isGTLoaded) BlockApimancersDrainer.drainer = TileEntityApimancersDrainerGT.class;
+            if (isGTNHCoreModLoaded) BlockApimancersDrainer.drainer = TileEntityApimancersDrainerGT.class;
             apimancersDrainer = new BlockApimancersDrainer();
             GameRegistry.registerBlock(apimancersDrainer, "apimancersDrainer");
             GameRegistry.registerTileEntity(BlockApimancersDrainer.drainer, "apimancersDrainer");
