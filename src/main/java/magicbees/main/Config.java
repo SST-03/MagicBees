@@ -63,6 +63,7 @@ import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
 import magicbees.tileentity.TileEntityVisAuraProvider;
+import thaumicenergistics.api.ThEApi;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -166,6 +167,7 @@ public class Config {
     // ---- Loaded mods -----------------------------------------
     public static boolean isGTLoaded = Loader.isModLoaded("gregtech");
     public static boolean isGTNHCoreModLoaded = Loader.isModLoaded("gregtech") && Loader.isModLoaded("dreamcraft");
+    public static boolean isThaumicEnergisticsLoaded = Loader.isModLoaded("thaumicenergistics");
 
     public Config(File configFile) {
         configuration = new Configuration(configFile);
@@ -224,6 +226,15 @@ public class Config {
 
         setupOreDictionaryEntries();
         setupMiscForestryItemHooks();
+    }
+
+    public void setupThaumicEnergistics() {
+        if (isThaumicEnergisticsLoaded) {
+            try {
+                Class c = BlockApimancersDrainer.drainer;
+                ThEApi.instance().transportPermissions().addAspectStorageTileToExtractPermissions(c);
+            } catch (Exception ignored) {}
+        }
     }
 
     private void processConfigFile() {
