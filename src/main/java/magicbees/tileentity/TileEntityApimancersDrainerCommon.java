@@ -42,6 +42,7 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IEs
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         // If there's no stored aspect we shouldn't even check for the above block.
         // We also don't need to run all the logic if the cabinet is full.
         if (aspect == null || essentia.visSize() == maxAmount) return;
