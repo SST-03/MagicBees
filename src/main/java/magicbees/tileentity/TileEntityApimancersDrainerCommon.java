@@ -27,7 +27,8 @@ import thaumicenergistics.api.storage.IAspectStorage;
 
 @Optional.InterfaceList({
         @Optional.Interface(iface = "thaumicenergistics.api.storage.IAspectStorage", modid = "thaumicenergistics") })
-public class TileEntityApimancersDrainerCommon extends TileEntity implements IEssentiaTransport, IAspectContainer, IAspectStorage {
+public class TileEntityApimancersDrainerCommon extends TileEntity
+        implements IEssentiaTransport, IAspectContainer, IAspectStorage {
 
     public Aspect aspect;
     public AspectList essentia = new AspectList();
