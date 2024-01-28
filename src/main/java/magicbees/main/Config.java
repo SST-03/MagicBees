@@ -228,6 +228,15 @@ public class Config {
         setupMiscForestryItemHooks();
     }
 
+    public void setupThaumicEnergistics() {
+        if (isThaumicEnergisticsLoaded) {
+            try {
+                Class c = BlockApimancersDrainer.drainer;
+                ThEApi.instance().transportPermissions().addAspectStorageTileToExtractPermissions(c);
+            } catch (Exception ignored) {}
+        }
+    }
+
     private void processConfigFile() {
         // Pull config from Forestry via reflection
         Field f;
@@ -514,13 +523,6 @@ public class Config {
             apimancersDrainer = new BlockApimancersDrainer();
             GameRegistry.registerBlock(apimancersDrainer, "apimancersDrainer");
             GameRegistry.registerTileEntity(BlockApimancersDrainer.drainer, "apimancersDrainer");
-
-            if (isThaumicEnergisticsLoaded) {
-                try {
-                    Class c = BlockApimancersDrainer.drainer;
-                    ThEApi.instance().transportPermissions().addAspectStorageTileToExtractPermissions(c);
-                } catch (Exception ignored) {}
-            }
         }
     }
 
