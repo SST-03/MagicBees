@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.common.Optional;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
@@ -22,8 +23,11 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
+import thaumicenergistics.api.storage.IAspectStorage;
 
-public class TileEntityApimancersDrainerCommon extends TileEntity implements IAspectContainer, IEssentiaTransport {
+@Optional.InterfaceList({
+        @Optional.Interface(iface = "thaumicenergistics.api.storage.IAspectStorage", modid = "thaumicenergistics") })
+public class TileEntityApimancersDrainerCommon extends TileEntity implements IEssentiaTransport, IAspectContainer, IAspectStorage {
 
     public Aspect aspect;
     public AspectList essentia = new AspectList();
@@ -98,6 +102,18 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IAs
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         queen.writeToNBT(nbttagcompound);
         housing.getBeeInventory().getQueen().setTagCompound(nbttagcompound);
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumicenergistics")
+    public int getContainerCapacity() {
+        return maxAmount;
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumicenergistics")
+    public boolean doesShareCapacity() {
+        return true;
     }
 
     @Override
