@@ -51,7 +51,7 @@ public class BlockApimancersDrainer extends BlockContainer {
             return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileEntityApimancersDrainerCommon && side != 0) {
+            if (tile instanceof TileEntityApimancersDrainerCommon && side != 1) {
                 ItemStack tItemStack = player.getHeldItem();
                 if (tItemStack != null) {
                     Item tItem = tItemStack.getItem();
