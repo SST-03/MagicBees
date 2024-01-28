@@ -40,13 +40,10 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
     protected IBeeHousing beeHousing(TileEntity above) {
         IBeeHousing regularCheck = super.beeHousing(above);
         if (regularCheck != null) return regularCheck;
-
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(above);
-
         if (GTMetaTileEntity != null) {
             IMetaTileEntity underlyingMetaTileEntity = GTMetaTileEntity.getMetaTileEntity();
             if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
-
             return (IBeeHousing) underlyingMetaTileEntity;
         }
 
@@ -56,7 +53,6 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
     @Override
     protected boolean canWork(IBeeHousing beeHousing, TileEntity te) {
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(te);
-
         return GTMetaTileEntity != null ? GTMetaTileEntity.isActive() : super.canWork(beeHousing, te);
     }
 
@@ -64,7 +60,6 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
     protected ItemStack getQueen(IBeeHousing beeHousing, TileEntity te) {
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(te);
         GT_MetaTileEntity_IndustrialApiary industrialApiary = getGTIndustrialApiary(GTMetaTileEntity);
-
         return industrialApiary != null ? industrialApiary.getUsedQueen() : super.getQueen(beeHousing, te);
     }
 
@@ -72,9 +67,7 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
     protected int getProductionMultiplier(IBeeModifier modifier, IBee queen, TileEntity te) {
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(te);
         GT_MetaTileEntity_IndustrialApiary industrialApiary = getGTIndustrialApiary(GTMetaTileEntity);
-
         int housingProductionMultiplier = super.getProductionMultiplier(modifier, queen, te);
-
         return industrialApiary != null
                 ? housingProductionMultiplier * (int) Math.ceil(Math.sqrt(industrialApiary.mSpeed))
                 : housingProductionMultiplier;
@@ -82,7 +75,6 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
 
     private BaseMetaTileEntity getGTTileEntity(TileEntity te) {
         boolean isGTMetaTileEntity = te instanceof BaseMetaTileEntity;
-
         return isGTMetaTileEntity ? (BaseMetaTileEntity) te : null;
     }
 
@@ -90,7 +82,6 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
         if (bmte != null) {
             IMetaTileEntity underlyingMetaTileEntity = bmte.getMetaTileEntity();
             if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
-
             return (GT_MetaTileEntity_IndustrialApiary) underlyingMetaTileEntity;
         }
         return null;

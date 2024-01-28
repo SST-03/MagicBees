@@ -51,21 +51,16 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IAs
                     // This performs all the checks to see if the bee is a living queen and if the species conditions
                     // are met.
                     if (!canWork(beeHousing, above)) return;
-
                     // The beeRoot.isMember call will treat null the same as EnumBeeType.NONE which leads getSpecies to
                     // return null.
                     ItemStack queenStack = getQueen(beeHousing, above);
                     IAlleleBeeSpecies queenSpecies = BeeGenome.getSpecies(queenStack);
                     if (queenSpecies == null) return;
-
                     if (BeeManager.beeRoot.getType(queenStack) != EnumBeeType.QUEEN) return;
-
                     if (Objects.equals(queenSpecies.getUID(), BeeSpecies.TC_ESSENTIA.getSpecies().getUID())) {
                         IBeeModifier modifier = BeeManager.beeRoot.createBeeHousingModifier(beeHousing);
                         IBee queen = BeeManager.beeRoot.getMember(queenStack);
-
                         int amount = Config.drainerAmount * getProductionMultiplier(modifier, queen, above);
-
                         addToContainer(aspect, amount);
                         drainQueen(beeHousing, modifier, queen);
                     }
@@ -93,14 +88,12 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IAs
         IBeeGenome queenGenome = queen.getGenome();
         float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
         float minimum = Math.max(productionMultiplier, 1.0F);
-
         return (int) Math.ceil(minimum);
     }
 
     private void drainQueen(IBeeHousing housing, IBeeModifier modifier, IBee queen) {
         float lifespanModifier = modifier.getLifespanModifier(queen.getGenome(), queen.getMate(), 1.0f);
         queen.age(housing.getWorld(), lifespanModifier);
-
         // Write the changed queen back into the item stack.
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         queen.writeToNBT(nbttagcompound);
@@ -125,13 +118,11 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IAs
     @Override
     public int addToContainer(Aspect tag, int am) {
         int toAdd = Math.min(maxAmount - essentia.visSize(), am);
-
         if (aspect.equals(tag) && toAdd > 0) {
             essentia.add(aspect, toAdd);
             markDirty();
             return am - toAdd;
         }
-
         markDirty();
         return am;
     }
@@ -211,14 +202,11 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IAs
                 int total = this.essentia.getAmount(aspect);
                 this.essentia.reduce(aspect, total);
                 return total;
-            } else {
-                this.essentia.reduce(aspect, amount);
-                return amount;
             }
-
-        } else {
-            return 0;
+            this.essentia.reduce(aspect, amount);
+            return amount;
         }
+        return 0;
     }
 
     @Override
@@ -274,7 +262,6 @@ public class TileEntityApimancersDrainerCommon extends TileEntity implements IAs
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-
         this.essentia.readFromNBT(compound);
         if (this.essentia.visSize() > this.maxAmount) {
             this.essentia = new AspectList();

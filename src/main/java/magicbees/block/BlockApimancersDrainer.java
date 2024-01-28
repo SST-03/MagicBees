@@ -71,9 +71,8 @@ public class BlockApimancersDrainer extends BlockContainer {
                 }
                 world.markBlockForUpdate(x, y, z);
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
     }
 
@@ -87,7 +86,6 @@ public class BlockApimancersDrainer extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
         icons = new IIcon[4];
-
         for (int i = 0; i < icons.length; i++) {
             icons[i] = register.registerIcon(CommonProxy.DOMAIN + ":apimancersdrainer." + i);
         }

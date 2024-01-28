@@ -61,9 +61,8 @@ public class MagicApiaryInventory implements IApiaryInventory {
 
         if (all) {
             return countAdded == product.stackSize;
-        } else {
-            return countAdded > 0;
         }
+        return countAdded > 0;
     }
 
     public int getSizeInventory() {
@@ -76,7 +75,6 @@ public class MagicApiaryInventory implements IApiaryInventory {
 
     public void setInventorySlotContents(int i, ItemStack itemStack) {
         items[i] = itemStack;
-
         if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
             itemStack.stackSize = getInventoryStackLimit();
         }
@@ -85,13 +83,12 @@ public class MagicApiaryInventory implements IApiaryInventory {
     public int[] getAccessibleSlotsFromSide(int side) {
         if (side == 0 || side == 1) {
             return new int[] { SLOT_QUEEN, SLOT_DRONE };
-        } else {
-            int[] slots = new int[SLOT_PRODUCTS_COUNT];
-            for (int i = 0, slot = SLOT_PRODUCTS_START; i < SLOT_PRODUCTS_COUNT; ++i, ++slot) {
-                slots[i] = slot;
-            }
-            return slots;
         }
+        int[] slots = new int[SLOT_PRODUCTS_COUNT];
+        for (int i = 0, slot = SLOT_PRODUCTS_START; i < SLOT_PRODUCTS_COUNT; ++i, ++slot) {
+            slots[i] = slot;
+        }
+        return slots;
     }
 
     public boolean canInsertItem(int slot, ItemStack itemStack, int side) {
@@ -113,7 +110,6 @@ public class MagicApiaryInventory implements IApiaryInventory {
 
     public Collection<IHiveFrame> getFrames() {
         Collection<IHiveFrame> hiveFrames = new ArrayList<IHiveFrame>(SLOT_FRAME_COUNT);
-
         for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++) {
             ItemStack stackInSlot = magicApiary.getStackInSlot(i);
             if (stackInSlot == null) {
@@ -125,42 +121,34 @@ public class MagicApiaryInventory implements IApiaryInventory {
                 hiveFrames.add((IHiveFrame) itemInSlot);
             }
         }
-
         return hiveFrames;
     }
 
     public void wearOutFrames(IBeeHousing beeHousing, int amount) {
         IBeekeepingMode beekeepingMode = BeeManager.beeRoot.getBeekeepingMode(magicApiary.getWorldObj());
         int wear = Math.round(amount * beekeepingMode.getWearModifier());
-
         for (int i = MagicApiaryInventory.SLOT_FRAME_START; i
                 < MagicApiaryInventory.SLOT_FRAME_START + MagicApiaryInventory.SLOT_FRAME_COUNT; i++) {
             ItemStack hiveFrameStack = magicApiary.getStackInSlot(i);
             if (hiveFrameStack == null) {
                 continue;
             }
-
             Item hiveFrameItem = hiveFrameStack.getItem();
             if (!(hiveFrameItem instanceof IHiveFrame)) {
                 continue;
             }
-
             IHiveFrame hiveFrame = (IHiveFrame) hiveFrameItem;
-
             ItemStack queenStack = magicApiary.getBeeInventory().getQueen();
             IBee queen = BeeManager.beeRoot.getMember(queenStack);
             ItemStack usedFrame = hiveFrame.frameUsed(magicApiary, hiveFrameStack, queen, wear);
-
             magicApiary.setInventorySlotContents(i, usedFrame);
         }
     }
 
     public void writeToNBT(NBTTagCompound compound) {
         NBTTagList itemsNBT = new NBTTagList();
-
         for (int i = 0; i < items.length; i++) {
             ItemStack itemStack = items[i];
-
             if (itemStack != null) {
                 NBTTagCompound item = new NBTTagCompound();
                 item.setByte("Slot", (byte) i);
@@ -173,11 +161,9 @@ public class MagicApiaryInventory implements IApiaryInventory {
 
     public void readFromNBT(NBTTagCompound compound) {
         NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-
         for (int i = 0; i < items.tagCount(); i++) {
             NBTTagCompound item = items.getCompoundTagAt(i);
             int slot = item.getByte("Slot");
-
             if (slot >= 0 && slot < getSizeInventory()) {
                 setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
             }
