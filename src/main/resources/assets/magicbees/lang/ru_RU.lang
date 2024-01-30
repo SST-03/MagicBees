@@ -120,6 +120,8 @@ item.frameMetabolic.name=Метаболическая рамка
 item.frameNecrotic.name=Некротическая рамка
 item.frameTemporal.name=Временная рамка
 item.frameOblivion.name=Забвенная рамка
+item.frenziedFrame.name=Сводящая с ума рамка Безумия
+item.bloodSoakedFrame.name=Кровавая рамка
 
 #Capsules
 capsule.magic=Магическая капсула %s
@@ -165,6 +167,14 @@ itemGroup.magicBees=Magic Bees
 misc.level=Уровень %s
 misc.magnetActive=%s - активирован
 misc.magnetInactive=%s - деактивирован
+
+#Botania flowers; Lexicon entries nearer the end.
+tile.botania:flower.beegonia.name=Beegonia
+tile.botania:flower.beegonia.lore=We won't bee seeing you any more...
+tile.botania:flower.hiveacynth.name=Hiveacynth
+tile.botania:flower.hiveacynth.lore=In a Morvelaira's Garden
+tile.botania:flower.hibeescus.name=Hibeescus
+tile.botania:flower.hibeescus.lore=The puns may sting a bit
 
 #Research
 research.requiresBlock=Требует основы %s
