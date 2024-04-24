@@ -118,7 +118,6 @@ public class TileEntityApimancersDrainerCommon extends TileEntity
         return true;
     }
 
-    @Override
     public AspectList getAspects() {
         return this.essentia;
     }

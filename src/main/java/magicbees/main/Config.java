@@ -63,7 +63,7 @@ import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
 import magicbees.tileentity.TileEntityManaAuraProvider;
 import magicbees.tileentity.TileEntityVisAuraProvider;
-import thaumicenergistics.api.ThEApi;
+import thaumicenergistics.implementaion.ThEAPIImplementation;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -232,7 +232,8 @@ public class Config {
         if (isThaumicEnergisticsLoaded) {
             try {
                 Class c = BlockApimancersDrainer.drainer;
-                ThEApi.instance().transportPermissions().addAspectStorageTileToExtractPermissions(c);
+                // Has to be Implementation, ThEAPI is just the base
+                ThEAPIImplementation.instance().transportPermissions().addAspectStorageTileToExtractPermissions(c);
             } catch (Exception ignored) {}
         }
     }
