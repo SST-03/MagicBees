@@ -81,12 +81,11 @@ public class MagicApiaryInventory implements IApiaryInventory {
     }
 
     public int[] getAccessibleSlotsFromSide(int side) {
-        if (side == 0 || side == 1) {
-            return new int[] { SLOT_QUEEN, SLOT_DRONE };
-        }
-        int[] slots = new int[SLOT_PRODUCTS_COUNT];
+        int[] slots = new int[SLOT_PRODUCTS_COUNT + 2];
+        slots[0] = SLOT_QUEEN;
+        slots[1] = SLOT_DRONE;
         for (int i = 0, slot = SLOT_PRODUCTS_START; i < SLOT_PRODUCTS_COUNT; ++i, ++slot) {
-            slots[i] = slot;
+            slots[i + 2] = slot;
         }
         return slots;
     }
@@ -101,7 +100,7 @@ public class MagicApiaryInventory implements IApiaryInventory {
     }
 
     public boolean canExtractItem(int slot, ItemStack itemStack, int side) {
-        return slot >= SLOT_FRAME_START && slot <= SLOT_FRAME_START + 2;
+        return slot >= SLOT_PRODUCTS_START && slot <= SLOT_PRODUCTS_START + SLOT_PRODUCTS_COUNT;
     }
 
     public int getInventoryStackLimit() {
