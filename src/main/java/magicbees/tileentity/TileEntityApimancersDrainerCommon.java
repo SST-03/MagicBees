@@ -15,6 +15,7 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.apiculture.IBeekeepingMode;
 import forestry.apiculture.genetics.BeeGenome;
 import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
@@ -91,8 +92,15 @@ public class TileEntityApimancersDrainerCommon extends TileEntity
     }
 
     protected int getProductionMultiplier(IBeeModifier modifier, IBee queen, TileEntity te) {
-        IBeeGenome queenGenome = queen.getGenome();
-        float productionMultiplier = modifier.getProductionModifier(queenGenome, 1.0F);
+        IBeekeepingMode mode = BeeManager.beeRoot.getBeekeepingMode(te.getWorldObj());
+
+        IBeeGenome genome = queen.getGenome();
+        float genomeSpeed = genome.getSpeed();
+
+        float productionMultiplier = modifier.getProductionModifier(genome, 1.0F);
+        productionMultiplier += mode != null ? mode.getBeeModifier().getProductionModifier(genome, productionMultiplier) : 0.0F;
+        productionMultiplier += genomeSpeed;
+
         float minimum = Math.max(productionMultiplier, 1.0F);
         return (int) Math.ceil(minimum);
     }
