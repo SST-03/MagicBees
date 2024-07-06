@@ -98,7 +98,8 @@ public class TileEntityApimancersDrainerCommon extends TileEntity
         float genomeSpeed = genome.getSpeed();
 
         float productionMultiplier = modifier.getProductionModifier(genome, 1.0F);
-        productionMultiplier += mode != null ? mode.getBeeModifier().getProductionModifier(genome, productionMultiplier) : 0.0F;
+        productionMultiplier += mode != null ? mode.getBeeModifier().getProductionModifier(genome, productionMultiplier)
+                : 0.0F;
         productionMultiplier += genomeSpeed;
 
         float minimum = Math.max(productionMultiplier, 1.0F);
