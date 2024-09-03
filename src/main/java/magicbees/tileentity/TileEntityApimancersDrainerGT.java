@@ -12,7 +12,7 @@ import forestry.api.apiculture.IBeeModifier;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechDeviceInformation;
 import gregtech.api.metatileentity.BaseMetaTileEntity;
-import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_IndustrialApiary;
+import gregtech.common.tileentities.machines.basic.MTEIndustrialApiary;
 
 public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCommon
         implements IGregTechDeviceInformation {
@@ -43,7 +43,7 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(above);
         if (GTMetaTileEntity != null) {
             IMetaTileEntity underlyingMetaTileEntity = GTMetaTileEntity.getMetaTileEntity();
-            if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
+            if (!(underlyingMetaTileEntity instanceof MTEIndustrialApiary)) return null;
             return (IBeeHousing) underlyingMetaTileEntity;
         }
 
@@ -59,14 +59,14 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
     @Override
     protected ItemStack getQueen(IBeeHousing beeHousing, TileEntity te) {
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(te);
-        GT_MetaTileEntity_IndustrialApiary industrialApiary = getGTIndustrialApiary(GTMetaTileEntity);
+        MTEIndustrialApiary industrialApiary = getGTIndustrialApiary(GTMetaTileEntity);
         return industrialApiary != null ? industrialApiary.getUsedQueen() : super.getQueen(beeHousing, te);
     }
 
     @Override
     protected int getProductionMultiplier(IBeeModifier modifier, IBee queen, TileEntity te) {
         BaseMetaTileEntity GTMetaTileEntity = getGTTileEntity(te);
-        GT_MetaTileEntity_IndustrialApiary industrialApiary = getGTIndustrialApiary(GTMetaTileEntity);
+        MTEIndustrialApiary industrialApiary = getGTIndustrialApiary(GTMetaTileEntity);
         int housingProductionMultiplier = super.getProductionMultiplier(modifier, queen, te);
         return industrialApiary != null
                 ? housingProductionMultiplier * (int) Math.ceil(Math.sqrt(industrialApiary.mSpeed))
@@ -78,11 +78,11 @@ public class TileEntityApimancersDrainerGT extends TileEntityApimancersDrainerCo
         return isGTMetaTileEntity ? (BaseMetaTileEntity) te : null;
     }
 
-    private GT_MetaTileEntity_IndustrialApiary getGTIndustrialApiary(BaseMetaTileEntity bmte) {
+    private MTEIndustrialApiary getGTIndustrialApiary(BaseMetaTileEntity bmte) {
         if (bmte != null) {
             IMetaTileEntity underlyingMetaTileEntity = bmte.getMetaTileEntity();
-            if (!(underlyingMetaTileEntity instanceof GT_MetaTileEntity_IndustrialApiary)) return null;
-            return (GT_MetaTileEntity_IndustrialApiary) underlyingMetaTileEntity;
+            if (!(underlyingMetaTileEntity instanceof MTEIndustrialApiary)) return null;
+            return (MTEIndustrialApiary) underlyingMetaTileEntity;
         }
         return null;
     }
