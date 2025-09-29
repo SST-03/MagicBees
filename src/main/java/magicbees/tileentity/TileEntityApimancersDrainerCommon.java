@@ -159,7 +159,7 @@ public class TileEntityApimancersDrainerCommon extends TileEntity
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         }
         if (this.essentia.getAmount(tag) >= amount) {
-            this.essentia.reduce(tag, amount);
+            this.essentia.remove(tag, amount);
             return true;
         }
         return false;
@@ -177,7 +177,7 @@ public class TileEntityApimancersDrainerCommon extends TileEntity
         }
         if (hasIt) {
             for (Aspect next : ot.aspects.keySet()) {
-                essentia.reduce(next, ot.getAmount(next));
+                essentia.remove(next, ot.getAmount(next));
             }
             return true;
         }
