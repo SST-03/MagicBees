@@ -224,12 +224,10 @@ public class TileEntityApimancersDrainerCommon extends TileEntity
             if (!this.worldObj.isRemote) {
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
             }
-            if (amount > this.essentia.getAmount(aspect)) {
-                int total = this.essentia.getAmount(aspect);
-                this.essentia.reduce(aspect, total);
-                return total;
-            }
-            this.essentia.reduce(aspect, amount);
+
+            int total = this.essentia.getAmount(aspect);
+            this.essentia.remove(aspect, amount); // if amount >= total then it will also remove aspect.
+            if (amount > total) return total;
             return amount;
         }
         return 0;
